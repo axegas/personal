@@ -1,11 +1,17 @@
 package iesserpis.ed;
 
+import iesserpis.ed.HolaMundo;
 import java.util.Scanner;
 
 public class pru {
 
 	public static void main(String[] args) {
 
+		iesserpis.ed.HolaMundo.muestraHola();
+		
+		
+		
+		/*
 		Scanner scan = new Scanner(System.in);
 
 		int n;
@@ -32,4 +38,10 @@ public class pru {
 		
 	scan.close();
 	}
+
+	private static void muestraHola() {
+		// TODO Auto-generated method stub
+		*/
+	}
+
 }

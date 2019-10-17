@@ -1,10 +1,11 @@
 package iesserpis.ed;
 
+
 import java.util.Scanner;
 
 public class HolaMundo {	
 
-	public static void main(String[] args) {
+	public static void muestraHola() {
 		Scanner scanner = new Scanner(System.in);	
 		
 		System.out.print("Inserte su nombre: ");
@@ -16,8 +17,7 @@ public class HolaMundo {
 		
 		System.out.println("Hola " + nombre + ". El año que viene tendras " + (edad+1));
 		
-		
-		
+		return;
 	
 	}
 
