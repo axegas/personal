@@ -34,7 +34,7 @@ public class ComePez {
 					System.out.print(cad[i][j]);
 				System.out.println("");
 				}
-			System.out.println("Añadimos un pez? (s/n)");
+			System.out.print("Añadimos un pez? (s/n): ");
 			comer=scan.nextLine();
 			}while(comer.equals("s"));
 		
