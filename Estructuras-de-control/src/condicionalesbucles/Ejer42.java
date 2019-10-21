@@ -11,8 +11,6 @@ public class Ejer42 {
 		float salario=0;
 		Scanner scan = new Scanner(System.in);
 		
-		
-		
 		System.out.print("Introduce las horas semanales: ");
 		horas = scan.nextInt();
 		System.out.print("Introduce el precio por hora: ");

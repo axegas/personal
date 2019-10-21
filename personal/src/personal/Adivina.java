@@ -13,7 +13,7 @@ public class Adivina {
 		DecimalFormat df2 = new DecimalFormat("#");
 		 
 		//Del 1 al numMax
-		int numMax=10;
+		int numMax=50;
 		//Oportunidades
 		float contMax=3;
 		//variables de control
@@ -28,12 +28,12 @@ public class Adivina {
 		int rand = (int) (Math.random()*numMax+1);		
 		int n;
 						
-		for(int i=0;i<11;i++) cad[i]=i;
+		for(int i=0;i<=numMax;i++) cad[i]=i;
 		
 		while(salida==1) {
 			partidas++;
-			System.out.println("Adivina el número mágico!");
-			System.out.println("Introduce un número entre el 1 y el "+ numMax);
+			System.out.println("Adivina el numero magico!");
+			System.out.println("Introduce un numero entre el 1 y el "+ numMax);
 			System.out.println("Tienes " + df2.format(contador) + " oportunidades.");
 			while(contador>0){
 				n= scan.nextInt();
@@ -45,25 +45,25 @@ public class Adivina {
 					contador=0;
 					}else 
 						if(n>numMax || n<1) 
-							System.out.println("el número no es válido");
+							System.out.println("el numero no es valido");
 						else {
 							contador--;
 							if(contador>0) {
 								if(n>rand) {
-									System.out.println("Has introducido un número mayor, busca uno menor.");
+									System.out.println("Has introducido un numero mayor, busca uno menor.");
 									for(int i=n;i<=numMax;i++) {
 										cad[i]=0;
 									}
 									}else {
-										System.out.println("Has introducido un número menor, busca uno mayor.");
+										System.out.println("Has introducido un numero menor, busca uno mayor.");
 										for(int i=n;i>cad[0];i--) {
 											cad[i]=0;
 										}
 									}
 								if(contador==1) {
-									System.out.println("Te quedan los siguientes números y solo " + df2.format(contador) + " oportunidad!");
+									System.out.println("Te quedan los siguientes numeros y solo " + df2.format(contador) + " oportunidad!");
 								}else {
-									System.out.println("Te quedan los siguientes números y " + df2.format(contador) + " oportunidades:");			
+									System.out.println("Te quedan los siguientes numeros y " + df2.format(contador) + " oportunidades:");			
 								}								
 								for(int i=1;i<=numMax;i++) {
 									if(cad[i]!=0) {
@@ -73,7 +73,7 @@ public class Adivina {
 								}
 								System.out.println(" ");
 								}else {
-									System.out.println("Has perdido! El número mágico es el: " + rand);
+									System.out.println("Has perdido! El numero magico es el: " + rand);
 									}
 							}
 				}
@@ -81,7 +81,7 @@ public class Adivina {
 				System.out.println("Quieres jugar de nuevo? (0-NO, 1-SI)");
 				salida=scan.nextInt();
 				if(salida!=0 && salida!=1) {
-					System.out.println("Número no valido.");
+					System.out.println("Numero no valido.");
 				}
 				}while(salida!=0 && salida!=1);
 			if(salida==1) {
