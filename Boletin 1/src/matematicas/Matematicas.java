@@ -60,6 +60,18 @@ public class Matematicas {
 		return pos;
 	}
 	
+	public static void palote(int n) {
+		for(int i=0;i<n;i++) System.out.print("|");		
+		
+	}	
 	
+	public static int digitoPos(int digito, int posicion) {
+		int dig=0;
+		for(int i=0;i<posicion;i++) {
+			dig=digito%10;
+			digito=digito/10;			
+		}
+		return dig;
+	}
 }
 
