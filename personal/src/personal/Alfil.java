@@ -35,12 +35,15 @@ public class Alfil {
 					}
 				}
 			}
-		for(int i=x+1;i<8;i++) {
+		for(int i=x;i<8;i++) {
 			if((x+y)-i>=0) {
-				System.out.print(tablero[i][(x+y)-i]+" ");
-				System.out.print(tablero[(x+y)-i][i]+" ");
+				if(i!=x) {
+					System.out.print(tablero[i][(x+y)-i]+" ");
+					System.out.print(tablero[(x+y)-i][i]+" ");
+				}
 			}			
 		}
+
 		/*
 		for(int i=y+1;i<8;i++) {
 			if() {
