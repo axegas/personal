@@ -25,7 +25,7 @@ public class Adivina {
 		int salida=1;		
 		int cad[]=new int[numMax+1];
 		//variables operativas
-		int rand = (int) (Math.random()*numMax+1);		
+		int rand = (int) (Math.random()*numMax+2);		
 		int n=1;
 		int novalido=1;
 						
