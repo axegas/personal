@@ -1,7 +1,7 @@
 package personal;
 
 import java.text.DecimalFormat;
-
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Adivina {
@@ -13,7 +13,7 @@ public class Adivina {
 		DecimalFormat df2 = new DecimalFormat("#");
 		 
 		//Del 1 al numMax
-		int numMax=50;
+		int numMax=20;
 		//Oportunidades
 		float contMax=3;
 		//variables de control
@@ -26,7 +26,8 @@ public class Adivina {
 		int cad[]=new int[numMax+1];
 		//variables operativas
 		int rand = (int) (Math.random()*numMax+1);		
-		int n;
+		int n=1;
+		int novalido=1;
 						
 		for(int i=0;i<=numMax;i++) cad[i]=i;
 		
@@ -35,11 +36,11 @@ public class Adivina {
 			System.out.println("Adivina el numero magico!");
 			System.out.println("Introduce un numero entre el 1 y el "+ numMax);
 			System.out.println("Tienes " + df2.format(contador) + " oportunidades.");
-			while(contador>0){
-				n= scan.nextInt();
+			while(contador>0){	
+				n= PruebaError();
+				if(n==-1) break;
 				if(n==rand) {
 					System.out.println("Has acertado!");
-
 					puntuacion=puntuacion+contador;
 					ganadas++;
 					contador=0;
@@ -67,9 +68,16 @@ public class Adivina {
 								}								
 								for(int i=1;i<=numMax;i++) {
 									if(cad[i]!=0) {
+										if(cad[i]<10) {
+											System.out.print("{ 0"+ cad[i]+" }");
+										}else {
 										System.out.print("{ "+ cad[i]+" }");
+										}
 									}else
-										System.out.print("{   }");
+										System.out.print("{    }");
+									if((i%10)==0) {
+										System.out.println(" ");
+									}
 								}
 								System.out.println(" ");
 								}else {
@@ -96,5 +104,22 @@ public class Adivina {
 		media= (puntuacion/(contMax*partidas)*100);
 		System.out.printf("Partidas jugadas: %s\nPartidas ganadas: %s\nPuntuacion total: %s\nTasa de victorias: %s%%\n",df2.format(partidas),df2.format(ganadas),df2.format(puntuacion),df.format(media));
 		scan.close();
+		
+		
+	
+		
+
 		}
+	public static int PruebaError() {
+		// TODO Auto-generated method stub
+		Scanner scan = new Scanner(System.in);	
+		try {
+			int n = scan.nextInt();
+			return n;
+		} catch (InputMismatchException e) {
+			System.out.println("No introdujiste un número válido");
+			return -1;
+		}
+
+	}
 	}
