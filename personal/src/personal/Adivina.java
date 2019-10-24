@@ -33,12 +33,14 @@ public class Adivina {
 		
 		while(salida==1) {
 			partidas++;
-			System.out.println("Adivina el numero magico!");
-			System.out.println("Introduce un numero entre el 1 y el "+ numMax);
-			System.out.println("Tienes " + df2.format(contador) + " oportunidades.");
-			while(contador>0){	
-				n= PruebaError();
-				if(n==-1) break;
+			while(contador>0){
+				do {					
+					System.out.println("Adivina el numero magico!");
+					System.out.println("Introduce un numero entre el 1 y el "+ numMax);
+					System.out.println("Tienes " + df2.format(contador) + " oportunidades.");
+					n= PruebaError();					
+				}while(n==-1);
+				
 				if(n==rand) {
 					System.out.println("Has acertado!");
 					puntuacion=puntuacion+contador;
@@ -87,7 +89,7 @@ public class Adivina {
 				}
 			do {
 				System.out.println("Quieres jugar de nuevo? (0-NO, 1-SI)");
-				salida=scan.nextInt();
+				salida=PruebaError();
 				if(salida!=0 && salida!=1) {
 					System.out.println("Numero no valido.");
 				}
