@@ -3,17 +3,20 @@ package personal;
 import java.text.DecimalFormat;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Adivina {
 
+	private static Scanner scan;
 	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
+		scan = new Scanner(System.in);
 			
 		DecimalFormat df = new DecimalFormat("#.00");
 		DecimalFormat df2 = new DecimalFormat("#");
 		 
 		//Del 1 al numMax
 		int numMax=20;
+		int numMin=1;
 		//Oportunidades
 		float contMax=3;
 		//variables de control
@@ -25,9 +28,8 @@ public class Adivina {
 		int salida=1;		
 		int cad[]=new int[numMax+1];
 		//variables operativas
-		int rand = (int) (Math.random()*numMax+2);		
+		int rand = getNumeroRandom(numMin, numMax);		
 		int n=1;
-		int novalido=1;
 						
 		for(int i=0;i<=numMax;i++) cad[i]=i;
 		
@@ -36,7 +38,7 @@ public class Adivina {
 			while(contador>0){
 				do {					
 					System.out.println("Adivina el numero magico!");
-					System.out.println("Introduce un numero entre el 1 y el "+ numMax);
+					System.out.println("Introduce un numero entre el "+ numMin + " y el "+ numMax);
 					System.out.println("Tienes " + df2.format(contador) + " oportunidades.");
 					n= PruebaError();					
 				}while(n==-1);
@@ -96,7 +98,7 @@ public class Adivina {
 				}while(salida!=0 && salida!=1);
 			if(salida==1) {
 				contador=contMax;
-				rand = (int) (Math.random()*numMax+1);
+				rand = getNumeroRandom(numMin, numMax);
 				for(int i=0;i<=numMax;i++) cad[i]=i;
 				}else {
 					System.out.println("Hasta pronto!");	
@@ -105,16 +107,12 @@ public class Adivina {
 			}		
 		media= (puntuacion/(contMax*partidas)*100);
 		System.out.printf("Partidas jugadas: %s\nPartidas ganadas: %s\nPuntuacion total: %s\nTasa de victorias: %s%%\n",df2.format(partidas),df2.format(ganadas),df2.format(puntuacion),df.format(media));
-		scan.close();
-		
-		
-	
 		
 
 		}
 	public static int PruebaError() {
-		// TODO Auto-generated method stub
-		Scanner scan = new Scanner(System.in);	
+		
+		scan = new Scanner(System.in);	
 		try {
 			int n = scan.nextInt();
 			return n;
@@ -124,4 +122,7 @@ public class Adivina {
 		}
 
 	}
+	private static int getNumeroRandom(int min, int max){
+	       return ThreadLocalRandom.current().nextInt(min, max);
+	   }
 	}

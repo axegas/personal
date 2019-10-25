@@ -52,17 +52,15 @@ public class Matematicas {
 	
 	public static int digitoN(int digito, int n) {
 		int pos=0;
-		int aux = digito;
 		for(int i=0;i<n;i++) {
-			pos = aux%10;
-			aux=aux/10;			
+			pos = digito%10;
+			digito=digito/10;			
 		}		
 		return pos;
 	}
 	
 	public static void palote(int n) {
-		for(int i=0;i<n;i++) System.out.print("|");		
-		
+		for(int i=0;i<n;i++) System.out.print("|");				
 	}	
 	
 	public static int digitoPos(int digito, int posicion) {

@@ -1,6 +1,5 @@
 package matematicas;
 
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Funciones {

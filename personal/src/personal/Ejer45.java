@@ -25,7 +25,7 @@ public class Ejer45 {
 		}else {
 			for(int i=0;i<n;i++) {//ejecución.
 				for(int j=0;j<n;j++) {
-					if(i==j || j==n-i-1 || (i==0 || i==n-1)) System.out.print("*");
+					if(i==j || j==n-i-1) System.out.print("*");
 					else System.out.print(" ");
 					}System.out.println(" ");
 			}
