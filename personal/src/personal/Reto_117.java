@@ -7,13 +7,14 @@ public class Reto_117 {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		int personas = scan.nextInt();
-		String nombre = scan.nextLine();
-		String[] parts;
+		scan.nextLine();
+		String nombre;
+		String soy;
 		
 		for(int i=0;i<personas;i++) {
-			nombre = scan.nextLine();
-			parts = nombre.split(" ");
-			System.out.println("Hola, " + parts[1] + ".");	
+			soy = scan.next();
+			nombre = scan.next();
+			System.out.println("Hola, " + nombre + ".");	
+			}
 		}
-		}
-}
+	}
