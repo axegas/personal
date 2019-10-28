@@ -22,7 +22,7 @@ public class Reto_149 {
 					}
 				}
 			System.out.println(vel);
-			if()
+		
 			
 			
 			
