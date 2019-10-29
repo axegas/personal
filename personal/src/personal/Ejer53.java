@@ -24,7 +24,6 @@ public class Ejer53 {
 		while(true) {
 			n= PruebaError();
 			contador++;
-			i = Integer.compare(n, rand);
 			i = Integer.valueOf(n).compareTo(rand);
 			
 			if(i==0) {
