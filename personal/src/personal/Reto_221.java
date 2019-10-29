@@ -7,14 +7,14 @@ public class Reto_221 {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		
-		int casos = scan.nextInt();
+		//int casos = scan.nextInt();
 		int vecinos = scan.nextInt();
 		int butacas[] = new int[vecinos];
 		int contador=0;
 		
 		int i=0;
 		
-		while(casos>0) {
+		//while(casos>0) {
 		for(i=0;i<butacas.length;i++) {
 			butacas[i]=scan.nextInt();
 		}			
@@ -32,9 +32,8 @@ public class Reto_221 {
 		}	
 		if(contador>0) System.out.println("SI " + contador);
 		else System.out.println("NO");
-		casos--;
-		}
-		
+		//casos--;
+		//}		
 	}
 
 }

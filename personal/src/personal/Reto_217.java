@@ -17,5 +17,7 @@ public class Reto_217 {
 					else
 						System.out.println("IZQUIERDA");
 			}while(n!=0);
+		
+		
 	}
 }
