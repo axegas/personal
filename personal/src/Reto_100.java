@@ -10,9 +10,10 @@ public class Reto_100 {
 		for(int i=0;i<casos;i++)
 			numeros[i]=scan.nextInt();
 		
+		muestraArray(numeros);
 		
+		kaprekar(numeros[0]);
 		
-
 		
 
 	}
@@ -23,5 +24,25 @@ public class Reto_100 {
 			System.out.print(array[i] + "\t");
 		}
 	}
+	public static void kaprekar(int num) {
+		int ord;
+		int[] aux = new int[4];
+		for(int i=0;i<4;i++) {
+			aux[i]=num%10;
+			num/=10;
+		}	
+	
+	}
+	public static int[] ordenaArray(int[] array) {
+		int[] aux = new int[array.length];
+		for(int i=0;i<array.length;i++) {
+			
+		}
+		
+		return aux;
+	}
+	
+	
+	
 
 }

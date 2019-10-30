@@ -31,7 +31,7 @@ public class Matematicas {
 		
 		while(i>0) {
 			aux = x%10;
-			y =y + (int) (aux*Math.pow(10,i-1));
+			y =y + (int) (aux*potencia(10,i-1));
 			x=x/10;
 			i--;			
 		}		
