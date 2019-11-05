@@ -1,7 +1,4 @@
 
-
-import java.util.concurrent.ThreadLocalRandom;
-
 import matematicas.Funciones;
 
 public class Ejer60 {
@@ -9,22 +6,19 @@ public class Ejer60 {
 	public static void main(String[] args) {
 		int min=1;
 		int max=7;	
-		int i=0;
-		int j=0;
-		int prim;
+		int primera;
 		int compases;
 		
-		compases = ThreadLocalRandom.current().nextInt(min, max);
-		prim = ThreadLocalRandom.current().nextInt(min, max);
-		int nota_str[] = new int[compases*4];
-		nota_str = Funciones.rellenaArray(nota_str, min, max);
-		nota_str[0]=prim;
-		nota_str[nota_str.length-1]=prim;
+		compases = Funciones.getNumeroRandom(min, max);
+		primera = Funciones.getNumeroRandom(min, max);
+		int notas[] = new int[compases*4];
+		notas = Funciones.rellenaArray(notas, min, max);
 		
-		
-		
-		for(i=0;i<nota_str.length;i++) {				
-			switch(nota_str[i]) {
+		notas[0]=primera;
+		notas[notas.length-1]=primera;
+				
+		for(int i=0;i<notas.length;i++) {				
+			switch(notas[i]) {
 			case 1:
 				System.out.print("do ");
 				break;
@@ -52,8 +46,5 @@ public class Ejer60 {
 			}			
 		}
 		System.out.print("|");
-				
-
 	}
-
 }
