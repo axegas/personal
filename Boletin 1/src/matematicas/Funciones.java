@@ -18,9 +18,8 @@ public class Funciones {
 		}
 	}
 	private static int getNumeroRandom(int min, int max){
-	       return ThreadLocalRandom.current().nextInt(min, max);
-	   }
-	
+		return ThreadLocalRandom.current().nextInt(min, max);
+		}
 	public static int[][] rellenaMatriz(int[][] matriz, int min, int max) {
 		for(int i=0;i<matriz.length;i++) {
 			for(int j=0;j<matriz[i].length;j++) {
@@ -28,6 +27,14 @@ public class Funciones {
 				}
 			}
 		return matriz;
+		}
+	public static int[] rellenaArray(int[] array, int min, int max) {
+	
+			for(int j=0;j<array.length;j++) {
+					array[j]= getNumeroRandom(min,max);
+				}
+	
+		return array;
 		}
 	
 

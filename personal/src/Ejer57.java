@@ -33,7 +33,7 @@ public class Ejer57 {
 			cad1 = scan.nextLine();
 			System.out.print("Introduce otra cadena: ");
 			cad2 = scan.nextLine();
-			String cad3 = cad1 + cad2 + "";
+			String cad3 = cad1 + cad2;
 			System.out.println("Las cadenas concatenadas son: " + cad3);			
 			break;
 		case 4:

@@ -9,6 +9,13 @@ public class Vector {
 		}
 	
 	
+	int x = indexOf(v,2);
 	
+	}
+	public static int indexOf(int v[], int x) {
+		for(int i=0; i<v.length;i++)
+			if(v[i]==x)
+				return i;
+		return -1;
 	}
 }
