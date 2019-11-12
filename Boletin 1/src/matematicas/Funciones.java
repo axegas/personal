@@ -14,8 +14,9 @@ public class Funciones {
 		}
 	public static void muestraArray(int[] array) {
 		for(int i=0;i<array.length;i++) {
-			System.out.print(array[i] + "\t");
+			System.out.print(array[i] + "   ");
 		}
+		System.out.println("");
 	}
 	public static int getNumeroRandom(int min, int max){
 		return ThreadLocalRandom.current().nextInt(min, max+1);
