@@ -20,6 +20,7 @@ public class Funciones {
 	}
 	public static int getNumeroRandom(int min, int max){
 		return ThreadLocalRandom.current().nextInt(min, max+1);
+		
 		}
 	public static int[][] rellenaMatriz(int[][] matriz, int min, int max) {
 		for(int i=0;i<matriz.length;i++) {
@@ -37,7 +38,4 @@ public class Funciones {
 	
 		return array;
 		}
-	
-
-
 }

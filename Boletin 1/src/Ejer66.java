@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -8,9 +9,9 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 
 public class Ejer66 {
-
+	public static Scanner scan = new Scanner(System.in);
 	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
+		
 		
 		//pedir los valores con los que trabajar
 		System.out.print("Introduce las filas: ");
@@ -32,14 +33,24 @@ public class Ejer66 {
 		m = rellenaMatriz(m,min,max);
 		muestraMatriz(m);
 		
-		do {		
-			System.out.print("Introduce el número que quieres buscar: ('salir' para salir)");
-			salida = scan.nextLine();
+		do {
+			num = -1;
+			do {
+			try {
+				System.out.print("Introduce el número que quieres buscar: ('salir' para salir)");
+				salida = scan.nextLine();
+				if(salida.equals("salir")) { //condición de salida
+					break;
+					}
+				num = Integer.parseInt(salida);
+				} catch (NumberFormatException e) {
+					num = -1;
+					System.out.println("No introdujiste un número válido");	
+					}
+			}while(num==-1);
 			if(salida.equals("salir")) { //condición de salida
 				break;
-			}
-			
-			num = Integer.parseInt(salida);
+				}
 			
 			
 			for(int i=0;i<m.length;i++) {
@@ -82,4 +93,15 @@ public class Ejer66 {
 			System.out.println("  ");
 			}	
 		}
+	public static int PruebaError() {
+		
+		try {
+			int n = scan.nextInt();
+			return n;
+		} catch (InputMismatchException e) {
+			System.out.println("No introdujiste un número válido");
+			return -1;
+		}
+
+	}
 }
