@@ -9,9 +9,9 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 
 public class Ejer66 {
-	public static Scanner scan = new Scanner(System.in);
+
 	public static void main(String[] args) {
-		
+		Scanner scan = new Scanner(System.in);
 		
 		//pedir los valores con los que trabajar
 		System.out.print("Introduce las filas: ");
@@ -93,15 +93,4 @@ public class Ejer66 {
 			System.out.println("  ");
 			}	
 		}
-	public static int PruebaError() {
-		
-		try {
-			int n = scan.nextInt();
-			return n;
-		} catch (InputMismatchException e) {
-			System.out.println("No introdujiste un número válido");
-			return -1;
-		}
-
-	}
 }
