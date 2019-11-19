@@ -16,25 +16,25 @@ public class Tres {
 			}
 		}
 		do {
-			tuTirada(tablero);
-			muestraMatriz(tablero);
+			tuTirada();
+			muestraTablero();
 			if(ganador(jugador)) {
 				System.out.println("Has ganado!");
 				victoria = true;
 				break;
 			}
-			if(!cabeValor(tablero)) {
+			if(!cabeValor()) {
 				break;
 			}
-			miTirada(tablero);
+			miTirada();
 			System.out.println("Mi tirada: ");
-			muestraMatriz(tablero);
+			muestraTablero();
 			if(ganador(maquina)) {
 				System.out.println("He ganado!");
 				victoria = true;
 				break;
 			}
-			}while(cabeValor(tablero));
+			}while(cabeValor());
 		
 		if(!victoria) {
 			System.out.println("Empatados!");
@@ -42,7 +42,7 @@ public class Tres {
 		}	
 		
 	
-	public static void tuTirada(char[][] m) {
+	public static void tuTirada() {
 		int x;
 		int y;
 		do {
@@ -51,35 +51,35 @@ public class Tres {
 				x = scan.nextInt();
 				y = scan.nextInt();
 				}while(x<0 | x>2 | y<0 | y>2);
-		}while(m[x][y]!='-');
-		m[x][y]='X';
+		}while(tablero[x][y]!='-');
+		tablero[x][y]='X';
 		jugador[x][y]=1;
 		
 	}
-	public static void miTirada(char[][] m) {
+	public static void miTirada() {
 		int x;
 		int y;
 		do {
 			x = getIntRandom(0,2);
 			y = getIntRandom(0,2);			
-		}while(m[x][y]!='-');
-		m[x][y]='0';
+		}while(tablero[x][y]!='-');
+		tablero[x][y]='0';
 		maquina[x][y]=1;
 	}
-	public static void muestraMatriz(char[][] matriz) {	
-		for(int i=0;i<matriz.length;i++) {
-			for(int j=0;j<matriz[i].length;j++) {
-				System.out.print(matriz[i][j] + "  ");
+	public static void muestraTablero() {	
+		for(int i=0;i<tablero.length;i++) {
+			for(int j=0;j<tablero[i].length;j++) {
+				System.out.print(tablero[i][j] + "  ");
 				}
 			System.out.println("");
 			}	
 		}
 	
-	public static boolean cabeValor(char[][] m) {
+	public static boolean cabeValor() {
 		
 		for(int i=0;i<3;i++) {
 			for(int j=0;j<3;j++) {
-				if(m[i][j]=='-')
+				if(tablero[i][j]=='-')
 					return true;
 			}
 		}
