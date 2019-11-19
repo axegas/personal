@@ -25,6 +25,7 @@ public class Ejer66 {
 		
 		String salida = "";
 		int num = 0;
+		int cd = 0;
 		int error = 0;
 		int con = 0; //contador. 0 si el valor no está en la matriz, 1 en caso contrario
 		scan.nextLine();
@@ -36,7 +37,7 @@ public class Ejer66 {
 		do {
 			num = -1;
 			do {
-			try {
+				try {
 				System.out.print("Introduce el número que quieres buscar: ('salir' para salir)");
 				salida = scan.nextLine();
 				if(salida.equals("salir")) { //condición de salida
