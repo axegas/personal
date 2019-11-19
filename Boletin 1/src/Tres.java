@@ -4,31 +4,40 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Tres {
 
 	static Scanner scan = new Scanner(System.in);
-	static char[][] m = new char[3][3];
-	static int[][] num = new int[3][3];
-	static int[][] num2 = new int[3][3];
+	static char[][] tablero = new char[3][3];
+	static int[][] jugador = new int[3][3];
+	static int[][] maquina = new int[3][3];
 	public static void main(String[] args) {
-		
+		boolean victoria = false;
 		for(int i=0;i<3;i++) {
 			for(int j=0;j<3;j++) {
-				m[i][j]='-';
+				tablero[i][j]='-';
 			}
 		}
 		do {
-			tuTirada(m);
-			muestraMatriz(m);
-			if(ganador(num)) {
+			tuTirada(tablero);
+			muestraMatriz(tablero);
+			if(ganador(jugador)) {
 				System.out.println("Has ganado!");
+				victoria = true;
 				break;
 			}
-			miTirada(m);
+			if(!cabeValor(tablero)) {
+				break;
+			}
+			miTirada(tablero);
 			System.out.println("Mi tirada: ");
-			muestraMatriz(m);
-			if(ganador(num2)) {
+			muestraMatriz(tablero);
+			if(ganador(maquina)) {
 				System.out.println("He ganado!");
+				victoria = true;
 				break;
 			}
-			}while(cabeValor(m));
+			}while(cabeValor(tablero));
+		
+		if(!victoria) {
+			System.out.println("Empatados!");
+			}
 		}	
 		
 	
@@ -43,7 +52,7 @@ public class Tres {
 				}while(x<0 | x>2 | y<0 | y>2);
 		}while(m[x][y]!='-');
 		m[x][y]='X';
-		num[x][y]=1;
+		jugador[x][y]=1;
 		
 	}
 	public static void miTirada(char[][] m) {
@@ -54,7 +63,7 @@ public class Tres {
 			y = getNumeroRandom(0,2);			
 		}while(m[x][y]!='-');
 		m[x][y]='0';
-		num2[x][y]=1;
+		maquina[x][y]=1;
 	}
 	public static void muestraMatriz(char[][] matriz) {	
 		for(int i=0;i<matriz.length;i++) {
