@@ -27,7 +27,6 @@ public class Tres {
 				break;
 			}
 			miTirada();
-			System.out.println("Mi tirada: ");
 			muestraTablero();
 			if(ganador(maquina)) {
 				System.out.println("He ganado!");
@@ -59,6 +58,7 @@ public class Tres {
 	public static void miTirada() {
 		int x;
 		int y;
+		System.out.println("Mi tirada: ");
 		do {
 			x = getIntRandom(0,2);
 			y = getIntRandom(0,2);			
