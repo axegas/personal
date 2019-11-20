@@ -18,7 +18,7 @@ public class PruebasArray {
 		System.out.println("Tu vector es:");
 		Funciones.muestraArray(v);
 		
-		if(v==v2) {
+		if(Arrays.equals(v, v2)) {
 			System.out.println("El vector está ordenado");
 		}else
 			System.out.println("El vector no está ordenado");
