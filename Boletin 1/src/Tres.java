@@ -40,17 +40,28 @@ public class Tres {
 			}
 		}	
 		
+	public static boolean validaTuTirada(int x, int y) {
+		if(x<0 | x>2 | y<0 | y>2 | tablero[x][y]!='-') {
+			System.out.println("Has introducido una posición errónea!");
+			return false;
+		}		
+		return true;		
+	}
+	public static boolean validaMiTirada(int x, int y) {
+		if(tablero[x][y]=='-') {
+			return true;
+		}		
+		return false;		
+	}
 	
 	public static void tuTirada() {
 		int x;
 		int y;
 		do {
-			do {
-				System.out.print("Introduce tu tirada: ");
-				x = scan.nextInt();
-				y = scan.nextInt();
-				}while(x<0 | x>2 | y<0 | y>2);
-		}while(tablero[x][y]!='-');
+			System.out.print("Introduce tu tirada: ");
+			x = scan.nextInt();
+			y = scan.nextInt();			
+		}while(!validaTuTirada(x,y));
 		tablero[x][y]='X';
 		jugador[x][y]=1;
 		
@@ -62,7 +73,7 @@ public class Tres {
 		do {
 			x = getIntRandom(0,2);
 			y = getIntRandom(0,2);			
-		}while(tablero[x][y]!='-');
+		}while(!validaMiTirada(x,y));
 		tablero[x][y]='0';
 		maquina[x][y]=1;
 	}
