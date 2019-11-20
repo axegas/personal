@@ -2,19 +2,21 @@ import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Tres {
-
-	static Scanner scan = new Scanner(System.in);
-	static char[][] tablero = new char[3][3];
-	static int[][] jugador = new int[3][3];
-	static int[][] maquina = new int[3][3];
 	
+	static Scanner scan = new Scanner(System.in);
+	static int tam = tamanyo();
+	static char[][] tablero = new char[tam][tam];
+	static int[][] jugador = new int[tam][tam];
+	static int[][] maquina = new int[tam][tam];
+		
 	public static void main(String[] args) {
 		boolean victoria = false;
-		for(int i=0;i<3;i++) {
-			for(int j=0;j<3;j++) {
+		for(int i=0;i<tablero.length;i++) {
+			for(int j=0;j<tablero[i].length;j++) {
 				tablero[i][j]='-';
 			}
 		}
+		
 		do {
 			tuTirada();
 			muestraTablero();
@@ -39,13 +41,18 @@ public class Tres {
 			System.out.println("Empatados!");
 			}
 		}	
-		
 	public static boolean validaTuTirada(int x, int y) {
-		if(x<0 | x>2 | y<0 | y>2 | tablero[x][y]!='-') {
+		if(x>=0 & x<(tablero.length) & y>=0 & y<(tablero.length)){
+			if(tablero[x][y]!='-') {
+				System.out.println("Has introducido una posición errónea!");
+				return false;
+			}else {
+				return true;
+			}
+		}else {
 			System.out.println("Has introducido una posición errónea!");
 			return false;
-		}		
-		return true;		
+		}			
 	}
 	public static boolean validaMiTirada(int x, int y) {
 		if(tablero[x][y]=='-') {
@@ -71,8 +78,8 @@ public class Tres {
 		int y;
 		System.out.println("Mi tirada: ");
 		do {
-			x = getIntRandom(0,2);
-			y = getIntRandom(0,2);			
+			x = getIntRandom(0,tablero.length-1);
+			y = getIntRandom(0,tablero.length-1);			
 		}while(!validaMiTirada(x,y));
 		tablero[x][y]='0';
 		maquina[x][y]=1;
@@ -88,8 +95,8 @@ public class Tres {
 	
 	public static boolean cabeValor() {
 		
-		for(int i=0;i<3;i++) {
-			for(int j=0;j<3;j++) {
+		for(int i=0;i<tablero.length;i++) {
+			for(int j=0;j<tablero[i].length;j++) {
 				if(tablero[i][j]=='-')
 					return true;
 			}
@@ -107,14 +114,14 @@ public class Tres {
 		int sumaCol = 0;
 		int sumaDiag1 = 0;
 		int sumaDiag2 = 0;
-		for(int i=0;i<3;i++) {
-			for(int j=0;j<3;j++) {
+		for(int i=0;i<tablero.length;i++) {
+			for(int j=0;j<tablero[i].length;j++) {
 				sumaFila += num[i][j];
 				sumaCol += num[j][i];
 				sumaDiag1 += num[j][j];
-				sumaDiag2 += num[j][2-j];
+				sumaDiag2 += num[j][tablero[i].length-1-j];
 			}
-			if(sumaFila==3 || sumaCol==3 || sumaDiag1==3 || sumaDiag2==3) {
+			if(sumaFila==tablero.length || sumaCol==tablero.length || sumaDiag1==tablero.length || sumaDiag2==tablero.length) {
 				return true;
 			}else {
 				sumaFila=0;
@@ -124,6 +131,10 @@ public class Tres {
 			}
 		}
 		return false;		
+	}
+	public static int tamanyo() {
+		System.out.print("Introduce el tamaño del tablero: ");
+		return scan.nextInt();
 	}
 
 }
