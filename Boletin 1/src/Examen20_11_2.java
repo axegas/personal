@@ -13,12 +13,9 @@ public class Examen20_11_2 {
 		Scanner scan = new Scanner(System.in);		
 		
 		char letra;
-		int posx=0;
-		int posy=0;
 		char[][] laberinto = new char[4][4];
 		int x = 0;
 		int y = 0;
-		String user;
 		
 		//pongo las paredes
 		laberinto[0][2]='X';
@@ -32,15 +29,14 @@ public class Examen20_11_2 {
 		
 		do {
 			System.out.printf("Estas en la casilla %s,%s. Cual es tu próximo movimiento?\n",x,y);		
-			user = scan.nextLine();
-			letra = user.charAt(0);
+			letra = scan.nextLine().charAt(0);
 			switch(letra) {
 			case 'w'://hacia arriba
 				System.out.println("Has pulsado hacia arriba");
 				if(x-1<0) {
 					System.out.println("ERROR! Nos salimos del tablero.");
 				}else {
-					if(laberinto[x+1][y]=='X') {
+					if(laberinto[x-1][y]=='X') {
 						System.out.println("ERROR! En esa dirección hay una pared.");
 					}else {
 						x=x-1;
@@ -69,7 +65,7 @@ public class Examen20_11_2 {
 					if(laberinto[x][y-1]=='X') {
 						System.out.println("ERROR! En esa dirección hay una pared.");
 					}else {
-						y=y+1;
+						y=y-1;
 					}
 				}
 				break;
@@ -88,6 +84,7 @@ public class Examen20_11_2 {
 				break;
 				
 			default:
+				System.out.println("Movimiento incorrecto.");
 				break;
 		}	
 			
