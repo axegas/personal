@@ -57,7 +57,7 @@ public class Examen20_11_2 {
 				}				
 				break;
 				
-			case 'a'://hacia la derecha
+			case 'a'://hacia la izquierda
 				System.out.println("Has pulsado hacia la izquierda");
 				if(y-1<0) {
 					System.out.println("ERROR! Nos salimos del tablero.");
@@ -70,7 +70,7 @@ public class Examen20_11_2 {
 				}
 				break;
 				
-			case 'd': //hacia la izquierda
+			case 'd': //hacia la derecha
 				System.out.println("Has pulsado hacia la derecha");
 				if(y+1>3) {
 					System.out.println("ERROR! Nos salimos del tablero.");
