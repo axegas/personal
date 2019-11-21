@@ -12,17 +12,15 @@ public class Examen20_11 {
 		int x;
 		int y;
 		int k=0;
-		int sumaA=0;
-		int precioA = 0;
-		int sumaP=0;
-		int precioP = 0;
-		int sumaC=0;
-		int precioC = 0;
-		int sumaO=0;
-		int precioO = 0;
+		int sumaMin = 0;
+		int sumaMay = 0;
 		
+		
+		String nombre = "";
+		System.out.print("Introduce tu nombre: ");
+		nombre = scan.nextLine();
 		do {
-			System.out.println("Introduce las dimensiones de la bandera de Paco (min 4x4): ");
+			System.out.println("Introduce las dimensiones de la bandera de "+nombre +" (min 4x4): ");
 			x = scan.nextInt();
 			if(x<4) {
 				System.out.println("La dimensión de X no es válida");
@@ -34,73 +32,43 @@ public class Examen20_11 {
 		}while(x<4 || y<4);
 		
 		char bandera[][] = new char[y+2][x+2];
-		char paco[] = new char[x*y];
+		char nom[] = new char[x*y];
 		
 		//pongo los bordes de la bandera
 		for(int i=0;i<bandera.length;i++) {
 			for(int j=0;j<bandera[i].length;j++) {
-				if(i==0 || i==bandera.length-1 || j==0 || j==1 || j==x+1) {
 					bandera[i][j]='@';
-				}
-			}
-			
+			}			
 		}
+
+		
+		
+	
 		//relleno array
-		for(int j=0;j<paco.length;j+=4) {
-			paco[j]='P';
-			if(j+1==paco.length) {
-				break;
-			}
-			paco[j+1]='a';
-			if(j+2==paco.length) {
-				break;
-			}
-			paco[j+2]='c';
-			if(j+3==paco.length) {
-				break;
-			}
-			paco[j+3]='o';
-		}
-		//relleno bandera
+		
 		for(int i=1;i<bandera.length-1;i++) {
 			for(int j=1;j<bandera[i].length-1;j++) {
-				bandera[i][j]=paco[k];
-
-				if(paco[k]=='P') {
-					sumaP++;
-				}
-				if(paco[k]=='a') {
-					sumaA++;
-				}
-				if(paco[k]=='c') {
-					sumaC++;
-				}
-				if(paco[k]=='o') {
-					sumaO++;
-				}
-				k++;
+				bandera[i][j]=nombre.charAt(k);
+				if(Character.isLowerCase(bandera[i][j])){
+					sumaMin++;
+				}else
+					sumaMay++;
+				if(k==nombre.length()-1) {
+					k=0;
+				}else
+					k++;
 			}
 		}
+		muestraBandera(bandera);
 		
-		//calculo precios
-		precioP = sumaP*10;
-		precioA = sumaA*5;
-		precioC = sumaC*5;
-		precioO = sumaO*5;
-			
-		int suma = precioP + precioA + precioC + precioO;
 		
-		//muestro resultado
-		muestraBandera(bandera);		
+		System.out.printf("\nLa bandera costaría: %s€, ya que hay que imprimir %s mayúsculas y %s minúsculas\n",(sumaMay*10 + sumaMin*5),sumaMay,sumaMin );
 		
-		System.out.printf("\nLa bandera costaría: %s€, ya que hay que imprimir:\n",suma );
-		System.out.printf("-%s letras P por valor de: %s€\n",sumaP,precioP);
-		System.out.printf("-%s letras A por valor de: %s€\n",sumaA,precioA);
-		System.out.printf("-%s letras C por valor de: %s€\n",sumaC,precioC);
-		System.out.printf("-%s letras O por valor de: %s€\n",sumaO,precioO);		
+	
+		
 		
 	}
-	
+		
 	public static void muestraBandera(char[][] bandera ) {	
 		for(int i=0;i<bandera.length;i++) {
 			for(int j=0;j<bandera[i].length;j++) {
