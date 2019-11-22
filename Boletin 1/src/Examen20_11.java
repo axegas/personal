@@ -61,8 +61,24 @@ public class Examen20_11 {
 		}
 		muestraBandera(bandera);
 		
+		int suma = sumaMay*10 + sumaMin*5;
+		/*String sumaAux = Integer.toString(suma);
 		
-		System.out.printf("\nLa bandera costaría: %s€, ya que hay que imprimir %s mayúsculas y %s minúsculas\n",(sumaMay*10 + sumaMin*5),sumaMay,sumaMin );
+		String resultado = "";
+		int l=0;
+		while(l<sumaAux.length()) {
+			if(l%3==0) {
+				resultado += ".";
+				resultado += sumaAux.charAt(l);
+			}else
+				resultado += sumaAux.charAt(l);
+			l++;
+		}
+		
+		System.out.println(suma);
+		System.out.println(resultado);
+		*/
+		System.out.printf("\nLa bandera costaría: %s€, ya que hay que imprimir %s mayúsculas y %s minúsculas\n",suma,sumaMay,sumaMin );
 		
 	
 		
