@@ -1,9 +1,9 @@
 import java.util.Scanner;
 
 public class Examen2 {
-
-	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
+	
+	public static Scanner scan = new Scanner(System.in);
+	public static void main(String[] args) {		
 		
 		System.out.print("Introduce tu nombre: ");
 		String nombre = scan.nextLine();
@@ -26,7 +26,7 @@ public class Examen2 {
 			}
 		}
 		do {
-			System.out.printf("Introduce la posición del transatlantico %s (max 3): (stop para acabar)",trans);
+			System.out.printf("Introduce la posición del transatlantico %s (max 3): (stop para acabar)",trans+1);
 			xS = scan.nextLine();
 			if(xS.equals("stop")) {
 				break;
@@ -51,7 +51,7 @@ public class Examen2 {
 			}while(trans<=3);
 		muestraMatriz(tablero);
 		do {
-			System.out.printf("Introduce la posición del carguero %s (max 3): (stop para acabar)",carg);
+			System.out.printf("Introduce la posición del carguero %s (max 3): (stop para acabar)",carg+1);
 			xS = scan.nextLine();
 			if(xS.equals("stop")) {
 				break;
@@ -75,7 +75,7 @@ public class Examen2 {
 			}while(carg<=3);
 		muestraMatriz(tablero);
 		do {
-			System.out.printf("Introduce la posición de la lancha %s (max 5): (stop para acabar)",lancha);
+			System.out.printf("Introduce la posición de la lancha %s (max 5): (stop para acabar)",lancha+1);
 			xS = scan.nextLine();
 			if(xS.equals("stop")) {
 				break;
@@ -100,7 +100,12 @@ public class Examen2 {
 		System.out.printf("Hay %s transatlanticos, %s cargueros y %s lanchas\n",trans,carg,lancha);
 		muestraMatriz(jugador);
 		
+		
 		do {
+			if(cont==0) {
+				System.out.println("No hay barcos. Has ganado!");
+				break;
+			}
 			System.out.printf("Introduce el disparo %s: ",disparo);
 			disparo++;
 			xS = scan.nextLine();
@@ -108,7 +113,7 @@ public class Examen2 {
 			y = Character.getNumericValue(xS.charAt(2));
 			if(tablero[x][y]=='_') {
 				jugador[x][y]='X';
-				tablero[x][y]='X';
+				//tablero[x][y]='X';
 				if(aguas==1) {
 					System.out.printf("Le has dado a agua! no te quedan más disparos. Has perdido!\n");
 				}else {
@@ -139,5 +144,8 @@ public class Examen2 {
 			System.out.println("  ");
 			}	
 		}
+	
+	
+	
 
 }
