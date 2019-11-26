@@ -2,9 +2,8 @@ import java.util.Scanner;
 
 public class Examen2 {
 	
-	public static Scanner scan = new Scanner(System.in);
 	public static void main(String[] args) {		
-		
+		Scanner scan = new Scanner(System.in);
 		System.out.print("Introduce tu nombre: ");
 		String nombre = scan.nextLine();
 		int trans =0;
@@ -48,7 +47,7 @@ public class Examen2 {
 						}
 					}
 					}
-			}while(trans<=3);
+			}while(trans<3);
 		muestraMatriz(tablero);
 		do {
 			System.out.printf("Introduce la posición del carguero %s (max 3): (stop para acabar)",carg+1);
@@ -72,7 +71,7 @@ public class Examen2 {
 							}
 						}
 					}
-			}while(carg<=3);
+			}while(carg<3);
 		muestraMatriz(tablero);
 		do {
 			System.out.printf("Introduce la posición de la lancha %s (max 5): (stop para acabar)",lancha+1);
@@ -94,7 +93,7 @@ public class Examen2 {
 							}
 						}
 					}
-			}while(lancha<=5);
+			}while(lancha<5);
 		muestraMatriz(tablero);
 		
 		System.out.printf("Hay %s transatlanticos, %s cargueros y %s lanchas\n",trans,carg,lancha);
@@ -136,7 +135,7 @@ public class Examen2 {
 		}while(aguas>0 && cont>0);
 	}
 	
-	public static void muestraMatriz(char[][] matriz) {	
+	public static void muestraMatriz(char[][] matriz) {
 		for(int i=0;i<matriz.length;i++) {
 			for(int j=0;j<matriz[i].length;j++) {
 				System.out.print(matriz[i][j] + "  ");

@@ -5,49 +5,44 @@ public class Reto200 {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		
-		int num = scan.nextInt(); 
-		int col=1;
-		int aux = num;
+		int num; 
+		int col;
+		int aux;
 		int i=0,j=0;
 		int pos=0;
 		
-		if(num==0 || num==1) {
-			System.out.println(num);
-		}else {			
-		
-		for(i=0;i<num+2;i++) {
-			for(j=0;j<col;j++) {				
-				if(col-j!=1)
-					System.out.print(" ");
-				else
-					if(col-j==1) {
-						if(pos==0) {
-							System.out.print(fibonacci(aux));
-						}else {
-							if(aux==0 || aux==1) {
-								System.out.print(aux);
-							}else {
-																
-								System.out.print(fibonacci(aux));
-								aux--;
-								pos=0;
+		do{
+			col=1;
+			num = scan.nextInt();
+			aux = num;
+			if(num==0 || num==1) {
+				System.out.println(num);
+				}else {
+					for(i=0;i<num+2;i++) {
+						for(j=0;j<col;j++) {
+							if(col-j!=1) {
+								System.out.print(" ");
+								}else {
+									if(aux>=0)
+										System.out.print(fibonacci(aux));
+									}
 							}
-							
-						}	
-						
-						
+						if(i%2==0) {
+							col+=3;
+							}
 					
-				}
-									
-			}
-			if(i%2==0) 
-				col+=3;
-			System.out.println("");
-			aux--;
+							aux--;
+							
+						if(aux>=0)
+							System.out.print("\n");
+						}
+					System.out.print("\n====\n");
+					}
+			}while(num>=0);
 		}
-		System.out.printf("i=%s\nj=%s\ncol=%s\naux=%s\n",i,j,col,aux);
-		}
-	}
+	
+
+
 	
 	public static int fibonacci(int n) {
 		if(n>1) {
@@ -60,8 +55,6 @@ public class Reto200 {
 					return 0;
 			}
 		}
-		return -1;	
-			
+		return -1;				
 	}
-
 }
