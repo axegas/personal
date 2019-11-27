@@ -5,7 +5,7 @@ public class Ejer73 {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);		
 		String transmision;
-		String transIni = "";
+		String transmisionMurcia = "";
 		int j=0;
 		int i=0;
 		
@@ -26,23 +26,17 @@ public class Ejer73 {
 			i = transmision.indexOf("el area 51");
 			while(true){
 				if(!transmision.contains("el area 51")) {
-					transIni += transmision.substring(j, transmision.length());
+					transmisionMurcia += transmision.substring(j, transmision.length());
 					break;
 				}
 				else {
-					transIni += transmision.substring(j, i);
-					transIni += "Murcia";
+					transmisionMurcia += transmision.substring(j, i);
+					transmisionMurcia += "Murcia";
 					transmision = transmision.substring(i+"el area 51".length(),transmision.length());	
-					i = transmision.indexOf("el area 51");
-					
-				}
-				
+					i = transmision.indexOf("el area 51");					
+				}				
 			}
-			System.out.println(transIni);
-		}
-		
-		
-		
-	}
-	
+			System.out.println(transmisionMurcia);
+		}		
+	}	
 }
