@@ -37,6 +37,6 @@ public class Ejer73 {
 				}				
 			}
 			System.out.println(transmisionMurcia);
-		}		
-	}	
+		}
+	}
 }
