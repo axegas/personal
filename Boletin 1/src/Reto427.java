@@ -10,6 +10,16 @@ public class Reto427 {
 		
 		casos = scan.nextInt();
 		scan.nextLine();
+		while(casos>0) {
+			str1 = scan.nextLine();
+			str2 = scan.nextLine();
+			if(str1.equals("Luke") && str2.equals("padre"))	
+				System.out.println("TOP SECRET");
+			else 
+				System.out.println(str1 + ", yo soy tu " + str2);			
+			casos--;			
+		}
+		/*
 		for(int i=0;i<casos;i++) {
 			str1 = scan.nextLine();
 			str2 = scan.nextLine();
@@ -19,5 +29,6 @@ public class Reto427 {
 				System.out.println(str1 + ", yo soy tu " + str2);
 			}
 		}
+		*/
 	}
 }
