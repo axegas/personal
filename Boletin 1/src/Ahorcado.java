@@ -5,13 +5,22 @@ public class Ahorcado {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		
-		System.out.println("BIENVENIDO AL JUEGO DEL AHORCADO!");
-		System.out.println("---------------------------------");
-		System.out.print("Introduce la frase: ");
-		String frase = scan.nextLine();
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		System.out.println("@ BIENVENIDO AL JUEGO DEL AHORCADO! @");
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		String frase;
 		String frase_jugador = "";
 		int contador = 6;
 		char letra;
+		
+		do {
+			System.out.print("Introduce la frase: ");
+			frase = scan.nextLine();
+			if(frase.length()==0) {
+				System.out.println("Introduce alguna frase!");
+			}
+		}while(frase.length()==0);
+		
 		
 		for(int i=0;i<frase.length();i++) {
 			if(frase.charAt(i)==' ') {
@@ -20,10 +29,12 @@ public class Ahorcado {
 				frase_jugador += "_";
 		}
 		
-		System.out.println("EMPIEZA EL JUEGO!");
-		System.out.println("Puedes tener: " + contador + " fallos.");
+		System.out.println("-------------------------------------");
+		System.out.println("La frase tiene " + frase.length() + " letras.");
+		System.out.println("Puedes tener " + contador + " fallos.");
+		System.out.println("----------EMPIEZA EL JUEGO!----------");
 		
-		do {
+		while(contador>0){
 			System.out.print("Introduce una letra: ");
 			letra = scan.nextLine().charAt(0);
 			if(frase.contains(""+letra)) {
@@ -40,6 +51,7 @@ public class Ahorcado {
 					System.out.println("La frase era: " + frase);
 					break;
 				}else {
+					System.out.println("Has fallado!");
 					System.out.println("Te quedan: " + contador + " fallos.");					
 				}				
 			}
@@ -50,7 +62,7 @@ public class Ahorcado {
 				System.out.println("Sigue jugando");				
 			}
 			
-		}while(contador>0);
+		}
 		
 		
 		
