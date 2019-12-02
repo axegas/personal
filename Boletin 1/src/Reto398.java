@@ -15,8 +15,7 @@ public class Reto398 {
 		int posy2 = 1;
 		int seg1 = 0;
 		int seg2 = 0;
-		int mov1=0;
-		int mov2=0;
+		int segundos = 1;
 		
 		int n=scan.nextInt();
 		
@@ -29,27 +28,22 @@ public class Reto398 {
 				seg1+=y-posy1;
 				posx1=x;
 				posy1=y;
-				if(seg1>seg2) {
-					seg2=seg1;
-				}
 			}else {
 				seg2+=x-posx2;
 				seg2+=y-posy2;
 				posx2=x;
 				posy2=y;
-				if(seg2>seg1) {
-					seg1=seg2;
-				}
 			}			
 			n--;
 		}
 		
+		if(seg1>seg2) {
+			segundos+=f-posy2+c-posx2+seg1;
+		}else {
+			segundos+=f-posy1+c-posx1+seg2;
+		}	
 		
-
-		
-	
-		
-		System.out.println(seg1+seg2);
+		System.out.println(segundos);
+		scan.close();
 	}
-
 }
