@@ -7,7 +7,6 @@ public class Reto413 {
 
 		int claras;
 		int oscuras;
-		int losetas;
 		int casos;
 		int ancho;
 		int alto;
@@ -17,9 +16,8 @@ public class Reto413 {
 			ancho = scan.nextInt();
 			alto = scan.nextInt();
 		
-			losetas = ancho*alto;
-			oscuras = losetas/2;
-			if(losetas%2==0) {
+			oscuras = (ancho*alto)/2;
+			if((ancho*alto)%2==0) {
 				claras=oscuras;				
 			}else {
 				claras=oscuras+1;				
