@@ -20,13 +20,14 @@ public class Reto413 {
 			losetas = ancho*alto;
 			oscuras = losetas/2;
 			if(losetas%2==0) {
-				claras=oscuras;
-				}else {
-					claras=oscuras+1;
-					}
-			System.out.println(claras + " " + oscuras);
-			casos--;
+				claras=oscuras;				
+			}else {
+				claras=oscuras+1;				
 			}
+			System.out.println(claras + " " + oscuras);
+			casos--;			
+		}	
 		
+		scan.close();
 	}
 }

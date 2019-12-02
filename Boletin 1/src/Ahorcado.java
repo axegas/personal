@@ -12,10 +12,13 @@ public class Ahorcado {
 		String frase_jugador = "";
 		int contador = 6;
 		char letra;
+		int letras=0;
+		String letras_marcadas = "";
+
 		
 		do {
 			System.out.print("Introduce la frase: ");
-			frase = scan.nextLine();
+			frase = scan.nextLine().toLowerCase();
 			if(frase.length()==0) {
 				System.out.println("Introduce alguna frase!");
 			}
@@ -25,48 +28,67 @@ public class Ahorcado {
 		for(int i=0;i<frase.length();i++) {
 			if(frase.charAt(i)==' ') {
 				frase_jugador += " ";
-			}else
+			}else {
 				frase_jugador += "_";
+				letras++;
+			}
 		}
 		
 		System.out.println("-------------------------------------");
-		System.out.println("La frase tiene " + frase.length() + " letras.");
+		System.out.println("La frase tiene " + letras + " letras.");
 		System.out.println("Puedes tener " + contador + " fallos.");
 		System.out.println("----------EMPIEZA EL JUEGO!----------");
 		
 		while(contador>0){
 			System.out.print("Introduce una letra: ");
-			letra = scan.nextLine().charAt(0);
-			if(frase.contains(""+letra)) {
-				for(int i=0;i<frase.length();i++) {
-					if(frase.charAt(i)==letra) {
-						frase_jugador = cambiaLetra(frase_jugador,i,letra);						
+			letra = scan.nextLine().toLowerCase().charAt(0);
+			if(!letras_marcadas.contains(""+letra)) {
+				letras_marcadas+=letra;			
+				if(frase.contains(""+letra)) {
+					for(int i=0;i<frase.length();i++) {
+						if(frase.charAt(i)==letra) {
+							frase_jugador = cambiaLetra(frase_jugador,i,letra);							
+						}						
+					}
+					System.out.println(frase_jugador);					
+				}else {
+					contador--;
+					if(contador==0) {
+						System.out.println("Has perdido!");
+						System.out.println("La frase era: " + frase);
+						break;
+						
+					}else {
+						System.out.println("Has fallado!");
+						System.out.println("Te quedan: " + contador + " fallos.");					
 					}					
-				}
-				System.out.println(frase_jugador);
-			}else {
+				}				
+			}else {				
 				contador--;
 				if(contador==0) {
 					System.out.println("Has perdido!");
 					System.out.println("La frase era: " + frase);
 					break;
+					
 				}else {
-					System.out.println("Has fallado!");
-					System.out.println("Te quedan: " + contador + " fallos.");					
+					System.out.println("Ya has marcado esa letra! le has dado a las siguientes letras: "+letras_marcadas);
+					System.out.println("Te quedan: " + contador + " fallos.");						
 				}				
 			}
 			if(frase.equals(frase_jugador)) {
 				System.out.println("Has ganado!");
-				break;				
+				break;
+				
 			}else {
-				System.out.println("Sigue jugando");				
-			}
-			
+				System.out.println("Sigue jugando");
+				System.out.println("-------------------------------------");				
+			}				
 		}
+		scan.close();
+	}		
 		
-		
-		
-	}
+	 
+	
 	public static String cambiaLetra(String str, int pos,char letra) {
 		String str2 = "";
 		for(int i=0;i<str.length();i++) {
@@ -78,5 +100,4 @@ public class Ahorcado {
 		}		
 		return str2;
 	}
-
 }
