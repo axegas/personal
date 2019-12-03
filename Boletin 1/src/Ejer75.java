@@ -3,11 +3,10 @@ import java.util.Scanner;
 public class Ejer75 {
 
 	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
-		System.out.print("Introduce el numero a convertir: ");
-		int numero=scan.nextInt();
+
+		System.out.print("Introduce el numero a convertir: ");		
+		System.out.println(convierteEnPalabras((new Scanner(System.in)).nextInt()));
 		
-		System.out.println(convierteEnPalabras(numero));
 	}
 	public static String convierteEnPalabras(int n) {
 		String s = "";
