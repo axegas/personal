@@ -10,7 +10,7 @@ public class Matematicas {
 		return num;
 	}
 	
-	public static int digitos(int x) {
+	public static int digitos(int x) {//dado un numero, devuelve el tamaño (los digitos) que tiene ese numero
 		int aux = x;
 		int n=0;
 		
@@ -63,7 +63,7 @@ public class Matematicas {
 		for(int i=0;i<n;i++) System.out.print("|");				
 	}	
 	
-	public static int digitoPos(int digito, int posicion) {
+	public static int digitoPos(int digito, int posicion) {//dado un numero, devuelve el digito que hay en la posicion
 		int dig=0;
 		for(int i=0;i<posicion;i++) {
 			dig=digito%10;
@@ -85,6 +85,32 @@ public class Matematicas {
 			return 1;
 		else
 			return n*factorial(n-1);
+	}
+	
+	public static int max(int v[]) {		
+		int m = v[0];
+		for(int i=1;i<v.length;i++) {
+			if(v[i]>m) {
+				m=v[i];
+			}
+		}		
+		return m;
+	}
+	
+	public static int min(int v[]) {		
+		int m = v[0];
+		for(int i=1;i<v.length;i++) {
+			if(v[i]<m) {
+				m=v[i];
+			}
+		}		
+		return m;
+	}
+	public static int sumatorio(int n) {
+		if(n==1)
+			return 1;
+		else
+			return n+sumatorio(n-1);
 	}
 }
 
