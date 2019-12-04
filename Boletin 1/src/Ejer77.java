@@ -14,8 +14,15 @@ public class Ejer77 {
 		Scanner scan=new Scanner(System.in);
 		
 		System.out.print("Introduce un número: ");
-		int num = scan.nextInt();
 		
+		String str = scan.nextLine();
+		
+		for(int i=0;i<str.length();i++) {
+			if(str.charAt(i)=='0') {
+				System.out.print(" -");
+			}
+		}
+		int num = scan.nextInt();
 		String palote = convierteEnPalote(num);
 		System.out.println(palote);
 		
