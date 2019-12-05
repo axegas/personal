@@ -33,8 +33,7 @@ public class Ejer70 {
 			
 		}while(quedaSitio(m));
 					
-		
-		
+	
 		
 		
 		
@@ -58,7 +57,7 @@ public class Ejer70 {
 				}while(x<0 | x>3 | y<0 | y>3);
 			}while(m[x][y]!='-');
 		m[x][y]='X';
-		num[x][y]=2;
+		num[x][y]=10;
 		}
 	public static void introduceCharAleatorio(char[][] m) {
 		do {

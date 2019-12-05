@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="estilos.css">
+        <style>
+            body{
+                background-color: aqua;          
+                
+            }
+            header{
+                border: 1px black solid;
+                margin-bottom: 10px;
+            }
+            main{
+                border: 1px black solid;
+                float: left;
+                width: 70%;
+            }
+            aside{
+                border: 1px black solid;
+                float: right;
+                width: 25%;
+            }
+        
+        
+        </style>
+        <title>JAVASCRIPT-EJER 1</title>
+    </head>
+    <body>
+        <!-- ------------------------CABECERA----------------------- -->
+        <header>
+            <h2>EJERCICIO 1</h2>
+            <h3>JavaScript</h3>
+        </header>
+        <!-- ------------------------PRINCIPAL----------------------- -->
+        <main>
+            <section>
+                <article><h3 id="tit1">HISTORIA</h3>
+                    <p id="parr1">
+                        Con 15 años de experiencia en el sector, <b>LOGISTSIC SOLUTIONS</b> se ha consolidado como una de las empresas referentes para la gestión y reparto de todo tipo de productos, tanto refrigerados como a temperatura ambiente.<br>
+                        Empezamos con solo 10 empleados, pero a día de hoy ya somos más de 50 en nuestro almacén, y otros 20 transportistas colaboradores. 
+                    </p>
+                </article>
+                <article>
+                    <h3 id="tit2">SERVICIOS</h3>
+                    <p id="parr2">
+                        Ofrecemos reparto tanto de mercancía a temperatura ambiente en todo el estado, así como servicios especiales a nivel europeo. También podemos almacenar en nuestra cámara su mercancía para el posterior reparto. 
+                    </p>
+                </article>
+                <article>
+                    <h3 id="tit3">PRINCIPIOS</h3>
+                    <p  id="parr3">
+                        Nuestro compromiso con nuestros clientes radica en la fiabilidad, buen trato personal, implicación en los resultados, y aseguramos tener los precios más competitivos del sector.
+                    </p>
+                </article> 
+            </section>
+        </main>
+        <!-- ------------------------PANEL LATERAL DERECHO----------------------- -->
+        <aside>
+            <ol>
+                <li>Modificar	el	texto	del	encabezado	1.</li>
+                <button type="button" onclick='document.getElementById("tit1").innerHTML = "Uso de botones en JavaScript"'>Pulsar</button>
+                <li>Modificar	el	texto	del	párrafo	2.</li>
+                <button type="button" onclick='document.getElementById("parr2").innerHTML = "texto cambiado con JavaScript"'>Pulsar</button>
+                <li>Modificar	el	color	del	encabezado	2.	</li>
+                <button type="button" onclick='document.getElementById("tit2").style.color = "red"'>Pulsar</button>
+                <li>Ocultar	el	párrafo	1.</li>
+                <button type="button" onclick='document.getElementById("parr1").style.display="none"'>Pulsar</button>
+                <li>Mostrar	el	párrafo	1.</li>
+                <button type="button" onclick='document.getElementById("parr1").style.display="block"'>Pulsar</button>
+            </ol>
+        </aside>   
+    </body>
+</html>
