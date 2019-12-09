@@ -11,6 +11,7 @@ class PruebaMaxTest extends PruebaMax{
 		assertEquals(24,PruebaMax.max(new int[] {4,14,24,8,7}));
 		 
 	}
+	
 
 	
 

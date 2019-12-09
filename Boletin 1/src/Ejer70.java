@@ -4,17 +4,13 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Ejer70 {
 	
 	static Scanner scan = new Scanner(System.in);
-	public static int x;
-	public static int y;
-	public static int posx;
-	public static int posy;
-	public static char m[][] = new char[4][4];
-	public static int num[][] = new int[4][4];
 	
 	public static void main(String[] args) {
 	
-		int win = 0;
-		
+		boolean vic=false;
+
+		char m[][] = new char[4][4];
+		boolean victoria=false;
 		
 		for(int i=0;i<4;i++) {
 			for(int j=0;j<4;j++) {
@@ -24,12 +20,15 @@ public class Ejer70 {
 		
 		
 		do {
-			introduceChar(m);
+			m = introduceChar(m);
 			System.out.println("Tu jugada:");
 			muestraMatriz(m);
-			introduceCharAleatorio(m);
+			vic=pruebaVictoria(m, 'X');
+			m = introduceCharAleatorio(m);
 			System.out.println("Mi jugada");
 			muestraMatriz(m);
+			vic=pruebaVictoria(m, '0');
+			
 			
 		}while(quedaSitio(m));
 					
@@ -47,7 +46,9 @@ public class Ejer70 {
 				System.out.println("");
 				}	
 			}
-	public static void introduceChar(char[][] m) {
+	public static char[][] introduceChar(char[][] m) {
+		int x;
+		int y;
 		do {
 			do {
 				System.out.print("Introduce X: ");
@@ -57,18 +58,20 @@ public class Ejer70 {
 				}while(x<0 | x>3 | y<0 | y>3);
 			}while(m[x][y]!='-');
 		m[x][y]='X';
-		num[x][y]=10;
+		return m;
 		}
-	public static void introduceCharAleatorio(char[][] m) {
+	public static char[][] introduceCharAleatorio(char[][] m) {
+		int posx;
+		int posy;
 		do {
 			posx = ThreadLocalRandom.current().nextInt(0,4);
 			posy = ThreadLocalRandom.current().nextInt(0,4);
 			if(m[posx][posy]=='-') {
 				m[posx][posy]='0';
-				num[posx][posy]=1;
 				break;
 				}
 			}while(quedaSitio(m));
+		return m;
 		}
 	
 	public static boolean quedaSitio(char[][] m) {
@@ -83,6 +86,54 @@ public class Ejer70 {
 			}
 		return queda;
 		}
+	public static boolean pruebaVictoria(char[][] m, char c) {
+		boolean victoria=false;
+		
+		for(int i=0;i<m.length && !victoria;i++) {
+			if(m[i][0]==c) {
+				for(int j=0;j<m.length && !victoria;j++) {
+					if(m[i][j]!=c) {
+						victoria=false;
+					}else {
+						victoria=true;
+					}
+				}
+				if(victoria==true) {
+					break;
+				}
+			}
+		}
+		if(victoria) {
+			return true;
+		}
+		for(int i=0;i<m.length && !victoria;i++) {
+			if(m[0][i]==c) {
+				for(int j=0;j<m.length && !victoria;j++) {
+					if(m[j][i]!=c) {
+						victoria=false;
+					}else {
+						victoria=true;
+					}
+				}
+				if(victoria==true) {
+					break;
+				}
+			}
+		}
+		if(victoria) {
+			return true;
+		}
+		
+		
+		
+		return true;
+		
+		
+		
+		
+		
+
+	}
 	
 	
 	}
