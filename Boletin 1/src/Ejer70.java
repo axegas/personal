@@ -26,19 +26,23 @@ public class Ejer70 {
 			muestraMatriz(m);
 			if(pruebaVictoria(m, 'X')) {
 				System.out.println("Has ganado!");
+				victoria=true;
 				break;
 			}
 			m = introduceCharAleatorio(m);
-			System.out.println("Mi jugada");
+			System.out.println("Mi jugada:");
 			muestraMatriz(m);
 			if(pruebaVictoria(m, '0')) {
 				System.out.println("He ganado!");
+				victoria=true;
 				break;
 			}		
 			
 		}while(quedaSitio(m));
 					
-	
+		if(!victoria) {
+			System.out.println("Empatados!");
+		}
 		
 		
 		
