@@ -7,13 +7,14 @@ public class Ejer70 {
 	
 	public static void main(String[] args) {
 	
-		boolean vic=false;
 
-		char m[][] = new char[4][4];
+		System.out.print("Introduce tamaño: ");
+		int tam=scan.nextInt();
+		char m[][] = new char[tam][tam];
 		boolean victoria=false;
 		
-		for(int i=0;i<4;i++) {
-			for(int j=0;j<4;j++) {
+		for(int i=0;i<tam;i++) {
+			for(int j=0;j<tam;j++) {
 				m[i][j]='-';
 				}
 		}
@@ -33,7 +34,7 @@ public class Ejer70 {
 			if(pruebaVictoria(m, '0')) {
 				System.out.println("He ganado!");
 				break;
-			}			
+			}		
 			
 		}while(quedaSitio(m));
 					
@@ -60,7 +61,7 @@ public class Ejer70 {
 				x = scan.nextInt();
 				System.out.print("Introduce y: ");
 				y = scan.nextInt();
-				}while(x<0 | x>3 | y<0 | y>3);
+				}while(x<0 | x>(m.length-1) | y<0 | y>(m.length-1));
 			}while(m[x][y]!='-');
 		m[x][y]='X';
 		return m;
@@ -69,8 +70,8 @@ public class Ejer70 {
 		int posx;
 		int posy;
 		do {
-			posx = ThreadLocalRandom.current().nextInt(0,4);
-			posy = ThreadLocalRandom.current().nextInt(0,4);
+			posx = ThreadLocalRandom.current().nextInt(0,m.length);
+			posy = ThreadLocalRandom.current().nextInt(0,m.length);
 			if(m[posx][posy]=='-') {
 				m[posx][posy]='0';
 				break;
@@ -82,8 +83,8 @@ public class Ejer70 {
 	public static boolean quedaSitio(char[][] m) {
 		boolean queda = false;
 		
-		for(int i=0;i<4;i++) {
-			for(int j=0;j<4;j++) {
+		for(int i=0;i<m.length;i++) {
+			for(int j=0;j<m.length;j++) {
 				if(m[i][j]=='-') {
 					queda = true;
 					}
@@ -92,8 +93,7 @@ public class Ejer70 {
 		return queda;
 		}
 	public static boolean pruebaVictoria(char[][] m, char c) {
-		boolean victoria=true;
-		
+		boolean victoria=true;		
 		for(int i=0;i<m.length && victoria;i++) {
 			if(m[i][0]==c) {
 				for(int j=0;j<m.length && victoria;j++) {
@@ -105,7 +105,8 @@ public class Ejer70 {
 					return true;
 				}
 			}
-		}
+		}		
+		victoria = true;
 		for(int i=0;i<m.length && victoria;i++) {
 			if(m[0][i]==c) {
 				for(int j=0;j<m.length && victoria;j++) {
@@ -119,19 +120,24 @@ public class Ejer70 {
 			}
 		}
 		
-		
-		
-		
-		return false;
-		
-		
-		
-		
-		
-
+		victoria=true;
+		for(int i=0;i<m.length && victoria;i++) {
+			if(m[i][i]!=c) {
+				victoria=false;
+			}
+		}
+		if(victoria) {
+			return true;
+		}
+		victoria=true;
+		for(int i=0;i<m.length && victoria;i++) {
+			if(m[i][m.length-1-i]!=c ) {
+				victoria=false;
+			}
+		}
+		return victoria;
 	}
 	
-	
-	}
+}
 
 
