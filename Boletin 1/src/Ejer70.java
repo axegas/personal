@@ -23,12 +23,17 @@ public class Ejer70 {
 			m = introduceChar(m);
 			System.out.println("Tu jugada:");
 			muestraMatriz(m);
-			vic=pruebaVictoria(m, 'X');
+			if(pruebaVictoria(m, 'X')) {
+				System.out.println("Has ganado!");
+				break;
+			}
 			m = introduceCharAleatorio(m);
 			System.out.println("Mi jugada");
 			muestraMatriz(m);
-			vic=pruebaVictoria(m, '0');
-			
+			if(pruebaVictoria(m, '0')) {
+				System.out.println("He ganado!");
+				break;
+			}			
 			
 		}while(quedaSitio(m));
 					
@@ -87,47 +92,37 @@ public class Ejer70 {
 		return queda;
 		}
 	public static boolean pruebaVictoria(char[][] m, char c) {
-		boolean victoria=false;
+		boolean victoria=true;
 		
-		for(int i=0;i<m.length && !victoria;i++) {
+		for(int i=0;i<m.length && victoria;i++) {
 			if(m[i][0]==c) {
-				for(int j=0;j<m.length && !victoria;j++) {
+				for(int j=0;j<m.length && victoria;j++) {
 					if(m[i][j]!=c) {
 						victoria=false;
-					}else {
-						victoria=true;
 					}
 				}
-				if(victoria==true) {
-					break;
+				if(victoria) {
+					return true;
 				}
 			}
 		}
-		if(victoria) {
-			return true;
-		}
-		for(int i=0;i<m.length && !victoria;i++) {
+		for(int i=0;i<m.length && victoria;i++) {
 			if(m[0][i]==c) {
-				for(int j=0;j<m.length && !victoria;j++) {
+				for(int j=0;j<m.length && victoria;j++) {
 					if(m[j][i]!=c) {
 						victoria=false;
-					}else {
-						victoria=true;
 					}
 				}
-				if(victoria==true) {
-					break;
+				if(victoria) {
+					return true;
 				}
 			}
 		}
-		if(victoria) {
-			return true;
-		}
 		
 		
 		
 		
-		return true;
+		return false;
 		
 		
 		
