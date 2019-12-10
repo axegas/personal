@@ -3,11 +3,12 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Conecta {
 	static Scanner scan = new Scanner(System.in);
-
+	public static int x;
+	public static int y;
 	public static void main(String[] args) {
 		
 		boolean victoria=false;
-		char[][] m = new char[7][6];
+		char[][] m = new char[7][7];
 		
 		for(int i=0;i<m.length;i++) {
 			for(int j=0;j<m[i].length;j++) {
@@ -19,11 +20,11 @@ public class Conecta {
 			m = introduceChar(m);
 			System.out.println("Tu jugada:");
 			muestraMatriz(m);
-			/*if(pruebaVictoria(m, 'X')) {
+			if(pruebaVictoria(m,'X')) {
 				System.out.println("Has ganado!");
 				victoria=true;
 				break;
-			}*/
+			}
 			m = introduceCharAleatorio(m);
 			System.out.println("Mi jugada:");
 			muestraMatriz(m);
@@ -50,7 +51,6 @@ public class Conecta {
 			}	
 		}
 	public static char[][] introduceChar(char[][] m) {
-		int x=-1;
 		boolean colocado = false;
 
 		if(quedaSitio(m)) {
@@ -62,6 +62,7 @@ public class Conecta {
 			for(int i=m.length-1;i>=0;i--) {
 				if(m[i][x]=='-') {
 					m[i][x]='X';
+					y=i;
 					colocado=true;
 					break;
 				}				
@@ -70,7 +71,7 @@ public class Conecta {
 		
 		}
 		
-		pruebaVictoria(x,m,'X');		
+				
 		
 		return m;
 		
@@ -78,7 +79,6 @@ public class Conecta {
 	
 	
 	public static char[][] introduceCharAleatorio(char[][] m) {
-		int x;
 		boolean colocado = false;
 
 		if(quedaSitio(m)) {
@@ -87,6 +87,7 @@ public class Conecta {
 			for(int i=m.length-1;i>=0;i--) {
 				if(m[i][x]=='-') {
 					m[i][x]='0';
+					y=i;
 					colocado = true;
 					break;
 				}				
@@ -112,13 +113,41 @@ public class Conecta {
 			}
 		return queda;
 		}
-	public static boolean pruebaVictoria(int x, char[][] m, char c) {
+	public static boolean pruebaVictoria(char[][] m, char c) {
+		
+		boolean victoria = true;
+		for(int i=0;i<m.length;i++) {
+			if(m[x][i]=='X') {
+				if((m.length-i)>=4) {
+					for(int j=i;j<i+4;j++) {
+						if(m[x][j]!='X') {
+							victoria = false;
+							break;
+						}
+					}
+				}
+			}
+		}
+		/*victoria = true;
+		for(int i=0;i<m.length;i++) {
+			if(m[i][y]=='X') {
+				if((m.length-i)>=4) {
+					for(int j=i;j<i+4;j++) {
+						if(m[j][y]!='X') {
+							victoria = false;
+							break;
+						}
+					}
+				}
+			}
+		}*/
+		//victoria = true;
 		
 		
 		
 		
 		
-		return true;
+		return victoria;
 	}
 	
 	/*
