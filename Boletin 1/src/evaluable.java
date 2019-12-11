@@ -17,9 +17,10 @@ public class evaluable {
 		//System.out.println(daLaVuelta(str));
 		
 		//devolver los divisores.			
-		//System.out.println("Introduce un numero:");
-		//int n = scan.nextInt();
-		//muestraDivisores(n,n); //método 2
+		System.out.println("Introduce un número para calcular sus divisores:");
+		int n = scan.nextInt();
+		System.out.print("Los divisores son: ");
+		muestraDivisores(n,n); //método 2
 		//System.out.println(devuelveDivisores(n,n)); //método 1
 		
 		
@@ -32,7 +33,7 @@ public class evaluable {
 		if(s.length()==0) {
 			str="";
 		}else {
-			str=s.charAt(s.length()-1) + daLaVuelta(s.substring(0,s.length()-1));
+			str=s.charAt(s.length()-1) + daLaVuelta(s.substring(0,s.length()));
 		}	
 		return str;
 	}
@@ -56,7 +57,7 @@ public class evaluable {
 			System.out.print(i);
 		}else {
 			if(n%i==0) {
-				System.out.print(i + " ");
+				System.out.print(i + ", ");
 			}
 			muestraDivisores(n,i-1);
 		}		
