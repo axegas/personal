@@ -4,9 +4,9 @@ public class DaLaVuelta {
 
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
-				System.out.println("Introduce una cadena:");
-				String str = scan.nextLine();
-				System.out.println(daLaVuelta(str));
+		System.out.println("Introduce una cadena:");
+		String str = scan.nextLine();
+		System.out.println(daLaVuelta(str));
 
 	}
 	public static String daLaVuelta(String s) { //devuelve la cadena invertida
