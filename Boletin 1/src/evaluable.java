@@ -1,28 +1,27 @@
 
 // 11-12-2019
-// PROGRAMACIÓN
-// 1º DAM
-// PROGRAMA: MUESTRA LOS DIVISORES DE UN NÚMERO LEIDO POR TECLADO
+// PROGRAMACIÃ“N
+// 1Âº DAM
+// PROGRAMA: MUESTRA LOS DIVISORES DE UN NÃšMERO LEIDO POR TECLADO
 // PROGRAMA: PARA UNA CADENA DADA, DEVUELVE LA MISMA CADENA INVERTIDA
 //
 //
 import java.util.Scanner;
 public class evaluable {
-
 	public static void main(String[] args) {
-		
 		Scanner scan = new Scanner(System.in);
+		
 		//darle la vuelta a una cadena
-		System.out.println("Introduce una cadena:");
-		String str = scan.nextLine();
-		System.out.println(daLaVuelta(str));
+		//System.out.println("Introduce una cadena:");
+		//String str = scan.nextLine();
+		//System.out.println(daLaVuelta(str));
 		
 		//devolver los divisores.			
-		System.out.println("Introduce un numero:");
-		int n = scan.nextInt();
+		//System.out.println("Introduce un numero:");
+		//int n = scan.nextInt();
+		//muestraDivisores(n,n); //mÃ©todo 2
+		//System.out.println(devuelveDivisores(n,n)); //mÃ©todo 1
 		
-		System.out.println(devuelveDivisores(n,n)); //método 1
-		muestraDivisores(n,n); //método 2
 		
 		
 		
@@ -37,7 +36,7 @@ public class evaluable {
 		}	
 		return str;
 	}
-	public static String devuelveDivisores(int n, int i) {//método 1: devuelve un String con los divisores
+	public static String devuelveDivisores(int n, int i) {//mÃ©todo 1: devuelve un String con los divisores
 		String str = "";
 		
 		if(i==0) {
@@ -51,7 +50,7 @@ public class evaluable {
 		
 		return str;
 	}
-	public static void muestraDivisores(int n, int i) {//método 2: muestra los divisores por pantalla
+	public static void muestraDivisores(int n, int i) {//mÃ©todo 2: muestra los divisores por pantalla
 		
 		if(i==1) {
 			System.out.print(i);
