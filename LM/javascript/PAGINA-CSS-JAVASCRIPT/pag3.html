@@ -24,21 +24,21 @@
         <!-- ------------------------PRINCIPAL----------------------- -->
         <main class="secciones">
             <section>
-                <article><h3>ENVÍANOS TU CURRÍCULUM</h3>
-                   <form name="curriculum" method="get" action="pagina.html" class="text">
+                <article id=formulario><h3>ENVÍANOS TU CURRÍCULUM</h3>
+                   <form name="curriculum" method="get" class="text" onsubmit="return validaFormulario()">
                        <table>
                            <tr>
                                <td id="izquierda">
                                    <label>Nombre</label><br><input required type="text" name="nombre" value=""/><br/>
                                    <label>Apellidos</label><br/><input type="text" name="apellidos" value=""/><br />
                                    <label>DNI</label><br/><input required type="text" name="dni" value="" maxlength="9" /><br/>
-                                   <label>e-mail</label><br><input required type="email" name="name" value=""><br>
+                                   <label>e-mail</label><br><input required type="email" name="email" value=""><br>
                                    Sexo<br/>
-                                   <input type="radio" name="sexo" value="hombre" checked="checked" />Hombre<br/>
-                                   <input type="radio" name="sexo" value="mujer" />Mujer<br/><br>
-                                   Adjuntar el currículum<br><input type="file" name="foto" /><br/><br/>
-                                   <input name="suscribir" type="checkbox" value="suscribir" checked="checked"/> Suscribirme al bolet&iacute;n de novedades<br/><br/>
-                                   <input required name="confirmar" type="checkbox" value="confirmar"/> Acepto los <a href="https://eugdpr.org/" target="_blank">términos de uso de datos.</a><br/><br/>
+                                   <input type="radio" name="sexo" value="Hombre" checked="checked" />Hombre<br/>
+                                   <input type="radio" name="sexo" value="Mujer" />Mujer<br/><br>
+                                   Adjuntar el currículum<br><input type="file" name="foto"/><br/><br/>
+                                   <input name="suscribir" type="checkbox" value="" checked="checked"/> Suscribirme al bolet&iacute;n de novedades<br/><br/>
+                                   <input required name="confirmar" type="checkbox" value=""/> Acepto los <a href="https://eugdpr.org/" target="_blank">términos de uso de datos.</a><br/><br/>
                                    <input type="submit" name="enviar" value="Enviar" />
                                    <input type="reset" name="limpiar" value="Borrar los datos introducidos" />
                                </td>
@@ -63,6 +63,7 @@
                 <li><a href="https://www.truck.man.eu/es/es/index.html"><img id="man" class="aside-img" src="img/logos/Logo_MAN.png" alt="MAN"></a></li>
             </ul> 
         </aside>
+        <!-- ------------------------FOOTER----------------------- -->
         <footer class="secciones">
           <div id="foot-text">
             <p id="footer" class="text">
