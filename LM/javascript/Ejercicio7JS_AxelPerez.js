@@ -2,7 +2,7 @@
 var operandoa;
 var operandob;
 var operacion;
-
+var operando = 0;
 function init(){
     //variables
     var resultado = document.getElementById('resultado');
@@ -116,3 +116,13 @@ function resolver(){
     resetear();
     resultado.textContent = res;
 }
+
+
+function ponNumero(num){
+    resultado.textContent = resultado.textContent + num;    
+}
+function operacion(op){
+    operandoa = resultado.textContent;
+    
+}
+
