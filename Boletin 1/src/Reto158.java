@@ -21,7 +21,7 @@ public class Reto158 {
 				muro=scan.nextInt();
 				
 				if(muro>muroAnt) {
-					arriba++;
+					arriba++;					
 					
 				}
 				if(muro<muroAnt) {
