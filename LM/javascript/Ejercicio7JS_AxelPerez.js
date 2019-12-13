@@ -1,4 +1,4 @@
-
+/*
 var operandoa;
 var operandob;
 var operacion;
@@ -117,12 +117,72 @@ function resolver(){
     resultado.textContent = res;
 }
 
-
+*/
+var res;
+var operandoa = 0;
+var operandob;
+var operacion;
+var resultado;
 function ponNumero(num){
-    resultado.textContent = resultado.textContent + num;    
-}
-function operacion(op){
-    operandoa = resultado.textContent;
+    
+    //resultado.textContent = resultado.textContent + num; 
+    document.getElementById('resultado').innerHTML=resultado.textContent99999999999999999999999;
+    res = resultado.textContent;
+    window.alert(res);
+   /* window.alert(res);*/
     
 }
+/*
+function divide(){
+    operandoa = res;
+    operacion = "/";
+    limpiar();
+}
+function multiplica(){
+    operandoa = res;
+    operacion = "*";
+    limpiar();
+}
+function suma(){
+    operandoa = res;
+    operacion = "+";
+    limpiar();
+}
+function resta(){
+    operandoa = res;
+    operacion = "-";
+    limpiar();
+}
 
+
+
+
+function resuelve(){    
+    if(operandoa!=0){
+        operandob=parseFloat(res);
+        switch(operacion){
+            case "+":
+                resultado = parseFloat(operandoa) + parseFloat(operandob);
+                break;
+            case "-":
+                resultado = parseFloat(operandoa) - parseFloat(operandob);
+                break;
+            case "*":
+                resultado = parseFloat(operandoa) * parseFloat(operandob);
+                break;
+            case "/":
+                resultado = parseFloat(operandoa) / parseFloat(operandob);
+                break;     
+        }
+    }else{
+        operandoa = parseFloat(res);
+    }    
+    window.alert(resultado);
+    limpiar();    
+}
+
+function limpiar(){
+    resultado.textContent = "";
+}
+
+*/

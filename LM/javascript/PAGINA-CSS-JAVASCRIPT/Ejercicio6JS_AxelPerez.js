@@ -8,7 +8,8 @@ function validaEdad(){
     var num = prompt("introduce tu edad:");
     if(num<18){
         window.alert("Cuidado! Tienes menos de 18 años!");
-        window.location.replace("error.html")
+        window.location.replace("error.html");
+        
     }else{
         window.alert("Bienvenido/a!");
     } 
