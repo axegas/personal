@@ -5,11 +5,10 @@
         <title>JAVASCRIPT-EJER 7</title>
         <link type="text/css" href="Ejercicio7JS_AxelPerez.css" rel="stylesheet">
     </head>
-    <body ><!--onload="init();"-->
-        <script src="Ejercicio7JS_AxelPerez.js"></script>
+    <body>
         <header>
             <h2>EJERCICIO 7</h2>
-            <h3>JavaScript</h3>
+            <h3>JavaScript - CALCULADORA</h3>
         </header>
         <table class="calculadora">
             <tr>
@@ -17,31 +16,34 @@
                 
             </tr>
             <tr>
-                <td><button id="reset" class="peque">C</button></td>
-                <td><button id="division" class="peque" onClick="divide()">/</button></td>
-                <td><button id="multiplicacion" class="peque" onClick="multiplica()">*</button></td>
-                <td><button id="resta" class="peque" onClick="resta()">-</button></td>
+                <td><button id="reset" class="peque" onClick="reset()">C</button></td>
+                <td><button id="division" class="peque" onClick="opera('/')">/</button></td>
+                <td><button id="multiplicacion" class="peque" onClick="opera('*')">*</button></td>
+                <td><button id="resta" class="peque" onClick="opera('-')">-</button></td>
             </tr>  
             <tr>
                 <td><button id="siete" class="peque" onClick="ponNumero(7)">7</button></td>
                 <td><button id="ocho" class="peque" onClick="ponNumero(8)">8</button></td>
                 <td><button id="nueve" class="peque" onClick="ponNumero(9)">9</button></td>
-                <td rowspan="2"><button id="suma" class="alto" onClick="suma()">+</button></td>
+                <td><button id="suma" class="peque" onClick="opera('+')">+</button></td>
             </tr>
             <tr>
                 <td><button id="cuatro" class="peque" onClick="ponNumero(4)">4</button></td>
                 <td><button id="cinco" class="peque" onClick="ponNumero(5)">5</button></td>
                 <td><button id="seis" class="peque" onClick="ponNumero(6)">6</button></td>
+                <td><button id="eleva" class="peque" onClick="opera('^')">x<sup>y</sup></button></td>
             </tr>
             <tr>            
                 <td><button id="uno" class="peque" onClick="ponNumero(1)">1</button></td>
                 <td><button id="dos" class="peque" onClick="ponNumero(2)">2</button></td>
                 <td><button id="tres" class="peque" onClick="ponNumero(3)">3</button></td>
-                <td rowspan="2"><button id="igual" class="alto" onClick="resolver()">=</button></td>
+                <td><button id="raiz" class="peque" onClick="resuelveRaiz()">&#8730;</button></td>
+                
             </tr>
             <tr>
-                <td colspan="2"><button id="cero" class="ancho" onClick="ponNumero(0)">0</button></td>
-                <td><button id="coma" class="peque" onClick="ponComa(,)">,</button></td> 
+                <td ><button id="cero" class="peque" onClick="ponNumero(0)">0</button></td>                
+                <td><button id="coma" class="peque" onClick="ponComa('.')">,</button></td> 
+                <td colspan="2"><button id="igual" class="ancho" onClick="resolver()">=</button></td>
             </tr>
         </table>
         <table>

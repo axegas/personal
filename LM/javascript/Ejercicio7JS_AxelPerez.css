@@ -47,7 +47,6 @@ button{
     font-size: 25px;    
 }
 button:hover{
-   /* display:block;*/
     background-color:gray;
     border: 3px black solid;
 }
