@@ -45,11 +45,6 @@ function opera(op){
     limpiar();
     tiene=false;
 }
-function eleva(){
-    operandoa = resultado.textContent;
-    limpiar();
-    tiene=false;
-}
 
 function resolver(){ 
     res = "";
