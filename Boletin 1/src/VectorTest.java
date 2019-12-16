@@ -12,8 +12,15 @@ class VectorTest{
 */	@Test
 	public void selectionSort() {
 		int[] v1 = {14,21,12,7,9};
-		//Vector.selectionSort(v1);
-		assertArrayEquals(new int[] {14,21,12,7,9},v1);
+		Vector.selectionSort(v1);
+		assertArrayEquals(new int[] {7,9,12,14,21},v1);
+		
+	}
+	@Test
+	public void insercionDirecta() {
+		int[] v1 = {14,21,12,7,9};
+		Vector.insercionDirecta(v1);
+		assertArrayEquals(new int[] {7,9,12,14,21},v1);
 		
 	}
 

@@ -7,6 +7,7 @@ Operaciones implementadas:
     - Dividir
     - Raiz cuadrada
     - Elevar a un numero
+    - OJO: no 
 */
 var res;
 var operandoa = "";

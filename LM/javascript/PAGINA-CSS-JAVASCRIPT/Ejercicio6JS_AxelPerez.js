@@ -31,5 +31,6 @@ function esCorrecto(){
     
     if(corr=="Si"){
         document.getElementById("formulario").innerHTML="<h3>Muchas gracias!</h3>";
-    }    
+    }
 }
+
