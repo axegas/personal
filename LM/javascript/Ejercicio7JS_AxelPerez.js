@@ -7,11 +7,11 @@ Operaciones implementadas:
     - Dividir
     - Raiz cuadrada
     - Elevar a un numero
-    - OJO: no 
+    - OJO: no funcionan las operaciones acumulativas (la estructura siempre es a+b=c, no puede ser a+b+c+d=e).
 */
 var res;
-var operandoa = "";
-var operandob = "";
+var a = "";
+var b = "";
 var operacion = "";
 var resuelto = "";
 var tiene = false;
@@ -37,11 +37,11 @@ function ponComa(coma){
             resuelto=false;
         }
         resultado.textContent = resultado.textContent + coma; 
-    }    
+    }
 }
 
 function opera(op){
-    operandoa = resultado.textContent;
+    a = resultado.textContent;
     operacion = "" + op;
     limpiar();
     tiene=false;
@@ -49,38 +49,31 @@ function opera(op){
 
 function resolver(){ 
     res = "";
-    operandob=resultado.textContent;
+    b=resultado.textContent;
     switch(operacion){
         case "+":
-            res = parseFloat(operandoa) + parseFloat(operandob);
+            res = parseFloat(a) + parseFloat(b);
             break;
         case "-":
-            res = parseFloat(operandoa) - parseFloat(operandob);
+            res = parseFloat(a) - parseFloat(b);
             break;
         case "*":
-            res = parseFloat(operandoa) * parseFloat(operandob);
+            res = parseFloat(a) * parseFloat(b);
             break;
         case "/":
-            res = parseFloat(operandoa) / parseFloat(operandob);
+            res = parseFloat(a) / parseFloat(b);
             break;    
         case "^":
-            res = Math.pow(parseFloat(operandoa),parseFloat(operandob));
+            res = Math.pow(parseFloat(a),parseFloat(b));
+            break;
+        default:
+            num = parseFloat(b);
+            res = Math.sqrt(num);
             break;
         }
     resultado.textContent = res;  
     operacion = "";
-    operandob = "";
-    resuelto=true;
-}
-
-function resuelveRaiz(){ 
-    res = "";
-    operandob=resultado.textContent;
-    num = parseFloat(operandob);
-    res = Math.sqrt(num);
-    resultado.textContent = res;  
-    operacion = "";
-    operandob = "";
+    b = "";
     resuelto=true;
 }
 
@@ -90,8 +83,8 @@ function limpiar(){
 
 function reset(){
     resultado.textContent = "";
-    operandoa = "";
-    operandob = "";
+    a = "";
+    b = "";
     res = "";
     resuelto = "";
 }
