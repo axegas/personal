@@ -20,19 +20,17 @@ public class Reto5 {
 		String gana = "";
 		
 		casos=scan.nextInt();
-		while(casos>0) {
-			tamano = scan.nextInt();
-			abono = scan.nextInt();
-			agua = scan.nextInt();
-			casa = scan.nextInt();
-			nombre = scan.nextLine();
-			System.out.println(nombre);
-			for(int i=0;i<casos;i++) {
-				tamano2 = scan.nextInt();
-				abono2 = scan.nextInt();
-				agua2 = scan.nextInt();
-				casa2 = scan.nextInt();
-				nombre2 = scan.nextLine();
+		tamano = scan.nextInt();
+		abono = scan.nextInt();
+		agua = scan.nextInt();
+		casa = scan.nextInt();
+		nombre = scan.nextLine();
+		while(casos>0) {			
+			tamano2 = scan.nextInt();
+			abono2 = scan.nextInt();
+			agua2 = scan.nextInt();
+			casa2 = scan.nextInt();
+			nombre2 = scan.nextLine();
 				
 				if(tamano2>tamano) {
 					gana=nombre2;
@@ -74,10 +72,12 @@ public class Reto5 {
 				agua = agua2;
 				casa = casa2;
 				nombre = nombre2;
-			}		
+				
+					
 			casos--;
 		}
 		System.out.println(gana);
+		
 		
 	}
 
