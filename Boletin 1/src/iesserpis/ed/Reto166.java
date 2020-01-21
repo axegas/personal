@@ -17,16 +17,23 @@ public class Reto166 {
 		while(canal1!=0 | canal2!=0) {
 			if(canal1 != 0 & canal2!=0) {
 				resta1 = canal2 - canal1;
-				resta2 = canal1 + (99-canal2);
-				if(resta1<0) {
-				resta1 = 99+resta1;
-			}
-			if(resta1<resta2) {
-				optima = resta1;
-			}else {
-				optima = resta2;
-			}
-			System.out.println(optima);
+				if(canal2>canal1) {
+					resta1 = canal2-canal1;
+					resta2 = canal1 + (99-canal2);
+				}else {
+					resta1 = canal1-canal2;
+					resta2 = canal2 + (99-canal1);
+				}
+							
+				if(resta1<resta2) {
+					optima = resta1;
+					
+				}else {
+					optima = resta2;
+					
+				}
+				System.out.println(optima);
+				
 			}
 			canal1 = scan.nextInt();
 			canal2 = scan.nextInt();			
