@@ -24,7 +24,7 @@ public class Reto166 {
 					resta1 = canal1-canal2;
 					resta2 = canal2 + (99-canal1);
 				}
-							
+				
 				if(resta1<resta2) {
 					optima = resta1;
 					
