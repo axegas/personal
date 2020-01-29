@@ -14,7 +14,7 @@ public class Ejer93 {
 		String colacine = "";
 		String personas;
 		int pers = 0;
-		int cos;
+
 		String[] vec;
 		
 		do {//introducir personas en la cola
