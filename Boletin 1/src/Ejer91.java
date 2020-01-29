@@ -11,6 +11,7 @@ public class Ejer91 {
 		int opc;	
 		ArrayList<String> lista = new ArrayList<String>();	
 		do {
+			System.out.println("");
 			System.out.println("-GRUPOS MUSICALES-");		
 			System.out.println("1: Agregar grupos al final de la lista");
 			System.out.println("2: Agregar grupos en una posición concreta");
@@ -104,7 +105,7 @@ public class Ejer91 {
 	}
 	public static void imprimir(ArrayList<String> lista){
 		for(int i=0;i<lista.size();i++) {
-			System.out.println(lista.get(i));
+			System.out.println(i + ": " + lista.get(i));
 		}		
 	}
 }
