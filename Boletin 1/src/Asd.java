@@ -16,6 +16,7 @@ public class Asd {
 		int sumaO=0;
 		int precioO = 0;
 		
+		
 		do {
 			System.out.println("Introduce las dimensiones de la bandera de Paco (min 4x4): ");
 			x = scan.nextInt();
