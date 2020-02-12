@@ -1,6 +1,5 @@
 package ejercicio95b;
 
-import java.util.Scanner;
 import java.util.*;
 
 public class Principal {
@@ -50,14 +49,30 @@ public class Principal {
 		pa.add(p);		
 	}
 	public static void mostrarVuelos(ArrayList<PacoAirways> pa) {
-		char most;
-		System.out.println("Que vuelos desea ver? (V-vigentes, C-cancelados, T-todos)");
-		most = scan.nextLine().toUpperCase().charAt(0);		
 		Iterator<PacoAirways> iter = pa.iterator();
+		System.out.println("Que vuelos desea ver? (V-vigentes, C-cancelados, T-todos)");
+		char most = scan.nextLine().toUpperCase().charAt(0);		
 		while(iter.hasNext()) {
 			PacoAirways p = iter.next();
-			p.mostrar(most);
-			//System.out.println(p.mostrar(most));
+			
+			switch(most) {
+			case 'V':
+				if(p.getEstado().equals("")) {
+					System.out.println(p.toString(most));
+				}
+				break;
+			case 'C':
+				if(p.getEstado().equals("CANCELADO")) {
+					System.out.println(p.toString(most));
+				}
+				break;
+			case 'T':
+				System.out.println(p.toString(most));
+				break;				
+			default:
+				System.out.println("Opcion incorrecta.");
+				break;			
+			}
 		}
 	}
 	public static void cancelar(ArrayList<PacoAirways> pa) {
