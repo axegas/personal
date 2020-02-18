@@ -28,20 +28,23 @@ public class Fraccion {
 	public Fraccion suma(Fraccion f) {
 		int nuevoDen = den*f.getDen();
 		int nuevoNum = num*f.getDen()+den*f.getNum();
-		int minimo = mcd(nuevoDen,nuevoNum);
-		nuevoDen/=minimo;
-		nuevoNum/=minimo;
+
+		nuevoDen/=mcd(nuevoDen,nuevoNum);
+		nuevoNum/=mcd(nuevoDen,nuevoNum);
 		
 		return new Fraccion(nuevoNum,nuevoDen);
 	}
 	public Fraccion resta(Fraccion f) {
 		int nuevoDen = den*f.getDen();
 		int nuevoNum = num*f.getDen()-den*f.getNum();
-		int minimo = mcd(nuevoDen,nuevoNum);
-		nuevoDen/=minimo;
-		nuevoNum/=minimo;
+
+		nuevoDen/=mcd(nuevoDen,nuevoNum);
+		nuevoNum/=mcd(nuevoDen,nuevoNum);
 		
 		return new Fraccion(nuevoNum,nuevoDen);
+	}
+	public Fraccion simplifica() {
+		return new Fraccion(num/mcd(num,den),den/mcd(num,den));
 	}
 	
 	private int mcd(int a, int b) {
@@ -50,11 +53,6 @@ public class Fraccion {
 		}else {
 			return mcd(b,a%b);
 		}		
-	}
-	public Fraccion simplifica() {
-		int nuevoNum = num/mcd(num,den);
-		int nuevoDen = den/mcd(num,den);
-		return new Fraccion(nuevoNum,nuevoDen);
 	}
 
 }
