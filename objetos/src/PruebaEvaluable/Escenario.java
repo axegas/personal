@@ -27,12 +27,12 @@ public class Escenario {
 		while(round<=3 && !victoria) {
 			System.out.println("Round " + round + "....Fight!" );
 			while(l2.getVida()>0 && l1.getVida()>0) {
-				Thread.sleep(1000);
+				//Thread.sleep(800);
 				if(turno) {
-					System.out.println(l2.getNombre() + " golpea a " + l1.getNombre() + " con una intensidad de " + l2.golpe(l1) + "\t"+l2.getNombre()+": "+l2.getVida()+" "+l1.getNombre()+": "+l1.getVida());
+					System.out.println(l2.getNombre() + " golpea a " + l1.getNombre() + " con una intensidad de " + l2.golpe(l1) + "\t\t"+l2.getNombre()+": "+l2.getVida()+" "+l1.getNombre()+": "+l1.getVida());
 					turno = false;
 				}else {
-					System.out.println(l1.getNombre() + " golpea a " + l2.getNombre() + " con una intensidad de " + l1.golpe(l2) + "\t"+l2.getNombre()+": "+l2.getVida()+" "+l1.getNombre()+": "+l1.getVida());
+					System.out.println(l1.getNombre() + " golpea a " + l2.getNombre() + " con una intensidad de " + l1.golpe(l2) + "\t\t"+l2.getNombre()+": "+l2.getVida()+" "+l1.getNombre()+": "+l1.getVida());
 					turno = true;
 				}								
 			}
