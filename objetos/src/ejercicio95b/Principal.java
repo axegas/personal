@@ -5,7 +5,7 @@ import java.util.*;
 public class Principal {
 
 	public static Scanner scan = new Scanner(System.in);
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		
 		char opc;
 		ArrayList<PacoAirways> pa = new ArrayList<PacoAirways>();
@@ -17,6 +17,7 @@ public class Principal {
 			System.out.println("1- Comprar billete de avión.");
 			System.out.println("2- Cancelar billete de avión.");
 			System.out.println("3- Estado de mi reserva.");
+			System.out.println("4- Duración del viaje");
 			System.out.println("S- Salir.");
 			System.out.print("OPCION: ");
 			opc = scan.nextLine().toUpperCase().charAt(0);
@@ -30,6 +31,9 @@ public class Principal {
 			case '3':		
 				mostrarVuelos(pa);
 				break;
+			case '4':		
+				duracion(pa);
+				break;
 			case 'S':
 				System.out.println("Paco Airways no le agradece su confianza. Gracias por nada.");
 				break;
@@ -39,14 +43,15 @@ public class Principal {
 			}			
 		}while(opc!='S');
 	}
-	public static void introducir(ArrayList<PacoAirways> pa) {
+	public static void introducir(ArrayList<PacoAirways> pa) throws Exception {
 		String teclado;
 		String[] vec;
 		System.out.println("Introduzca el origen, destino, ida y vuelta, separados por @:");
 		teclado = scan.nextLine();
 		vec = teclado.split("@");
-		PacoAirways p = new PacoAirways(vec[0],vec[1],Integer.parseInt(vec[2]),Integer.parseInt(vec[3]));
+		PacoAirways p = new PacoAirways(vec[0],vec[1],vec[2],vec[3],vec[4],vec[5]);
 		pa.add(p);		
+		System.out.println("Tu vuelo durará: " + p.duración() + " días.");
 	}
 	public static void mostrarVuelos(ArrayList<PacoAirways> pa) {
 		Iterator<PacoAirways> iter = pa.iterator();
@@ -92,5 +97,13 @@ public class Principal {
 				System.out.println("Operación cancelada");
 			}
 		}				
-	}	
+	}
+	public static void duracion(ArrayList<PacoAirways> pa) {
+		System.out.println("De qué vuelo quieres saber la duración?");
+		int vuelo = Integer.parseInt(scan.nextLine());
+		int dur = pa.get(vuelo-1).duración();
+		System.out.println("El vuelo durará: " + dur);
+		
+	}
+
 }
