@@ -22,7 +22,7 @@ public class Principal {
 			for(int i=j+1;i<participantes.size();i++) {
 				Escenario e1 = new Escenario("templo" + j + "-"+i,participantes.get(j),participantes.get(i));
 				Luchador ganador = e1.combate();
-				mensaje = "El combate nº " + k + " donde compiten los luchadores " + participantes.get(j).getNombre() + " y " + participantes.get(i).getNombre() + " lo ha ganado el luchador " + ganador.getNombre();
+				mensaje = "El combate nÂº " + k + " donde compiten los luchadores " + participantes.get(j).getNombre() + " y " + participantes.get(i).getNombre() + " lo ha ganado el luchador " + ganador.getNombre();
 				mensajes.add(mensaje);
 				if(participantes.get(j).equals(ganador)) {
 					participantes.get(j).aumentaVictoriasEnTorneo();
