@@ -67,11 +67,11 @@ public class Principal {
 	}
 	public static int validaSala(ArrayList <Salas> cine) {
 		System.out.println("Que sala?");
-		int sala = validaEnteros();
-		do {			
+		int sala;
+		do {	
+			sala = validaEnteros();
 			if(sala>cine.size() || sala<1) {
 				System.out.println("Introduzca una sala correcta. Valores del 1 al " + cine.size());
-				sala = Integer.parseInt(scan.nextLine());
 			}else {
 				break;
 			}

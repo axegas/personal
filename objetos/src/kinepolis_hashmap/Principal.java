@@ -69,11 +69,11 @@ public class Principal {
 	
 	public static int validaSala(HashMap <Integer, Salas> cine) {
 		System.out.println("Que sala?");
-		int sala = validaEnteros();
-		do {			
+		int sala;
+		do {	
+			sala = validaEnteros();
 			if(sala>cine.size() || sala<1) {
 				System.out.println("Introduzca una sala correcta. Valores del 1 al " + cine.size());
-				sala = validaEnteros();
 			}else {
 				break;
 			}
@@ -97,8 +97,7 @@ public class Principal {
 				return Integer.parseInt(scan.nextLine());
 				
 			}catch(NumberFormatException e) {
-				System.out.println("Tiene que introducir un número válido.");
-				
+				System.out.println("Tiene que introducir un número válido.");				
 			}
 		}	
 	}
