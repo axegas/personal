@@ -120,7 +120,9 @@ public class Principal {
 	public static void consultaNave(ArrayList<Nave> naves) {
 		System.out.println("Introduzca nombre de la nave:");			
 		String nombreNave = scan.nextLine();
+		
 		int indiceNave = compruebaNave(naves,nombreNave);
+
 		if(indiceNave>=0) {
 			System.out.println("Encontrada la nave " + nombreNave + " con " + naves.get(indiceNave).getTripulantes() + " tripulantes:");
 			naves.get(indiceNave).verNave();
