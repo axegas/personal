@@ -92,7 +92,7 @@ public class Principal {
 		}			
 	}
 	
-	//dar de alta una flota. se necesita alguna nave
+	//dar de alta una flota.
 	public static void altaFlota(ArrayList<Flota> flotas, ArrayList<Nave> naves) {
 		System.out.println("Introduzca el nombre de la flota:");
 		String nombreFlota = scan.nextLine();
