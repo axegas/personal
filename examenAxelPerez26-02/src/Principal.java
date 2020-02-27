@@ -17,6 +17,8 @@ public class Principal {
 		ArrayList<Nave> naves = new ArrayList<Nave>();		
 		HashMap<String,ArrayList<Nave>> flota = new HashMap<String,ArrayList<Nave>>();
 		
+		
+		
 		int opc;
 		
 		do {
@@ -93,7 +95,7 @@ public class Principal {
 		}			
 	}
 	
-	//dar de alta una flota. se necesita alguna nave
+	//dar de alta una flota.
 	public static void altaFlota(ArrayList<Flota> flotas, ArrayList<Nave> naves) {
 		System.out.println("Introduzca el nombre de la flota:");
 		String nombreFlota = scan.nextLine();
@@ -119,7 +121,9 @@ public class Principal {
 	public static void consultaNave(ArrayList<Nave> naves) {
 		System.out.println("Introduzca nombre de la nave:");			
 		String nombreNave = scan.nextLine();
+		
 		int indiceNave = compruebaNave(naves,nombreNave);
+
 		if(indiceNave>=0) {
 			System.out.println("Encontrada la nave " + nombreNave + " con " + naves.get(indiceNave).getTripulantes() + " tripulantes:");
 			naves.get(indiceNave).verNave();
