@@ -148,7 +148,9 @@ public class Principal2 {
 		if(hmFlota.containsKey(nombreFlota)) {
 			System.out.println("Encontrada la flota " + nombreFlota + " con " + hmFlota.get(nombreFlota).getNaves() + " naves:");
 			hmFlota.get(nombreFlota).verFlota();
-		}		
+		}else {
+			System.out.println("La flota no existe.");
+		}
 	}			
 	
 	//valida que el numero entero introducido sea válido
