@@ -53,9 +53,16 @@ public class Principal2 {
 	
 	//dar de alta una nave
 	public static void altaNave(HashMap<String,Nave> hmNave) {
-		System.out.println("Introduzca el nombre de la nave:");
-		String nombre = scan.nextLine();
-		hmNave.put(nombre, new Nave(nombre));	
+		do {
+			System.out.println("Introduzca el nombre de la nave:");
+			String nombreNave = scan.nextLine();
+			if(hmNave.containsKey(nombreNave)) {
+				System.out.println("Esa nave ya existe.");
+			}else {
+				hmNave.put(nombreNave, new Nave(nombreNave));
+				break;
+			}			
+		}while(true);
 	}
 	
 	//dar de alta un tripulante. se necesita alguna nave donde darlo de alta.
@@ -87,9 +94,18 @@ public class Principal2 {
 	
 	//dar de alta una flota.
 	public static void altaFlota(HashMap<String,Nave> hmNave,HashMap<String,Flota> hmFlota) {
-		System.out.println("Introduzca el nombre de la flota:");
-		String nombreFlota = scan.nextLine();
-		hmFlota.put(nombreFlota, new Flota(nombreFlota));
+		String nombreFlota;
+		do {
+			System.out.println("Introduzca el nombre de la flota:");
+			nombreFlota = scan.nextLine();
+			if(hmFlota.containsKey(nombreFlota)) {
+				System.out.println("Esa flota ya existe.");
+			}else {
+				hmFlota.put(nombreFlota, new Flota(nombreFlota));	
+				break;
+			}			
+		}while(true);
+		
 		
 		String nombreNave;
 		do {
@@ -99,7 +115,12 @@ public class Principal2 {
 				break;
 			}
 			if(hmNave.containsKey(nombreNave)){
-				hmFlota.get(nombreFlota).meteNave(hmNave.get(nombreNave));
+				if(hmNave.get(nombreNave).getFlota().equals("")) {
+					hmNave.get(nombreNave).meteFlota(nombreFlota);
+					hmFlota.get(nombreFlota).meteNave(hmNave.get(nombreNave));						
+				}else {
+					System.out.println("La nave ya está en la flota " + hmNave.get(nombreNave).getFlota());
+				}			
 			}else {
 				System.out.println("La nave no existe.");
 			}			
