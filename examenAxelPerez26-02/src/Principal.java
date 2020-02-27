@@ -15,6 +15,7 @@ public class Principal {
 		
 		ArrayList<Flota> flotas = new ArrayList<Flota>();
 		ArrayList<Nave> naves = new ArrayList<Nave>();		
+		HashMap<String,ArrayList<Nave>> flota = new HashMap<String,ArrayList<Nave>>();
 		
 		int opc;
 		
