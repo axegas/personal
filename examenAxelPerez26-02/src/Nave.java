@@ -31,8 +31,7 @@ public class Nave {
 	public void verNave() {
 		Iterator<Tripulante> iter = tripulantes.iterator();
 		while(iter.hasNext()) {
-			System.out.println(iter.next().getTripulante());
-			
+			System.out.println(iter.next().getTripulante());			
 		}
 	}
 	
@@ -50,6 +49,7 @@ public class Nave {
 	public String getFlota() {
 		return flota;
 	}
+	
 	
 	
 }

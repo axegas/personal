@@ -97,9 +97,14 @@ public class Principal3 {
 			if(nombreNave.equals("salir")) {
 				break;
 			}			
-			Nave naveAux = compruebaNave(naves,nombreNave);
+			Nave naveAux = compruebaNave(naves,nombreNave);			
 			if(naveAux!=null) {
-				nuevaFlota.meteNave(naveAux);
+				if(naveAux.getFlota().equals("")) {
+					nuevaFlota.meteNave(naveAux);
+					naveAux.meteFlota(nombreFlota);
+				}else {
+					System.out.println("La nave ya está en la flota " + naveAux.getFlota());
+				}				
 			}
 		}while(true);	
 		flotas.add(nuevaFlota);
@@ -111,10 +116,11 @@ public class Principal3 {
 		String nombreNave = scan.nextLine();
 		
 		Nave naveAux = compruebaNave(naves,nombreNave);
-
 		
 		if(naveAux!=null) {
-			System.out.println("Encontrada la nave " + nombreNave + " con " + naveAux.getTripulantes() + " tripulantes:");
+			System.out.print("Encontrada la nave " + nombreNave + " con " + naveAux.getTripulantes() + " tripulantes ");
+			if(!naveAux.getFlota().equals(""))
+				System.out.println(" que está en la flota " + naveAux.getFlota());
 			naveAux.verNave();
 		}		
 	}
