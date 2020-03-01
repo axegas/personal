@@ -8,6 +8,7 @@
 
 
 import java.util.*;
+import javax.swing.JOptionPane;
 
 public class Principal {
 	public static Scanner scan = new Scanner(System.in);
@@ -15,8 +16,6 @@ public class Principal {
 		
 		ArrayList<Flota> flotas = new ArrayList<Flota>();
 		ArrayList<Nave> naves = new ArrayList<Nave>();		
-		
-		
 		
 		int opc;
 		
@@ -47,6 +46,7 @@ public class Principal {
 			}
 			
 		}while(opc!=0);
+	
 		
 	}
 	public static int menu() {	
@@ -61,11 +61,23 @@ public class Principal {
 		return validaEnteros();
 	}
 	
+	public static String menu2() {
+		
+	      return JOptionPane.showInputDialog(null,"1. Alta de nave\n"
+	                                              +"2. Alta de tripulante\n"
+	                                              +"3. Alta de flota\n"
+	                                              +"4. Consulta nave\n"
+	                                              +"5. Consulta flota\n"
+	                                              +"0. Salir");
+	      
+
+	}
+	
 	//dar de alta una nave
 	public static void altaNave(ArrayList<Nave> naves) {
 		System.out.println("Introduzca el nombre de la nave:");
 		String nombre = scan.nextLine();
-		naves.add(new Nave(nombre));		
+		naves.add(new Nave(nombre));				
 	}
 	
 	//dar de alta un tripulante. se necesita alguna nave donde darlo de alta.

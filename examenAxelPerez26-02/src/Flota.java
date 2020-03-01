@@ -6,9 +6,8 @@
  * 
  */
 
-
-
 import java.util.*;
+import javax.swing.JOptionPane;
 
 public class Flota {
 	
@@ -31,10 +30,12 @@ public class Flota {
 	public int getNaves() {
 		return numNaves;
 	}
-	public void verFlota() {
+	public String verFlota() {
+		String str = "";
 		Iterator<Nave> iter = naves.iterator();
 		while(iter.hasNext()) {
-			System.out.println(iter.next().getNave());
+			str += iter.next().getNave() + "\n";				
 		}
+		return str;
 	}
 }

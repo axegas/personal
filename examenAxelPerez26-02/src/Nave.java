@@ -8,6 +8,8 @@
 
 import java.util.*;
 
+import javax.swing.JOptionPane;
+
 public class Nave {
 
 	private String nombre;
@@ -28,11 +30,13 @@ public class Nave {
 		return nombre;
 	}
 	
-	public void verNave() {
+	public String verNave() {
+		String str = "";
 		Iterator<Tripulante> iter = tripulantes.iterator();
 		while(iter.hasNext()) {
-			System.out.println(iter.next().getTripulante());			
+			str += iter.next().getTripulante() + "\n";						
 		}
+		return str;
 	}
 	
 	public int getTripulantes() {
