@@ -47,7 +47,7 @@ public class Principal4 {
 											   + "3. Alta de flota\n"
 											   + "4. Consulta nave\n"
 											   + "5. Consulta flota\n"
-											   + "0. Salir", "Menu", 0);
+											   + "0. Salir", "Menu", 1);
 	
 	}
 
@@ -127,7 +127,6 @@ public class Principal4 {
 	// consulta una flota específica. muestra sus naves
 	public static void consultaFlota(ArrayList<Flota> flotas) {
 		String nombreFlota = JOptionPane.showInputDialog(null, "Introduzca el nombre de la flota:\n");
-
 		Flota flotaAux = compruebaFlota(flotas, nombreFlota);
 		if (flotaAux != null) {
 			JOptionPane.showMessageDialog(null,"Encontrada la flota " + nombreFlota + " con " + flotaAux.getNaves() + " naves:\n" + flotaAux.verFlota());
