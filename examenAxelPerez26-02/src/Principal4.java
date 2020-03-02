@@ -13,8 +13,7 @@ public class Principal4 {
 
 		do {
 			opc = menu();
-			//System.out.println(opc);
-			if(opc==null) {
+			if(opc==null || opc.equals("0")) {
 				JOptionPane.showMessageDialog(null, "Que la fuerza te acompañe...");
 				break;
 			}
@@ -33,9 +32,6 @@ public class Principal4 {
 				break;
 			case "5":
 				consultaFlota(flotas);
-				break;
-			case "0":
-				JOptionPane.showMessageDialog(null, "Que la fuerza te acompañe...");
 				break;
 			default:
 				JOptionPane.showMessageDialog(null, "Opcion incorrecta.");
