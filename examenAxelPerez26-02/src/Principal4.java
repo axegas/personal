@@ -13,6 +13,11 @@ public class Principal4 {
 
 		do {
 			opc = menu();
+			//System.out.println(opc);
+			if(opc==null) {
+				JOptionPane.showMessageDialog(null, "Que la fuerza te acompañe...");
+				break;
+			}
 			switch (opc) {
 			case "1":
 				altaNave(naves);
@@ -59,12 +64,11 @@ public class Principal4 {
 
 	// dar de alta un tripulante. se necesita alguna nave donde darlo de alta.
 	public static void altaTripulante(ArrayList<Nave> naves) {
-		ArrayList<String> rangos = new ArrayList<String>();
-		rangos.add("soldado");
-		rangos.add("capitan");
-		rangos.add("comandante");
+		String[] rangos = {"soldado","capitan","comandante"};
+		
 		String nombreNave = JOptionPane.showInputDialog(null, "Introduzca el nombre de la nave:\n");
 		Nave naveAux = compruebaNave(naves, nombreNave);
+		
 
 		if (naveAux != null) {
 			String nombre = JOptionPane.showInputDialog(null,"Introduzca el nombre del tripulante para la nave " + nombreNave);
@@ -78,14 +82,8 @@ public class Principal4 {
 					JOptionPane.showMessageDialog(null, "Tiene que introducir un número válido.");
 				}
 			}
-
-			do {
-				String rango = JOptionPane.showInputDialog(null, "Introduzca su rango");
-				if (rangos.contains(rango.toLowerCase())) {
-					naveAux.meteTripulante(new Tripulante(nombre, edad, rango));
-					break;
-				}
-			} while (true);
+			String rango = (String) JOptionPane.showInputDialog(null, "Introduzca su rango", "Rangos", JOptionPane.DEFAULT_OPTION, null, rangos, rangos[0]);
+			naveAux.meteTripulante(new Tripulante(nombre, edad, rango));
 		}
 	}
 
