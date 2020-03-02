@@ -34,7 +34,7 @@ public class Principal4 {
 				consultaFlota(flotas);
 				break;
 			default:
-				JOptionPane.showMessageDialog(null, "Opcion incorrecta.");
+				JOptionPane.showMessageDialog(null, "Opcion incorrecta."); 
 				break;
 			}
 
