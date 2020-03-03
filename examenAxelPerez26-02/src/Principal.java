@@ -61,18 +61,6 @@ public class Principal {
 		return validaEnteros();
 	}
 	
-	public static String menu2() {
-		
-	      return JOptionPane.showInputDialog(null,"1. Alta de nave\n"
-	                                              +"2. Alta de tripulante\n"
-	                                              +"3. Alta de flota\n"
-	                                              +"4. Consulta nave\n"
-	                                              +"5. Consulta flota\n"
-	                                              +"0. Salir");
-	      
-
-	}
-	
 	//dar de alta una nave
 	public static void altaNave(ArrayList<Nave> naves) {
 		System.out.println("Introduzca el nombre de la nave:");
