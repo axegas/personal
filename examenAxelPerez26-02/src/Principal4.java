@@ -1,3 +1,4 @@
+
 import java.util.*;
 
 import javax.swing.JOptionPane;
@@ -13,6 +14,10 @@ public class Principal4 {
 
 		do {
 			opc = menu();
+			if(opc==null || opc.equals("0")) {
+				JOptionPane.showMessageDialog(null, "Que la fuerza te acompaÃ±e...");
+				break;
+			}
 			switch (opc) {
 			case "1":
 				altaNave(naves);
@@ -29,11 +34,8 @@ public class Principal4 {
 			case "5":
 				consultaFlota(flotas);
 				break;
-			case "0":
-				JOptionPane.showMessageDialog(null, "Que la fuerza te acompañe...");
-				break;
 			default:
-				JOptionPane.showMessageDialog(null, "Opcion incorrecta.");
+				JOptionPane.showMessageDialog(null, "Opcion incorrecta."); 
 				break;
 			}
 
@@ -47,7 +49,7 @@ public class Principal4 {
 											   + "3. Alta de flota\n"
 											   + "4. Consulta nave\n"
 											   + "5. Consulta flota\n"
-											   + "0. Salir", "Menu", 0);
+											   + "0. Salir", "Menu", 1);
 	
 	}
 
@@ -59,13 +61,12 @@ public class Principal4 {
 
 	// dar de alta un tripulante. se necesita alguna nave donde darlo de alta.
 	public static void altaTripulante(ArrayList<Nave> naves) {
-		ArrayList<String> rangos = new ArrayList<String>();
-		rangos.add("soldado");
-		rangos.add("capitan");
-		rangos.add("comandante");
+		String[] rangos = {"soldado","capitan","comandante"};
+		
 		String nombreNave = JOptionPane.showInputDialog(null, "Introduzca el nombre de la nave:\n");
 		Nave naveAux = compruebaNave(naves, nombreNave);
 		
+
 		if (naveAux != null) {
 			String nombre = JOptionPane.showInputDialog(null,"Introduzca el nombre del tripulante para la nave " + nombreNave);
 			int edad;
@@ -75,17 +76,11 @@ public class Principal4 {
 					edad = Integer.parseInt(JOptionPane.showInputDialog(null, "Introduzca la edad del nuevo tripulante"));
 					break;
 				} catch (NumberFormatException e) {
-					JOptionPane.showMessageDialog(null, "Tiene que introducir un número válido.");
+					JOptionPane.showMessageDialog(null, "Tiene que introducir un nÃºmero vÃ¡lido.");
 				}
 			}
-			
-			do {
-				String rango = JOptionPane.showInputDialog(null, "Introduzca su rango");
-				if (rangos.contains(rango.toLowerCase())) {
-					naveAux.meteTripulante(new Tripulante(nombre, edad, rango));
-					break;
-				}
-			} while (true);
+			String rango = (String) JOptionPane.showInputDialog(null, "Introduzca su rango", "Rangos", JOptionPane.DEFAULT_OPTION, null, rangos, rangos[0]);
+			naveAux.meteTripulante(new Tripulante(nombre, edad, rango));
 		}
 	}
 
@@ -104,7 +99,7 @@ public class Principal4 {
 					nuevaFlota.meteNave(naveAux);
 					naveAux.meteFlota(nombreFlota);
 				} else {
-					JOptionPane.showMessageDialog(null, "La nave ya est� en la flota " + naveAux.getFlota());
+					JOptionPane.showMessageDialog(null, "La nave ya está en la flota " + naveAux.getFlota());
 				}
 			}
 		} while (true);
@@ -117,14 +112,14 @@ public class Principal4 {
 		Nave naveAux = compruebaNave(naves, nombreNave);
 		if (naveAux != null) {
 			if(!naveAux.getFlota().equals("")) {
-				JOptionPane.showMessageDialog(null,"Encontrada la nave " + nombreNave + " con " + naveAux.getTripulantes() + " tripulantes que est� en la flota " + naveAux.getFlota() + "\n" + naveAux.verNave());
+				JOptionPane.showMessageDialog(null,"Encontrada la nave " + nombreNave + " con " + naveAux.getTripulantes() + " tripulantes que está en la flota " + naveAux.getFlota() + "\n" + naveAux.verNave());
 			}else {
 				JOptionPane.showMessageDialog(null,"Encontrada la nave " + nombreNave + " con " + naveAux.getTripulantes() + " tripulantes:\n" + naveAux.verNave());
 			}			
 		}
 	}
 
-	// consulta una flota específica. muestra sus naves
+	// consulta una flota especÃ­fica. muestra sus naves
 	public static void consultaFlota(ArrayList<Flota> flotas) {
 		String nombreFlota = JOptionPane.showInputDialog(null, "Introduzca el nombre de la flota:\n");
 		Flota flotaAux = compruebaFlota(flotas, nombreFlota);
