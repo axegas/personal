@@ -7,8 +7,6 @@ public class Principal3 {
 		ArrayList<Flota> flotas = new ArrayList<Flota>();
 		ArrayList<Nave> naves = new ArrayList<Nave>();		
 		
-		
-		
 		int opc;
 		
 		do {
@@ -103,7 +101,7 @@ public class Principal3 {
 					nuevaFlota.meteNave(naveAux);
 					naveAux.meteFlota(nombreFlota);
 				}else {
-					System.out.println("La nave ya está en la flota " + naveAux.getFlota());
+					System.out.println("La nave ya estï¿½ en la flota " + naveAux.getFlota());
 				}				
 			}
 		}while(true);	
@@ -120,7 +118,7 @@ public class Principal3 {
 		if(naveAux!=null) {
 			System.out.print("Encontrada la nave " + nombreNave + " con " + naveAux.getTripulantes() + " tripulantes ");
 			if(!naveAux.getFlota().equals(""))
-				System.out.println(" que está en la flota " + naveAux.getFlota());
+				System.out.println(" que estï¿½ en la flota " + naveAux.getFlota());
 			naveAux.verNave();
 		}		
 	}
