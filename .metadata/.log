@@ -66,3 +66,35 @@ Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp
 
 !ENTRY org.eclipse.launchbar.core 2 0 2020-03-06 11:24:48.677
 !MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType
+
+!ENTRY org.eclipse.equinox.p2.metadata.repository 4 1000 2020-03-06 11:38:30.438
+!MESSAGE No repository found at http://download.eclipse.org/tools/cdt/builds/9.8/cdt-9.8.0-simrel-2019-06-rc2.
+!SESSION 2020-03-10 09:08:48.865 -----------------------------------------------
+eclipse.buildId=4.13.0.I20190916-1045
+java.version=1.8.0_171
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=es_ES
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.launchbar.core 2 0 2020-03-10 09:09:18.089
+!MESSAGE Enablement expression is missing for descriptor type org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2020-03-10 09:09:18.098
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType
+
+!ENTRY org.eclipse.equinox.p2.metadata.repository 4 1000 2020-03-10 09:55:19.981
+!MESSAGE No repository found at http://download.eclipse.org/tools/cdt/builds/9.8/cdt-9.8.0-simrel-2019-06-rc2.
+!SESSION 2020-03-10 12:35:30.920 -----------------------------------------------
+eclipse.buildId=4.13.0.I20190916-1045
+java.version=1.8.0_171
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=es_ES
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.launchbar.core 2 0 2020-03-10 12:35:51.015
+!MESSAGE Enablement expression is missing for descriptor type org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2020-03-10 12:35:51.029
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType
