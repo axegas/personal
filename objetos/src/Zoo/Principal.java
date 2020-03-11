@@ -147,6 +147,7 @@ public class Principal {
 		}
 	}
 	
+	
 
 	// leer enteros
 	public static int validaEnteros() {
