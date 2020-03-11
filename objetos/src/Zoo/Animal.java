@@ -22,6 +22,6 @@ public class Animal {
 		this.peso = peso;
 	}
 	public String toString() {
-		return tipo + " de nombre " + nombre + " y peso " + peso + "Kg.\n";
+		return tipo + " de nombre " + nombre + " y peso " + peso + "Kg.";
 	}
 }
