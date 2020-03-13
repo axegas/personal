@@ -9,6 +9,7 @@ public class Alumno {
 	private String curso;
 	private String DNI;
 	private ArrayList<Asignatura> asignaturas = new ArrayList<Asignatura>();
+	private ArrayList<Examen> examenes = new ArrayList<Examen>();
 	
 	//constructor
 	public Alumno(String DNI,String nombre,String primape,int edad,String curso) {
@@ -38,20 +39,8 @@ public class Alumno {
 	}
 	
 	//setters
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	public void setPrimape(String primape) {
-		this.primape = primape;
-	}
-	public void setEdad(int edad) {
-		this.edad = edad;
-	}
 	public void setCurso(String curso) {
 		this.curso = curso;
-	}
-	public void setDNI(String dNI) {
-		DNI = dNI;
 	}
 	//toString
 	public String toString() {

@@ -33,22 +33,6 @@ public class Asignatura {
 	public String getObligatoria() {
 		return obligatoria;
 	}
-	//setters
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	public void setDuracion(int duracion) {
-		this.duracion = duracion;
-	}
-	public void setLibro(String libro) {
-		this.libro = libro;
-	}
-	public void setProfesor(String profesor) {
-		this.profesor = profesor;
-	}
-	public void setObligatoria(String obligatoria) {
-		this.obligatoria = obligatoria;
-	}
 	//toString
 	public String toString() {
 		return "Asignatura [nombre=" + nombre + ", duracion=" + duracion + ", libro=" + libro + ", profesor=" + profesor

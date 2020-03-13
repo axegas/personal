@@ -14,4 +14,30 @@ public class Examen {
 			calificacion="APROBADO";
 		}		
 	}
+	//getters
+	public Alumno getAlumno() {
+		return alumno;
+	}
+	public Asignatura getAsignatura() {
+		return asignatura;
+	}
+	public int getNota() {
+		return nota;
+	}
+	public String getCalificacion() {
+		return calificacion;
+	}
+	//toString
+	public String toString() {
+		return "Examen [alumno=" + alumno + ", asignatura=" + asignatura + ", nota=" + nota + ", calificacion="
+				+ calificacion + "]";
+	}
+	//mostrar
+	public void mostrar() {
+		System.out.println("Examen [alumno=" + alumno.getNombre() + ", asignatura=" + asignatura.getNombre() + ", nota=" + nota + ", calificacion="
+				+ calificacion + "]");
+	}
+	
+
+
 }

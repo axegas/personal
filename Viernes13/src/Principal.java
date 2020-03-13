@@ -8,6 +8,7 @@ public class Principal {
 
 		ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
 		ArrayList<Asignatura> asignaturas = new ArrayList<Asignatura>();
+		ArrayList<Examen> examenes = new ArrayList<Examen>();
 
 		do {
 			opc = menu();
@@ -29,6 +30,8 @@ public class Principal {
 				muestraAlumnos(alumnos);
 				break;
 			case 6:
+				
+			case 7:
 				System.out.println("Hasta luego.");
 				break;
 			default:
@@ -36,7 +39,7 @@ public class Principal {
 				break;
 			}
 
-		} while (opc != 6);
+		} while (opc != 7);
 
 	}
 
@@ -45,7 +48,8 @@ public class Principal {
 		System.out.println("2-Alta asignatura");
 		System.out.println("3-Matricular");
 		System.out.println("4-Muestra asignaturas");
-		System.out.println("5-Salir");
+		System.out.println("5-Muestra alumnos");
+		System.out.println("6-Salir");
 		return validaEnteros();
 	}
 
@@ -78,7 +82,24 @@ public class Principal {
 
 		asignaturas.add(new Asignatura(nombre, duracion, libro, profesor));
 	}
-
+	public static void examinar(ArrayList<Alumno> alumnos, ArrayList<Asignatura> asignaturas,ArrayList<Examen> examenes ) {
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.println("Dime el nombre del alumno:");
+		String nomAlu = scan.nextLine();
+		Alumno alu = buscaAlumno(nomAlu,alumnos);
+		
+		System.out.println("Dime el nombre de la asignatura:");
+		String nomAsi = scan.nextLine();
+		Asignatura asi = buscaAsignatura(nomAsi,asignaturas);
+		
+		System.out.println("Dime el nombre de la asignatura:");
+		int nota = validaEnteros();
+		
+		examenes.add(new Examen(alu,asi,nota));
+		
+		
+	}
 	public static void matricular(ArrayList<Alumno> alumnos, ArrayList<Asignatura> asignaturas) {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Dime el nombre del alumno:");
