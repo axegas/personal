@@ -9,11 +9,13 @@ public class Principal {
 		int opc;
 
 		ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
+		ArrayList<Profesor> profesores = new ArrayList<Profesor>();
 		ArrayList<Asignatura> asignaturas = new ArrayList<Asignatura>();
 		ArrayList<Examen> examenes = new ArrayList<Examen>();
 
+		iniciaProfesores(profesores);
 		iniciaAlumnos(alumnos);
-		iniciaAsignaturas(asignaturas);
+		iniciaAsignaturas(asignaturas,profesores);
 		do {
 			opc = menu();
 			switch (opc) {
@@ -21,39 +23,43 @@ public class Principal {
 				altaAlumno(alumnos);
 				break;
 			case 2:
-				altaAsignatura(asignaturas);
+				altaAsignatura(asignaturas,profesores);
 				break;
 			case 3:
 				matricular(alumnos, asignaturas);
 				break;
 			case 4:
-				muestraAsignaturas(asignaturas);
+				examinar(alumnos, asignaturas, examenes);				
 				break;
 			case 5:
 				muestraAlumnos(alumnos);
 				break;
 			case 6:
-				examinar(alumnos, asignaturas, examenes);
-				break;
-			case 7:
 				muestraAlumno(alumnos);
 				break;
+			case 7:
+				muestraAsignaturas(asignaturas);
+				break;
 			case 8:
+				muestraProfesores(profesores);
+				break;
+				
+			case 9:
 				JOptionPane.showMessageDialog(null, "Hasta luego.");
 				break;
 			default:
 				JOptionPane.showMessageDialog(null, "Opcion incorrecta.");
 				break;
 			}
-		} while (opc != 8);
+		} while (opc != 9);
 	}
 
 	public static int menu() {
 		do {
 			try {
 				return Integer.parseInt(JOptionPane.showInputDialog(null,
-						"1. Alta alumno\n" + "2. Alta asignatura\n" + "3. Matricular\n" + "4. Muestra asignaturas\n"
-								+ "5. Muestra alumnos\n" + "6. Examinar\n" + "7. Mostrar alumno\n" + "8. Salir",
+						"1. Alta alumno\n" + "2. Alta asignatura\n" + "3. Matricular\n" + "4. Examinar\n"
+								+ "5. Muestra alumnos\n" + "6. Mostrar alumno\n" + "7. Muestra asignaturas\n" + "8. Muestra profesores\n" + "9. Salir",
 						"Menu", 1));
 			} catch (NumberFormatException e) {
 				JOptionPane.showMessageDialog(null, "Tiene que introducir un número válido.");
@@ -71,12 +77,13 @@ public class Principal {
 		escribeAlumno(alu);
 	}
 
-	public static void altaAsignatura(ArrayList<Asignatura> asignaturas) {
+	public static void altaAsignatura(ArrayList<Asignatura> asignaturas,ArrayList<Profesor> profesores) {
 		String nombre = JOptionPane.showInputDialog(null, "Introduzca el nombre:");
 		String libro = JOptionPane.showInputDialog(null, "Dime el libro:");
-		String profesor = JOptionPane.showInputDialog(null, "Introduzca el nombre del profesor:");
 		int duracion = validaEnteros("duración");
-		Asignatura asi = new Asignatura(nombre, duracion, libro, profesor);
+		String profesor = JOptionPane.showInputDialog(null, "Introduzca el nombre del profesor:");
+		Profesor p = buscaProfesor(profesor,profesores);
+		Asignatura asi = new Asignatura(nombre, duracion, libro, p);
 		asignaturas.add(asi);
 		escribeAsignatura(asi);
 	}
@@ -154,8 +161,18 @@ public class Principal {
 			JOptionPane.showMessageDialog(null, alu.verAlumno());
 		}
 	}
+	
+	public static void muestraProfesores(ArrayList<Profesor> profesores) {
+		Iterator<Profesor> iter = profesores.iterator();
+		String prof = "";
+		while (iter.hasNext()) {
+			prof += iter.next().toString();
+		}
+		JOptionPane.showMessageDialog(null, prof);
+	}
 
 	public static Alumno buscaAlumno(String nombre, ArrayList<Alumno> alumnos) {
+
 		Alumno alu;
 		Iterator<Alumno> iter = alumnos.iterator();
 		while (iter.hasNext()) {
@@ -165,6 +182,19 @@ public class Principal {
 			}
 		}
 		JOptionPane.showMessageDialog(null, "El alumno " + nombre + " no existe.");
+		return null;
+	}
+
+	public static Profesor buscaProfesor(String nombre, ArrayList<Profesor> profesores) {
+		Profesor prof;
+		Iterator<Profesor> iter = profesores.iterator();
+		while (iter.hasNext()) {
+			prof = iter.next();
+			if (prof.getNombre().equals(nombre)) {
+				return prof;
+			}
+		}
+		JOptionPane.showMessageDialog(null, "El profesor " + nombre + " no existe.");
 		return null;
 	}
 
@@ -197,17 +227,36 @@ public class Principal {
 
 		}
 	}
-
-	public static void iniciaAsignaturas(ArrayList<Asignatura> asignaturas) {
-		File f = new File("c:/Users/peixe/git/personals/Viernes13/asignaturas.txt");
+	
+	public static void iniciaProfesores(ArrayList<Profesor> profesores) {
+		File f = new File("c:/Users/peixe/git/personals/Viernes13/profesores.txt");
 		String linea;
 		String[] str;
 		try {
 			Scanner s = new Scanner(f);
 			while (s.hasNextLine()) {
 				linea = s.nextLine();
+				str = linea.split(",");
+				profesores.add(new Profesor(str[0], str[1], Integer.parseInt(str[2])));
+			}
+			s.close();
+		} catch (Exception e) {
+
+		}
+	}
+
+	public static void iniciaAsignaturas(ArrayList<Asignatura> asignaturas,ArrayList<Profesor> profesores) {
+		File f = new File("c:/Users/peixe/git/personals/Viernes13/asignaturas.txt");
+		String linea;
+		Profesor p;
+		String[] str;
+		try {
+			Scanner s = new Scanner(f);
+			while (s.hasNextLine()) {
+				linea = s.nextLine();
 				str = linea.split("-");
-				asignaturas.add(new Asignatura(str[0], Integer.parseInt(str[1]), str[2], str[3]));
+				p = buscaProfesor(str[3],profesores);
+				asignaturas.add(new Asignatura(str[0], Integer.parseInt(str[1]), str[2],p));
 			}
 			s.close();
 		} catch (Exception e) {
@@ -258,6 +307,7 @@ public class Principal {
 			}
 		}
 	}
+	
 	public static void escribeAsignatura(Asignatura asi) {
 		FileWriter fichero = null;
 		PrintWriter pw = null;

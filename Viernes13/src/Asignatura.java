@@ -5,11 +5,11 @@ public class Asignatura {
 	private String nombre;
 	private int duracion;
 	private String libro;
-	private String profesor;
+	private Profesor profesor;
 	private String obligatoria = "NO";
 	
 	//constructor
-	public Asignatura(String nombre, int duracion, String libro, String profesor) {
+	public Asignatura(String nombre, int duracion, String libro, Profesor profesor) {
 		this.nombre = nombre;
 		this.duracion = duracion;
 		this.libro = libro;
@@ -29,14 +29,14 @@ public class Asignatura {
 		return libro;
 	}
 	public String getProfesor() {
-		return profesor;
+		return profesor.getNombre();
 	}
 	public String getObligatoria() {
 		return obligatoria;
 	}
 	//toString
 	public String toString() {
-		return "- " + nombre + ", duracion: " + duracion + ", libro: " + libro + ", profesor: " + profesor
+		return "- " + nombre + ", duracion: " + duracion + ", libro: " + libro + ", profesor: " + profesor.getNombre()
 				+ ", obligatoria: " + obligatoria + "\n";
 	}
 	//mostrar
