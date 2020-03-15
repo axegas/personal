@@ -1,21 +1,22 @@
 import java.util.*;
 
+import javax.swing.JOptionPane;
+
 public class Alumno {
 	
 	//atributos
 	private String nombre;
-	private String primape;
 	private int edad;
 	private String curso;
 	private String DNI;
 	private ArrayList<Asignatura> asignaturas = new ArrayList<Asignatura>();
 	private ArrayList<Examen> examenes = new ArrayList<Examen>();
+	private double notaMedia = 0;
 	
 	//constructor
-	public Alumno(String DNI,String nombre,String primape,int edad,String curso) {
+	public Alumno(String DNI,String nombre,int edad,String curso) {
 		this.DNI = DNI;
 		this.nombre = nombre;
-		this.primape = primape;
 		this.edad = edad;
 		this.curso = curso;
 	}
@@ -23,10 +24,6 @@ public class Alumno {
 	//geters
 	public String getNombre() {
 		return nombre;
-	}
-
-	public String getPrimape() {
-		return primape;
 	}
 	public int getEdad() {
 		return edad;
@@ -37,37 +34,54 @@ public class Alumno {
 	public String getDNI() {
 		return DNI;
 	}
-	
-	//setters
-	public void setCurso(String curso) {
-		this.curso = curso;
+	public double getNotaMedia() {
+		return notaMedia;
 	}
+	public ArrayList<Asignatura> getAsignaturas(){
+		return asignaturas;
+	}
+	
 	//toString
 	public String toString() {
-		String str = "";
-		Iterator iter = asignaturas.iterator();
+		return "[ " + nombre + ", " + edad + " años, curso: " + curso + ", DNI: " + DNI + " ]\n";
+	}
+	public String verAlumno() {
+		String str = "Asignaturas:\n";
+		Iterator<Asignatura> iter = asignaturas.iterator();
 		while(iter.hasNext()) {
-			str += iter.next().toString() + "\n";
+			str += "\t" + iter.next().toString();
 		}
-		return "Alumno [nombre=" + nombre + ", apellido=" + primape + ", edad=" + edad + ", curso=" + curso + ", DNI="
-				+ DNI + "]\n" + str;
+		return this.toString() + str + "Nota media del curso: " + this.notaMedia;
 	}
 	//mostrar
-	public void mostrar() {
-		String str = "";
-		Iterator iter = asignaturas.iterator();
-		while(iter.hasNext()) {
-			str += iter.next().toString() + "\n";
-		}
-		System.out.println("Alumno [nombre=" + nombre + ", apellido=" + primape + ", edad=" + edad + ", curso=" + curso + ", DNI="
-				+ DNI + "]\n" + str);
+	public void mostrar() {		
+		JOptionPane.showMessageDialog(null, this.toString()); 
 	}
 	//metodos
 	public void matricular(Asignatura as) {
 		asignaturas.add(as);
-		System.out.println("El alumno "+ nombre+" se ha matriculado en:");
-		System.out.println(as.toString());
 	}
 	
+	public void examinar(Examen e) {
+		notaMedia=0;
+		examenes.add(e);
+		Iterator<Examen> iter = examenes.iterator();
+		while(iter.hasNext()) {
+			notaMedia+=iter.next().getNota();
+		}
+		notaMedia=notaMedia/examenes.size();		
+	}
+	public boolean tieneAsig(Asignatura a) {
+		boolean existe = false;
+		Iterator<Asignatura> iter = asignaturas.iterator();	
+		while(iter.hasNext()&&!existe) {
+			if(a.equals(iter.next())) {
+				existe = true;
+			}
+		}
+		return existe;
+	}
+
+
 
 }

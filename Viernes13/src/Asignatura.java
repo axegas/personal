@@ -1,3 +1,4 @@
+import javax.swing.JOptionPane;
 
 public class Asignatura {
 	//atributos
@@ -14,7 +15,7 @@ public class Asignatura {
 		this.libro = libro;
 		this.profesor = profesor;
 		if(nombre.equals("Programacion")) {
-			obligatoria = "S√ç";
+			obligatoria = "SÕ";
 		}		
 	}
 	//getters
@@ -35,13 +36,12 @@ public class Asignatura {
 	}
 	//toString
 	public String toString() {
-		return "Asignatura [nombre=" + nombre + ", duracion=" + duracion + ", libro=" + libro + ", profesor=" + profesor
-				+ ", obligatoria=" + obligatoria + "]";
+		return "- " + nombre + ", duracion: " + duracion + ", libro: " + libro + ", profesor: " + profesor
+				+ ", obligatoria: " + obligatoria + "\n";
 	}
 	//mostrar
 	public void mostrar() {
-		System.out.println("Asignatura [nombre=" + nombre + ", duracion=" + duracion + ", libro=" + libro + ", profesor=" + profesor
-				+ ", obligatoria=" + obligatoria + "]");
+		JOptionPane.showMessageDialog(null, this.toString()); 	
 	}
 	
 	

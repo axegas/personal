@@ -1,12 +1,13 @@
+import javax.swing.JOptionPane;
 
 public class Examen {
 
 	private Alumno alumno;
 	private Asignatura asignatura;
-	private int nota;
+	private double nota;
 	private String calificacion="SUSPENDIDO";
 	
-	public Examen(Alumno alumno, Asignatura asignatura, int nota) {
+	public Examen(Alumno alumno, Asignatura asignatura, double nota) {
 		this.alumno = alumno;
 		this.asignatura = asignatura;
 		this.nota = nota;
@@ -21,7 +22,7 @@ public class Examen {
 	public Asignatura getAsignatura() {
 		return asignatura;
 	}
-	public int getNota() {
+	public double getNota() {
 		return nota;
 	}
 	public String getCalificacion() {
@@ -29,13 +30,12 @@ public class Examen {
 	}
 	//toString
 	public String toString() {
-		return "Examen [alumno=" + alumno + ", asignatura=" + asignatura + ", nota=" + nota + ", calificacion="
-				+ calificacion + "]";
+		return "Examen [alumno=" + alumno.getNombre() + ", asignatura=" + asignatura.getNombre() + ", nota=" + nota + ", calificacion="
+				+ calificacion + "]\n";
 	}
 	//mostrar
 	public void mostrar() {
-		System.out.println("Examen [alumno=" + alumno.getNombre() + ", asignatura=" + asignatura.getNombre() + ", nota=" + nota + ", calificacion="
-				+ calificacion + "]");
+		JOptionPane.showMessageDialog(null, this.toString()); 
 	}
 	
 
