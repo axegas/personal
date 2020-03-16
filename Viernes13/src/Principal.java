@@ -12,10 +12,13 @@ public class Principal {
 		ArrayList<Profesor> profesores = new ArrayList<Profesor>();
 		ArrayList<Asignatura> asignaturas = new ArrayList<Asignatura>();
 		ArrayList<Examen> examenes = new ArrayList<Examen>();
-
-		iniciaProfesores(profesores);
-		iniciaAlumnos(alumnos);
-		iniciaAsignaturas(asignaturas,profesores);
+		try {
+			iniciaProfesores(profesores);
+			iniciaAlumnos(alumnos);
+			iniciaAsignaturas(asignaturas,profesores);
+		}catch(Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
 		do {
 			opc = menu();
 			switch (opc) {
@@ -26,41 +29,54 @@ public class Principal {
 				altaAsignatura(asignaturas,profesores);
 				break;
 			case 3:
-				matricular(alumnos, asignaturas);
+				altaProfesor(profesores);
 				break;
 			case 4:
-				examinar(alumnos, asignaturas, examenes);				
+				matricular(alumnos, asignaturas);
 				break;
 			case 5:
-				muestraAlumnos(alumnos);
+				examinar(alumnos, asignaturas, examenes);				
 				break;
-			case 6:
+			case 6:		
 				muestraAlumno(alumnos);
 				break;
 			case 7:
-				muestraAsignaturas(asignaturas);
+				muestraAlumnos(alumnos);
 				break;
 			case 8:
-				muestraProfesores(profesores);
+				muestraAsignaturas(asignaturas);
 				break;
-				
 			case 9:
+				muestraProfesores(profesores);
+				break;				
+			case 0:
 				JOptionPane.showMessageDialog(null, "Hasta luego.");
 				break;
 			default:
 				JOptionPane.showMessageDialog(null, "Opcion incorrecta.");
 				break;
 			}
-		} while (opc != 9);
+		} while (opc != 0);
 	}
 
 	public static int menu() {
+		String menu = "";
+		menu += "1. Alta alumno\n";
+		menu += "2. Alta asignatura\n";
+		menu += "3. Alta profesor\n";
+		menu += "-------------------\n";
+		menu += "4. Matricular\n";
+		menu += "5. Examinar\n";
+		menu += "-------------------\n";
+		menu += "6. Mostrar alumno\n";
+		menu += "7. Muestra alumnos\n";
+		menu += "8. Muestra asignaturas\n";
+		menu += "9. Muestra profesores\n";
+		menu += "-------------------\n";
+		menu += "0. Salir\n";	
 		do {
 			try {
-				return Integer.parseInt(JOptionPane.showInputDialog(null,
-						"1. Alta alumno\n" + "2. Alta asignatura\n" + "3. Matricular\n" + "4. Examinar\n"
-								+ "5. Muestra alumnos\n" + "6. Mostrar alumno\n" + "7. Muestra asignaturas\n" + "8. Muestra profesores\n" + "9. Salir",
-						"Menu", 1));
+				return Integer.parseInt(JOptionPane.showInputDialog(null,menu,"Menu", 1));
 			} catch (NumberFormatException e) {
 				JOptionPane.showMessageDialog(null, "Tiene que introducir un número válido.");
 			}
@@ -86,6 +102,15 @@ public class Principal {
 		Asignatura asi = new Asignatura(nombre, duracion, libro, p);
 		asignaturas.add(asi);
 		escribeAsignatura(asi);
+	}
+	
+	public static void altaProfesor(ArrayList<Profesor> profesores) {
+		String DNI = JOptionPane.showInputDialog(null, "Dime el DNI:");
+		String nombre = JOptionPane.showInputDialog(null, "Introduzca el nombre:");		
+		int edad = validaEnteros("Edad");
+		Profesor prof = new Profesor(DNI, nombre, edad);
+		profesores.add(prof);
+		escribeProfesor(prof);
 	}
 
 	public static void examinar(ArrayList<Alumno> alumnos, ArrayList<Asignatura> asignaturas,
@@ -211,8 +236,8 @@ public class Principal {
 		return null;
 	}
 
-	public static void iniciaAlumnos(ArrayList<Alumno> alumnos) {
-		File f = new File("c:/Users/peixe/git/personals/Viernes13/alumnos.txt");
+	public static void iniciaAlumnos(ArrayList<Alumno> alumnos) throws Exception {
+		File f = new File("alumnos.txt");
 		String linea;
 		String[] str;
 		try {
@@ -224,12 +249,12 @@ public class Principal {
 			}
 			s.close();
 		} catch (Exception e) {
-
+			throw new Exception("Fichero alumnos no encontrado");
 		}
 	}
 	
-	public static void iniciaProfesores(ArrayList<Profesor> profesores) {
-		File f = new File("c:/Users/peixe/git/personals/Viernes13/profesores.txt");
+	public static void iniciaProfesores(ArrayList<Profesor> profesores) throws Exception {
+		File f = new File("profesores.txt");
 		String linea;
 		String[] str;
 		try {
@@ -241,12 +266,12 @@ public class Principal {
 			}
 			s.close();
 		} catch (Exception e) {
-
+			throw new Exception("Fichero profesores no encontrado");
 		}
 	}
 
-	public static void iniciaAsignaturas(ArrayList<Asignatura> asignaturas,ArrayList<Profesor> profesores) {
-		File f = new File("c:/Users/peixe/git/personals/Viernes13/asignaturas.txt");
+	public static void iniciaAsignaturas(ArrayList<Asignatura> asignaturas,ArrayList<Profesor> profesores) throws Exception {
+		File f = new File("asignaturas.txt");
 		String linea;
 		Profesor p;
 		String[] str;
@@ -254,13 +279,13 @@ public class Principal {
 			Scanner s = new Scanner(f);
 			while (s.hasNextLine()) {
 				linea = s.nextLine();
-				str = linea.split("-");
+				str = linea.split(",");
 				p = buscaProfesor(str[3],profesores);
 				asignaturas.add(new Asignatura(str[0], Integer.parseInt(str[1]), str[2],p));
 			}
 			s.close();
 		} catch (Exception e) {
-
+			throw new Exception("Fichero asignaturas no encontrado");
 		}
 	}
 
@@ -293,9 +318,27 @@ public class Principal {
 		FileWriter fichero = null;
 		PrintWriter pw = null;
 		try {
-			fichero = new FileWriter("c:/Users/peixe/git/personals/Viernes13/alumnos.txt",true);
+			fichero = new FileWriter("alumnos.txt",true);
 			pw = new PrintWriter(fichero);
 			pw.println(alu.getDNI()+","+alu.getNombre()+","+alu.getEdad()+","+alu.getCurso());			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (null != fichero)
+					fichero.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+	public static void escribeProfesor(Profesor prof) {
+		FileWriter fichero = null;
+		PrintWriter pw = null;
+		try {
+			fichero = new FileWriter("profesores.txt",true);
+			pw = new PrintWriter(fichero);
+			pw.println(prof.getDNI()+","+prof.getNombre()+","+prof.getEdad());			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -312,7 +355,7 @@ public class Principal {
 		FileWriter fichero = null;
 		PrintWriter pw = null;
 		try {
-			fichero = new FileWriter("c:/Users/peixe/git/personals/Viernes13/alumnos.txt",true);
+			fichero = new FileWriter("asignatura.txt",true);
 			pw = new PrintWriter(fichero);
 			pw.println(asi.getNombre()+","+asi.getDuracion()+","+asi.getLibro()+","+asi.getProfesor());			
 		} catch (Exception e) {

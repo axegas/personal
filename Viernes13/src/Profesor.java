@@ -13,11 +13,17 @@ public class Profesor {
 		this.edad = edad;
 	}
 
-
 	public String getNombre() {
 		return nombre;
 	}
 
+	public int getEdad() {
+		return edad;
+	}
+
+	public String getDNI() {
+		return DNI;
+	}
 
 	public String toString() {
 		return "Profesor [nombre=" + nombre + ", edad=" + edad + ", DNI=" + DNI + "]\n";
