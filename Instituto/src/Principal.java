@@ -14,12 +14,7 @@ public class Principal {
 		ArrayList<Examen> examenes = new ArrayList<Examen>();
 
 		try {
-
-			iniciaProfesoresSQL(profesores);
-			iniciaAsignaturasSQL(asignaturas, profesores);
-			iniciaAlumnosSQL(alumnos, asignaturas);
-			iniciaExamenesSQL(examenes, alumnos, asignaturas);
-
+			iniciarDatos(profesores,examenes,alumnos,asignaturas);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -425,133 +420,49 @@ public class Principal {
 	}
 
 ////////////////////////////////////////lectura datos SQL /////////////////////////////
-	public static void iniciaAlumnosSQL(ArrayList<Alumno> alumnos, ArrayList<Asignatura> asignaturas) {
+	
+	public static void iniciarDatos(ArrayList<Profesor> profesores,ArrayList<Examen> examenes, ArrayList<Alumno> alumnos,	ArrayList<Asignatura> asignaturas) {
 		conexion conec = new conexion();
 		Connection cn = null;
 		ResultSet rs = null;
 		ResultSet rs2 = null;
-		Statement stm = null;
-		Alumno alu;
-		Asignatura asig;
-		try {
-			cn = conec.conectar();
-			stm = cn.createStatement();
-			rs = stm.executeQuery("SELECT * FROM alumno");
-			while (rs.next()) {
-				alumnos.add(new Alumno(rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5)));
-			}
-			rs2 = stm.executeQuery("SELECT * FROM matricula");
-			while (rs2.next()) {
-				alu = buscaAlumnoPorID(rs2.getInt(1), alumnos);
-				asig = buscaAsignaturaPorID(rs2.getInt(2), asignaturas);
-				alu.getAsignaturas().add(asig);
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null) {
-					rs.close();
-				}
-				if (rs2 != null) {
-					rs2.close();
-				}
-				if (stm != null) {
-					stm.close();
-				}
-				if (cn != null) {
-					cn.close();
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-	}
-
-	public static void iniciaAsignaturasSQL(ArrayList<Asignatura> asignaturas, ArrayList<Profesor> profesores) {
-		conexion conec = new conexion();
-		Connection cn = null;
-		ResultSet rs = null;
-		Statement stm = null;
-		Profesor p;
-		try {
-			cn = conec.conectar();
-			stm = cn.createStatement();
-			rs = stm.executeQuery("SELECT * FROM asignatura");
-
-			while (rs.next()) {
-				p = buscaProfesorPorID(rs.getInt(5), profesores);
-				asignaturas.add(new Asignatura(rs.getString(2), rs.getInt(3), rs.getString(4), p));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null) {
-					rs.close();
-				}
-				if (stm != null) {
-					stm.close();
-				}
-				if (cn != null) {
-					cn.close();
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-	}
-
-	public static void iniciaProfesoresSQL(ArrayList<Profesor> profesores) {
-		conexion conec = new conexion();
-		Connection cn = null;
-		ResultSet rs = null;
-		Statement stm = null;
-		try {
-			cn = conec.conectar();
-			stm = cn.createStatement();
-			rs = stm.executeQuery("SELECT * FROM profesor");
-
-			while (rs.next()) {
-				profesores.add(new Profesor(rs.getString(2), rs.getString(3), rs.getInt(4)));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null) {
-					rs.close();
-				}
-				if (stm != null) {
-					stm.close();
-				}
-				if (cn != null) {
-					cn.close();
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-	}
-
-	public static void iniciaExamenesSQL(ArrayList<Examen> examenes, ArrayList<Alumno> alumnos,	ArrayList<Asignatura> asignaturas) {
-		conexion conec = new conexion();
-		Connection cn = null;
-		ResultSet rs = null;
+		ResultSet rs3 = null;
+		ResultSet rs4 = null;
+		ResultSet rs5 = null;
 		Statement stm = null;
 		Alumno alu;
 		Examen ex;
 		Asignatura asig;
+		Profesor p;
 		try {
 			cn = conec.conectar();
 			stm = cn.createStatement();
-			rs = stm.executeQuery("SELECT * FROM examen");
-
+			
+			rs = stm.executeQuery("SELECT * FROM profesor");
 			while (rs.next()) {
-				alu = buscaAlumnoPorID(rs.getInt(2), alumnos);
-				asig = buscaAsignaturaPorID(rs.getInt(3), asignaturas);
-				ex = new Examen(alu, asig, rs.getDouble(4));
+				profesores.add(new Profesor(rs.getString(2), rs.getString(3), rs.getInt(4)));
+			}
+			
+			rs2 = stm.executeQuery("SELECT * FROM asignatura");
+			while (rs2.next()) {
+				p = buscaProfesorPorID(rs2.getInt(5), profesores);
+				asignaturas.add(new Asignatura(rs2.getString(2), rs2.getInt(3), rs2.getString(4), p));
+			}
+			rs3 = stm.executeQuery("SELECT * FROM alumno");
+			while (rs3.next()) {
+				alumnos.add(new Alumno(rs3.getString(2), rs3.getString(3), rs3.getInt(4), rs3.getString(5)));
+			}
+			rs4 = stm.executeQuery("SELECT * FROM matricula");
+			while (rs4.next()) {
+				alu = buscaAlumnoPorID(rs4.getInt(1), alumnos);
+				asig = buscaAsignaturaPorID(rs4.getInt(2), asignaturas);
+				alu.getAsignaturas().add(asig);
+			}
+			rs5 = stm.executeQuery("SELECT * FROM examen");
+			while (rs5.next()) {
+				alu = buscaAlumnoPorID(rs5.getInt(2), alumnos);
+				asig = buscaAsignaturaPorID(rs5.getInt(3), asignaturas);
+				ex = new Examen(alu, asig, rs5.getDouble(4));
 				alu.examinar(ex);
 				examenes.add(ex);
 			}
@@ -562,6 +473,18 @@ public class Principal {
 				if (rs != null) {
 					rs.close();
 				}
+				if (rs2 != null) {
+					rs2.close();
+				}
+				if (rs3 != null) {
+					rs3.close();
+				}
+				if (rs4 != null) {
+					rs4.close();
+				}
+				if (rs5 != null) {
+					rs5.close();
+				}
 				if (stm != null) {
 					stm.close();
 				}
@@ -573,7 +496,6 @@ public class Principal {
 			}
 		}
 	}
-
 /////////////////////////////////buscar elementos por ID/////////////////////////////////////////////////
 	public static Alumno buscaAlumnoPorID(int id, ArrayList<Alumno> alumnos) {
 		Alumno alu;
@@ -609,5 +531,5 @@ public class Principal {
 			}
 		}
 		return null;
-	}
+	}	
 }
