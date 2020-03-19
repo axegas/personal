@@ -12,6 +12,8 @@ public class Alumno {
 	private ArrayList<Asignatura> asignaturas = new ArrayList<Asignatura>();
 	private ArrayList<Examen> examenes = new ArrayList<Examen>();
 	private double notaMedia = 0;
+	private static int id= 0;
+	public int idalu;
 	
 	//constructor
 	public Alumno(String DNI,String nombre,int edad,String curso) {
@@ -19,6 +21,8 @@ public class Alumno {
 		this.nombre = nombre;
 		this.edad = edad;
 		this.curso = curso;
+		id++;
+		idalu = id;
 	}
 	
 	//geters
@@ -43,13 +47,18 @@ public class Alumno {
 	
 	//toString
 	public String toString() {
-		return "[ " + nombre + ", " + edad + " años, curso: " + curso + ", DNI: " + DNI + " ]\n";
+		return idalu + "[ " + nombre + ", " + edad + " años, curso: " + curso + ", DNI: " + DNI + " ]\n";
 	}
 	public String verAlumno() {
 		String str = "Asignaturas:\n";
 		Iterator<Asignatura> iter = asignaturas.iterator();
 		while(iter.hasNext()) {
 			str += "\t" + iter.next().toString();
+		}
+		str += "Examenes:\n";
+		Iterator<Examen> iter2 = examenes.iterator();
+		while(iter2.hasNext()) {
+			str += "\t" + iter2.next().toString();
 		}
 		return this.toString() + str + "Nota media del curso: " + this.notaMedia;
 	}

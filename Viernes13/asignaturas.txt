@@ -2,3 +2,8 @@ Programacion,256,Prog,Paco
 BBDD,256,bd,Lucia
 Entornos,150,ent,Tamara
 Lenguaje,100,leng,Isabel
+Ingles,235,int,Silvia
+FOL,234,fol,Pilar
+FOL2,234,fol2,Pilar
+Matematicas,456,mates,Paco
+

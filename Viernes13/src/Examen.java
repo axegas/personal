@@ -6,6 +6,8 @@ public class Examen {
 	private Asignatura asignatura;
 	private double nota;
 	private String calificacion="SUSPENDIDO";
+	public static int id= 0;
+	public int idex;
 	
 	public Examen(Alumno alumno, Asignatura asignatura, double nota) {
 		this.alumno = alumno;
@@ -14,6 +16,8 @@ public class Examen {
 		if(nota>=5) {
 			calificacion="APROBADO";
 		}		
+		id++;
+		idex = id;
 	}
 	//getters
 	public Alumno getAlumno() {
@@ -30,8 +34,7 @@ public class Examen {
 	}
 	//toString
 	public String toString() {
-		return "Examen [alumno=" + alumno.getNombre() + ", asignatura=" + asignatura.getNombre() + ", nota=" + nota + ", calificacion="
-				+ calificacion + "]\n";
+		return "- " + asignatura.getNombre() + ", nota: " + nota + ", calificacion: "+ calificacion + "\n";
 	}
 	//mostrar
 	public void mostrar() {

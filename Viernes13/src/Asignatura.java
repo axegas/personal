@@ -7,6 +7,8 @@ public class Asignatura {
 	private String libro;
 	private Profesor profesor;
 	private String obligatoria = "NO";
+	public static int id= 0;
+	public int idasig;
 	
 	//constructor
 	public Asignatura(String nombre, int duracion, String libro, Profesor profesor) {
@@ -17,6 +19,8 @@ public class Asignatura {
 		if(nombre.equals("Programacion")) {
 			obligatoria = "SÍ";
 		}		
+		id++;
+		idasig = id;
 	}
 	//getters
 	public String getNombre() {
@@ -30,6 +34,9 @@ public class Asignatura {
 	}
 	public String getProfesor() {
 		return profesor.getNombre();
+	}
+	public Profesor getProfesorOb() {
+		return profesor;
 	}
 	public String getObligatoria() {
 		return obligatoria;
