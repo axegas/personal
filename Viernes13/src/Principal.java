@@ -14,27 +14,25 @@ public class Principal {
 		ArrayList<Examen> examenes = new ArrayList<Examen>();
 
 		try {
-					/////ficheros/////
-			//iniciaProfesores(profesores);   
-			//iniciaAlumnos(alumnos);
-			//iniciaAsignaturas(asignaturas, profesores);
-			
-				///SQL///
-			
-			iniciaProfesoresSQL(profesores);			
+			///// ficheros/////
+			// iniciaProfesores(profesores);
+			// iniciaAlumnos(alumnos);
+			// iniciaAsignaturas(asignaturas, profesores);
+
+			/// SQL///
+
+			iniciaProfesoresSQL(profesores);
 			iniciaAsignaturasSQL(asignaturas, profesores);
-			iniciaAlumnosSQL(alumnos,asignaturas);
-			iniciaExamenesSQL(examenes,alumnos,asignaturas);
-			//notaMedia(alumnos);
-			//anyadeIDS(asignaturas);
+			iniciaAlumnosSQL(alumnos, asignaturas);
+			iniciaExamenesSQL(examenes, alumnos, asignaturas);
+			// notaMedia(alumnos);
+			// anyadeIDS(asignaturas);
 			// escribeAlumnosSQL(alumnos);
 			// escribeAsignaturasSQL(asignaturas);
 			// escribeProfesoresSQL(profesores);
 
 		} catch (Exception e) {
-			System.out.println("excepcion1");
 			e.printStackTrace();
-			// JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 		do {
 			opc = menu();
@@ -160,8 +158,8 @@ public class Principal {
 					Examen e = new Examen(alu, asi, nota);
 					examenes.add(e);
 					alu.examinar(e);
-					examinarSQL(e,alu);
-					
+					examinarSQL(e, alu);
+
 				} else {
 					JOptionPane.showMessageDialog(null, "El alumno " + nomAlu + " no tiene esa asignatura.");
 				}
@@ -183,13 +181,13 @@ public class Principal {
 				}
 				asi = buscaAsignatura(nomAsi, asignaturas);
 				if (asi != null) {
-					if(alu.tieneAsig(asi)) {
+					if (alu.tieneAsig(asi)) {
 						alu.matricular(asi);
-						matricularSQL(alu, asi);	
-					}else {
+						matricularSQL(alu, asi);
+					} else {
 						JOptionPane.showMessageDialog(null, "El alumno ya tiene esa asignatura.");
 					}
-					
+
 				}
 			} while (true);
 		}
@@ -280,146 +278,6 @@ public class Principal {
 		return null;
 	}
 
-////////////////////////////////////lectura ficheros////////////////////////////////////
-	public static void iniciaAlumnos(ArrayList<Alumno> alumnos) throws Exception {
-		File f = new File("alumnos.txt");
-		String linea;
-		String[] str;
-		try {
-			Scanner s = new Scanner(f);
-			while (s.hasNextLine()) {
-				linea = s.nextLine();
-				str = linea.split(",");
-				alumnos.add(new Alumno(str[0], str[1], Integer.parseInt(str[2]), str[3]));
-			}
-			s.close();
-		} catch (Exception e) {
-			throw new Exception("Fichero alumnos no encontrado");
-		}
-	}
-	
-	public static void iniciaProfesores(ArrayList<Profesor> profesores) throws Exception {
-		File f = new File("profesores.txt");
-		String linea;
-		String[] str;
-		try {
-			Scanner s = new Scanner(f);
-			while (s.hasNextLine()) {
-				linea = s.nextLine();
-				str = linea.split(",");
-				profesores.add(new Profesor(str[0], str[1], Integer.parseInt(str[2])));
-			}
-			s.close();
-		} catch (Exception e) {
-			throw new Exception("Fichero profesores no encontrado");
-		}
-	}
-
-	public static void iniciaAsignaturas(ArrayList<Asignatura> asignaturas, ArrayList<Profesor> profesores)
-			throws Exception {
-		File f = new File("asignaturas.txt");
-		String linea;
-		Profesor p;
-		Asignatura a;
-		String[] str;
-		try {
-			Scanner s = new Scanner(f);
-			while (s.hasNextLine()) {
-				linea = s.nextLine();
-				str = linea.split(",");
-				p = buscaProfesor(str[3], profesores);
-				a = new Asignatura(str[0], Integer.parseInt(str[1]), str[2], p);
-				p.getAsignaturas().add(a);
-				asignaturas.add(a);
-			}
-			s.close();
-		} catch (Exception e) {
-			throw new Exception("Fichero asignaturas no encontrado");
-		}
-	}
-
-////////////////////////////////////escritura en base de datos (inicial)////////////////////////////////////
-	public static void escribeAlumnosSQL(ArrayList<Alumno> alumnos) {
-		conexion conec = new conexion();
-		Connection cn = null;
-		try {
-			cn = conec.conectar();
-			PreparedStatement preparedStatement = cn.prepareStatement("INSERT INTO alumno VALUES (?,?,?,?,?)");
-			for (int i = 0; i < alumnos.size(); i++) {
-				preparedStatement.setInt(1, alumnos.get(i).idalu);
-				preparedStatement.setString(2, alumnos.get(i).getDNI());
-				preparedStatement.setString(3, alumnos.get(i).getNombre());
-				preparedStatement.setInt(4, alumnos.get(i).getEdad());
-				preparedStatement.setString(5, alumnos.get(i).getCurso());
-				preparedStatement.executeUpdate();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (cn != null) {
-					cn.close();
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-	}
-
-	public static void escribeAsignaturasSQL(ArrayList<Asignatura> asignaturas) {
-
-		conexion conec = new conexion();
-		Connection cn = null;
-		try {
-			cn = conec.conectar();
-			PreparedStatement preparedStatement = cn.prepareStatement("INSERT INTO asignatura VALUES (?,?,?,?,?)");
-			for (int i = 0; i < asignaturas.size(); i++) {
-				preparedStatement.setInt(1, asignaturas.get(i).idasig);
-				preparedStatement.setString(2, asignaturas.get(i).getNombre());
-				preparedStatement.setInt(3, asignaturas.get(i).getDuracion());
-				preparedStatement.setString(4, asignaturas.get(i).getLibro());
-				preparedStatement.setString(5, asignaturas.get(i).getProfesor());
-				preparedStatement.executeUpdate();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (cn != null) {
-					cn.close();
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-	}
-
-	public static void escribeProfesoresSQL(ArrayList<Profesor> profesores) {
-		conexion conec = new conexion();
-		Connection cn = null;
-		try {
-			cn = conec.conectar();
-			PreparedStatement preparedStatement = cn.prepareStatement("INSERT INTO profesor VALUES (?,?,?,?)");
-			for (int i = 0; i < profesores.size(); i++) {
-				preparedStatement.setInt(1, profesores.get(i).idprof);
-				preparedStatement.setString(2, profesores.get(i).getDNI());
-				preparedStatement.setString(3, profesores.get(i).getNombre());
-				preparedStatement.setInt(4, profesores.get(i).getEdad());
-				preparedStatement.executeUpdate();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (cn != null) {
-					cn.close();
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-	}
-
 ////////////////////////////////////escritura en base de datos////////////////////////////////////
 	public static void escribeProfesorSQL(Profesor profesor) {
 		conexion conec = new conexion();
@@ -502,6 +360,477 @@ public class Principal {
 		}
 	}
 
+////////////////////////////////////validaciones////////////////////////////////////
+	public static int validaEnteros(String concepto) {
+		while (true) {
+			try {
+				return Integer.parseInt(JOptionPane.showInputDialog(null, "Introduzca la " + concepto));
+			} catch (NumberFormatException e) {
+				JOptionPane.showMessageDialog(null, "Tiene que introducir un número válido.");
+			}
+		}
+	}
+
+	public static double validaNota() throws Exception {
+		double nota = 0;
+		try {
+			nota = Double.parseDouble(JOptionPane.showInputDialog(null, "Introduzca la nota"));
+		} catch (NumberFormatException e) {
+			throw new NumberFormatException("Tiene que introducir un número válido.");
+		}
+
+		if (nota >= 0 && nota <= 10) {
+			return nota;
+		} else {
+			throw new Exception("La nota debe ser un valor entre 0 y 10");
+		}
+	}
+
+////////////////////////////////////funciones SQL////////////////////////////////////
+	public static void matricularSQL(Alumno alumno, Asignatura asignatura) {
+		conexion conec = new conexion();
+		Connection cn = null;
+		try {
+			cn = conec.conectar();
+			PreparedStatement preparedStatement = cn.prepareStatement("INSERT INTO matricula VALUES (?,?)");
+			preparedStatement.setInt(1, alumno.idalu);
+			preparedStatement.setInt(2, asignatura.idasig);
+			preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (cn != null) {
+					cn.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+
+	public static void examinarSQL(Examen examen, Alumno alu) {
+		conexion conec = new conexion();
+		Connection cn = null;
+		try {
+			cn = conec.conectar();
+			PreparedStatement preparedStatement = cn.prepareStatement("INSERT INTO examen VALUES (?,?,?,?)");
+			PreparedStatement preparedStatement2 = cn
+					.prepareStatement("UPDATE alumno SET notamedia = ? WHERE idalumno = ?");
+			preparedStatement.setInt(1, examen.idex);
+			preparedStatement.setInt(2, examen.getAlumno().idalu);
+			preparedStatement.setInt(3, examen.getAsignatura().idasig);
+			preparedStatement.setDouble(4, examen.getNota());
+			preparedStatement2.setDouble(1, alu.getNotaMedia());
+			preparedStatement2.setInt(2, alu.idalu);
+			preparedStatement.executeUpdate();
+			preparedStatement2.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (cn != null) {
+					cn.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+
+////////////////////////////////////////lectura datos SQL /////////////////////////////
+	public static void iniciaAlumnosSQL(ArrayList<Alumno> alumnos, ArrayList<Asignatura> asignaturas) {
+		conexion conec = new conexion();
+		Connection cn = null;
+		ResultSet rs = null;
+		ResultSet rs2 = null;
+		Statement stm = null;
+		Alumno alu;
+		Asignatura asig;
+		try {
+			cn = conec.conectar();
+			stm = cn.createStatement();
+			rs = stm.executeQuery("SELECT * FROM alumno");
+			while (rs.next()) {
+				alumnos.add(new Alumno(rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5)));
+			}
+			rs2 = stm.executeQuery("SELECT * FROM matricula");
+			while (rs2.next()) {
+				alu = buscaAlumnoPorID(rs2.getInt(1), alumnos);
+				asig = buscaAsignaturaPorID(rs2.getInt(2), asignaturas);
+				alu.getAsignaturas().add(asig);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (rs2 != null) {
+					rs2.close();
+				}
+				if (stm != null) {
+					stm.close();
+				}
+				if (cn != null) {
+					cn.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+
+	public static void iniciaAsignaturasSQL(ArrayList<Asignatura> asignaturas, ArrayList<Profesor> profesores) {
+		conexion conec = new conexion();
+		Connection cn = null;
+		ResultSet rs = null;
+		Statement stm = null;
+		Profesor p;
+		try {
+			cn = conec.conectar();
+			stm = cn.createStatement();
+			rs = stm.executeQuery("SELECT * FROM asignatura");
+
+			while (rs.next()) {
+				p = buscaProfesorPorID(rs.getInt(5), profesores);
+				asignaturas.add(new Asignatura(rs.getString(2), rs.getInt(3), rs.getString(4), p));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (stm != null) {
+					stm.close();
+				}
+				if (cn != null) {
+					cn.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+
+	public static void iniciaProfesoresSQL(ArrayList<Profesor> profesores) {
+		conexion conec = new conexion();
+		Connection cn = null;
+		ResultSet rs = null;
+		Statement stm = null;
+		try {
+			cn = conec.conectar();
+			stm = cn.createStatement();
+			rs = stm.executeQuery("SELECT * FROM profesor");
+
+			while (rs.next()) {
+				profesores.add(new Profesor(rs.getString(2), rs.getString(3), rs.getInt(4)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (stm != null) {
+					stm.close();
+				}
+				if (cn != null) {
+					cn.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+
+	public static void iniciaExamenesSQL(ArrayList<Examen> examenes, ArrayList<Alumno> alumnos,
+			ArrayList<Asignatura> asignaturas) {
+		conexion conec = new conexion();
+		Connection cn = null;
+		ResultSet rs = null;
+		Statement stm = null;
+		Alumno alu;
+		Examen ex;
+		Asignatura asig;
+		try {
+			cn = conec.conectar();
+			stm = cn.createStatement();
+			rs = stm.executeQuery("SELECT * FROM examen");
+
+			while (rs.next()) {
+				alu = buscaAlumnoPorID(rs.getInt(2), alumnos);
+				asig = buscaAsignaturaPorID(rs.getInt(3), asignaturas);
+				ex = new Examen(alu, asig, rs.getDouble(4));
+				alu.examinar(ex);
+				examenes.add(ex);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (stm != null) {
+					stm.close();
+				}
+				if (cn != null) {
+					cn.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+
+/////////////////////////////////buscar elementos por ID/////////////////////////////////////////////////
+	public static Alumno buscaAlumnoPorID(int id, ArrayList<Alumno> alumnos) {
+
+		Alumno alu;
+		Iterator<Alumno> iter = alumnos.iterator();
+		while (iter.hasNext()) {
+			alu = iter.next();
+			if (alu.idalu == id) {
+				return alu;
+			}
+		}
+		return null;
+	}
+
+	public static Asignatura buscaAsignaturaPorID(int id, ArrayList<Asignatura> asignaturas) {
+
+		Asignatura asig;
+		Iterator<Asignatura> iter = asignaturas.iterator();
+		while (iter.hasNext()) {
+			asig = iter.next();
+			if (asig.idasig == id) {
+				return asig;
+			}
+		}
+		return null;
+	}
+
+	public static Profesor buscaProfesorPorID(int id, ArrayList<Profesor> profesores) {
+
+		Profesor prof;
+		Iterator<Profesor> iter = profesores.iterator();
+		while (iter.hasNext()) {
+			prof = iter.next();
+			if (prof.idprof == id) {
+				return prof;
+			}
+		}
+		return null;
+	}
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////a partir de aquí esto no lo vuelvo a usar//////////////////////////////
+	///////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////escritura en base de datos (inicial)////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public static void escribeAlumnosSQL(ArrayList<Alumno> alumnos) {
+		conexion conec = new conexion();
+		Connection cn = null;
+		try {
+			cn = conec.conectar();
+			PreparedStatement preparedStatement = cn.prepareStatement("INSERT INTO alumno VALUES (?,?,?,?,?)");
+			for (int i = 0; i < alumnos.size(); i++) {
+				preparedStatement.setInt(1, alumnos.get(i).idalu);
+				preparedStatement.setString(2, alumnos.get(i).getDNI());
+				preparedStatement.setString(3, alumnos.get(i).getNombre());
+				preparedStatement.setInt(4, alumnos.get(i).getEdad());
+				preparedStatement.setString(5, alumnos.get(i).getCurso());
+				preparedStatement.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (cn != null) {
+					cn.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+
+	public static void escribeAsignaturasSQL(ArrayList<Asignatura> asignaturas) {
+
+		conexion conec = new conexion();
+		Connection cn = null;
+		try {
+			cn = conec.conectar();
+			PreparedStatement preparedStatement = cn.prepareStatement("INSERT INTO asignatura VALUES (?,?,?,?,?)");
+			for (int i = 0; i < asignaturas.size(); i++) {
+				preparedStatement.setInt(1, asignaturas.get(i).idasig);
+				preparedStatement.setString(2, asignaturas.get(i).getNombre());
+				preparedStatement.setInt(3, asignaturas.get(i).getDuracion());
+				preparedStatement.setString(4, asignaturas.get(i).getLibro());
+				preparedStatement.setString(5, asignaturas.get(i).getProfesor());
+				preparedStatement.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (cn != null) {
+					cn.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+
+	public static void escribeProfesoresSQL(ArrayList<Profesor> profesores) {
+		conexion conec = new conexion();
+		Connection cn = null;
+		try {
+			cn = conec.conectar();
+			PreparedStatement preparedStatement = cn.prepareStatement("INSERT INTO profesor VALUES (?,?,?,?)");
+			for (int i = 0; i < profesores.size(); i++) {
+				preparedStatement.setInt(1, profesores.get(i).idprof);
+				preparedStatement.setString(2, profesores.get(i).getDNI());
+				preparedStatement.setString(3, profesores.get(i).getNombre());
+				preparedStatement.setInt(4, profesores.get(i).getEdad());
+				preparedStatement.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (cn != null) {
+					cn.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+
+	public static void anyadeIDS(ArrayList<Asignatura> asignaturas) {
+		conexion conec = new conexion();
+		Connection cn = null;
+		Asignatura a;
+		try {
+			cn = conec.conectar();
+			PreparedStatement preparedStatement = cn
+					.prepareStatement("UPDATE asignatura SET idprofesor = ? WHERE profesor = ?");
+			Iterator<Asignatura> iter = asignaturas.iterator();
+			while (iter.hasNext()) {
+				a = iter.next();
+				preparedStatement.setInt(1, a.getProfesorOb().idprof);
+				preparedStatement.setString(2, a.getProfesorOb().getNombre());
+				preparedStatement.executeUpdate();
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (cn != null) {
+					cn.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+
+	public static void notaMedia(ArrayList<Alumno> alumnos) {
+		conexion conec = new conexion();
+		Connection cn = null;
+		Alumno a;
+		try {
+			cn = conec.conectar();
+			PreparedStatement preparedStatement = cn
+					.prepareStatement("UPDATE alumno SET notamedia = ? WHERE idalumno = ?");
+			Iterator<Alumno> iter = alumnos.iterator();
+			while (iter.hasNext()) {
+				a = iter.next();
+				preparedStatement.setDouble(1, a.getNotaMedia());
+				preparedStatement.setInt(2, a.idalu);
+				preparedStatement.executeUpdate();
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (cn != null) {
+					cn.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+
+////////////////////////////////////lectura ficheros////////////////////////////////////
+	public static void iniciaAlumnos(ArrayList<Alumno> alumnos) throws Exception {
+		File f = new File("alumnos.txt");
+		String linea;
+		String[] str;
+		try {
+			Scanner s = new Scanner(f);
+			while (s.hasNextLine()) {
+				linea = s.nextLine();
+				str = linea.split(",");
+				alumnos.add(new Alumno(str[0], str[1], Integer.parseInt(str[2]), str[3]));
+			}
+			s.close();
+		} catch (Exception e) {
+			throw new Exception("Fichero alumnos no encontrado");
+		}
+	}
+
+	public static void iniciaProfesores(ArrayList<Profesor> profesores) throws Exception {
+		File f = new File("profesores.txt");
+		String linea;
+		String[] str;
+		try {
+			Scanner s = new Scanner(f);
+			while (s.hasNextLine()) {
+				linea = s.nextLine();
+				str = linea.split(",");
+				profesores.add(new Profesor(str[0], str[1], Integer.parseInt(str[2])));
+			}
+			s.close();
+		} catch (Exception e) {
+			throw new Exception("Fichero profesores no encontrado");
+		}
+	}
+
+	public static void iniciaAsignaturas(ArrayList<Asignatura> asignaturas, ArrayList<Profesor> profesores)
+			throws Exception {
+		File f = new File("asignaturas.txt");
+		String linea;
+		Profesor p;
+		Asignatura a;
+		String[] str;
+		try {
+			Scanner s = new Scanner(f);
+			while (s.hasNextLine()) {
+				linea = s.nextLine();
+				str = linea.split(",");
+				p = buscaProfesor(str[3], profesores);
+				a = new Asignatura(str[0], Integer.parseInt(str[1]), str[2], p);
+				p.getAsignaturas().add(a);
+				asignaturas.add(a);
+			}
+			s.close();
+		} catch (Exception e) {
+			throw new Exception("Fichero asignaturas no encontrado");
+		}
+	}
+
 ////////////////////////////////////escritura en ficheros////////////////////////////////////
 	public static void escribeAlumno(Alumno alu) {
 		FileWriter fichero = null;
@@ -561,328 +890,4 @@ public class Principal {
 		}
 	}
 
-////////////////////////////////////validaciones////////////////////////////////////
-	public static int validaEnteros(String concepto) {
-		while (true) {
-			try {
-				return Integer.parseInt(JOptionPane.showInputDialog(null, "Introduzca la " + concepto));
-			} catch (NumberFormatException e) {
-				JOptionPane.showMessageDialog(null, "Tiene que introducir un número válido.");
-			}
-		}
-	}
-
-	public static double validaNota() throws Exception {
-		double nota = 0;
-		try {
-			nota = Double.parseDouble(JOptionPane.showInputDialog(null, "Introduzca la nota"));
-		} catch (NumberFormatException e) {
-			throw new NumberFormatException("Tiene que introducir un número válido.");
-		}
-
-		if (nota >= 0 && nota <= 10) {
-			return nota;
-		} else {
-			throw new Exception("La nota debe ser un valor entre 0 y 10");
-		}
-	}
-
-////////////////////////////////////funciones SQL////////////////////////////////////
-	public static void matricularSQL(Alumno alumno, Asignatura asignatura) {
-		conexion conec = new conexion();
-		Connection cn = null;
-		try {
-			cn = conec.conectar();
-			PreparedStatement preparedStatement = cn.prepareStatement("INSERT INTO matricula VALUES (?,?)");
-			preparedStatement.setInt(1, alumno.idalu);
-			preparedStatement.setInt(2, asignatura.idasig);
-			preparedStatement.executeUpdate();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (cn != null) {
-					cn.close();
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-	}
-
-
-
-	public static void examinarSQL(Examen examen, Alumno alu) {
-		conexion conec = new conexion();
-		Connection cn = null;
-		try {
-			cn = conec.conectar();
-			PreparedStatement preparedStatement = cn.prepareStatement("INSERT INTO examen VALUES (?,?,?,?)");
-			PreparedStatement preparedStatement2 = cn.prepareStatement("UPDATE alumno SET notamedia = ? WHERE idalumno = ?");
-			preparedStatement.setInt(1, examen.idex);
-			preparedStatement.setInt(2, examen.getAlumno().idalu);
-			preparedStatement.setInt(3, examen.getAsignatura().idasig);
-			preparedStatement.setDouble(4, examen.getNota());
-			preparedStatement2.setDouble(1,alu.getNotaMedia());
-			preparedStatement2.setInt(2, alu.idalu);
-			preparedStatement.executeUpdate();
-			preparedStatement2.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (cn != null) {
-					cn.close();
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-	}
-
-////////////////////////////////////////lectura datos SQL /////////////////////////////
-	public static void iniciaAlumnosSQL(ArrayList<Alumno> alumnos,ArrayList<Asignatura> asignaturas) {
-		conexion conec = new conexion();
-		Connection cn = null;
-		ResultSet rs = null;
-		ResultSet rs2 = null;
-		Statement stm = null;
-		Alumno alu;
-		Asignatura asig;
-		try {
-			cn = conec.conectar();
-			stm = cn.createStatement();
-			rs = stm.executeQuery("SELECT * FROM alumno");			
-			while(rs.next()) {
-				alumnos.add(new Alumno(rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5)));
-			}
-			rs2 = stm.executeQuery("SELECT * FROM matricula");
-			while(rs2.next()) {
-				alu = buscaAlumnoPorID(rs2.getInt(1),alumnos);
-				asig = buscaAsignaturaPorID(rs2.getInt(2),asignaturas);
-				alu.getAsignaturas().add(asig);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if(rs!=null) {
-					rs.close();
-				}
-				if(rs2!=null) {
-					rs2.close();
-				}
-				if(stm!=null) {
-					stm.close();
-				}
-				if(cn!=null) {
-					cn.close();
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-	}
-	
-	public static void iniciaAsignaturasSQL(ArrayList<Asignatura> asignaturas,  ArrayList<Profesor> profesores) {
-		conexion conec = new conexion();
-		Connection cn = null;
-		ResultSet rs = null;
-		Statement stm = null;
-		Profesor p;
-		try {
-			cn = conec.conectar();
-			stm = cn.createStatement();
-			rs = stm.executeQuery("SELECT * FROM asignatura");
-			
-			while(rs.next()) {
-				p = buscaProfesor(rs.getString(5),profesores);
-				asignaturas.add(new Asignatura(rs.getString(2), rs.getInt(3), rs.getString(4),p));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if(rs!=null) {
-					rs.close();
-				}
-				if(stm!=null) {
-					stm.close();
-				}
-				if(cn!=null) {
-					cn.close();
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-	}
-
-	public static void iniciaProfesoresSQL(ArrayList<Profesor> profesores) {
-		conexion conec = new conexion();
-		Connection cn = null;
-		ResultSet rs = null;
-		Statement stm = null;
-		try {
-			cn = conec.conectar();
-			stm = cn.createStatement();
-			rs = stm.executeQuery("SELECT * FROM profesor");
-			
-			while(rs.next()) {
-				profesores.add(new Profesor(rs.getString(2), rs.getString(3), rs.getInt(4)));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if(rs!=null) {
-					rs.close();
-				}
-				if(stm!=null) {
-					stm.close();
-				}
-				if(cn!=null) {
-					cn.close();
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-	}
-
-	public static void iniciaExamenesSQL(ArrayList<Examen> examenes, ArrayList<Alumno> alumnos, ArrayList<Asignatura> asignaturas) {
-		conexion conec = new conexion();
-		Connection cn = null;
-		ResultSet rs = null;
-		Statement stm = null;
-		Alumno alu;
-		Examen ex;
-		Asignatura asig;
-		try {
-			cn = conec.conectar();
-			stm = cn.createStatement();
-			rs = stm.executeQuery("SELECT * FROM examen");
-			
-			while(rs.next()) {
-				alu = buscaAlumnoPorID(rs.getInt(2),alumnos);
-				asig = buscaAsignaturaPorID(rs.getInt(3),asignaturas);			
-				ex = new Examen(alu, asig, rs.getDouble(4));
-				alu.examinar(ex);
-				examenes.add(ex);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if(rs!=null) {
-					rs.close();
-				}
-				if(stm!=null) {
-					stm.close();
-				}
-				if(cn!=null) {
-					cn.close();
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-	}
-
-/////buscar elementos por ID////
-	public static Alumno buscaAlumnoPorID(int id, ArrayList<Alumno> alumnos) {
-
-		Alumno alu;
-		Iterator<Alumno> iter = alumnos.iterator();
-		while (iter.hasNext()) {
-			alu = iter.next();
-			if (alu.idalu==id) {
-				return alu;
-			}
-		}
-		return null;
-	}
-	public static Asignatura buscaAsignaturaPorID(int id, ArrayList<Asignatura> asignaturas) {
-
-		Asignatura asig;
-		Iterator<Asignatura> iter = asignaturas.iterator();
-		while (iter.hasNext()) {
-			asig = iter.next();
-			if (asig.idasig==id) {
-				return asig;
-			}
-		}
-		return null;
-	}
-	public static Profesor buscaProfesorPorID(int id, ArrayList<Profesor> profesores) {
-
-		Profesor prof;
-		Iterator<Profesor> iter = profesores.iterator();
-		while (iter.hasNext()) {
-			prof = iter.next();
-			if (prof.idprof==id) {
-				return prof;
-			}
-		}
-		return null;
-	}
-	public static void anyadeIDS(ArrayList<Asignatura> asignaturas) {
-		conexion conec = new conexion();
-		Connection cn = null;
-		Asignatura a;
-		try {
-			cn = conec.conectar();
-			PreparedStatement preparedStatement = cn.prepareStatement("UPDATE asignatura SET idprofesor = ? WHERE profesor = ?");
-			Iterator<Asignatura> iter = asignaturas.iterator();
-			while(iter.hasNext()) {
-				a = iter.next();
-				preparedStatement.setInt(1,a.getProfesorOb().idprof);
-				preparedStatement.setString(2,a.getProfesorOb().getNombre());
-				preparedStatement.executeUpdate();
-			}
-
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (cn != null) {
-					cn.close();
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-	}
-	
-	public static void notaMedia(ArrayList<Alumno> alumnos) {
-		conexion conec = new conexion();
-		Connection cn = null;
-		Alumno a;
-		try {
-			cn = conec.conectar();
-			PreparedStatement preparedStatement = cn.prepareStatement("UPDATE alumno SET notamedia = ? WHERE idalumno = ?");
-			Iterator<Alumno> iter = alumnos.iterator();
-			while(iter.hasNext()) {
-				a = iter.next();
-				preparedStatement.setDouble(1,a.getNotaMedia());
-				preparedStatement.setInt(2,a.idalu);
-				preparedStatement.executeUpdate();
-			}
-
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (cn != null) {
-					cn.close();
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-	}
 }
