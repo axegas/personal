@@ -1,6 +1,5 @@
 import java.util.*;
 import java.sql.*;
-import java.io.*;
 import javax.swing.JOptionPane;
 
 public class Principal {
@@ -128,14 +127,7 @@ public class Principal {
 			Asignatura asi = buscaAsignatura(nomAsi, asignaturas);
 			if (asi != null) {
 				if (alu.tieneAsig(asi)) {
-					do {
-						try {
-							nota = validaNota();
-							break;
-						} catch (Exception e) {
-							JOptionPane.showMessageDialog(null, e.getMessage());
-						}
-					} while (true);
+					nota = validaNota();
 					Examen e = new Examen(alu, asi, nota);
 					examenes.add(e);
 					alu.examinar(e);
@@ -218,7 +210,7 @@ public class Principal {
 		JOptionPane.showMessageDialog(null, prof);
 	}
 
-////////////////////////////////////busqueda////////////////////////////////////
+////////////////////////////////////buscar elementos por nombre////////////////////////////////////
 	public static Alumno buscaAlumno(String nombre, ArrayList<Alumno> alumnos) {
 
 		Alumno alu;
@@ -353,18 +345,21 @@ public class Principal {
 	}
 
 	public static double validaNota() throws Exception {
+		
 		double nota = 0;
-		try {
-			nota = Double.parseDouble(JOptionPane.showInputDialog(null, "Introduzca la nota"));
-		} catch (NumberFormatException e) {
-			throw new NumberFormatException("Tiene que introducir un número válido.");
-		}
-
-		if (nota >= 0 && nota <= 10) {
-			return nota;
-		} else {
-			throw new Exception("La nota debe ser un valor entre 0 y 10");
-		}
+		do {
+			try {
+				nota = Double.parseDouble(JOptionPane.showInputDialog(null, "Introduzca la nota"));
+				if (nota >= 0 && nota <= 10) {
+					return nota;
+				} else {
+					JOptionPane.showMessageDialog(null, "La nota debe ser un valor entre 0 y 10");
+				}
+			} catch (NumberFormatException e) {
+				JOptionPane.showMessageDialog(null, "Tiene que introducir un número válido.");
+			}			
+		}while(true);
+		
 	}
 
 ////////////////////////////////////funciones SQL////////////////////////////////////
