@@ -7,17 +7,8 @@ public class Ejer109 {
 		File salida2 = new File("Salida2.txt");
 		
 		try {
-			if(salida1.createNewFile()) {
-				System.out.println("Fichero salida 1 creado.");
-			}else {
-				System.out.println("Fichero salida 1 no creado.");
-			}
-			if(salida2.createNewFile()) {
-				System.out.println("Fichero salida 2 creado.");
-			}else {
-				System.out.println("Fichero salida 2 no creado.");
-			}	
-			
+			salida1 = creaFichero("Salida1.txt");
+			salida2 = creaFichero("Salida2.txt");
 			String pares = "";
 			String impares = "";
 			
@@ -37,10 +28,20 @@ public class Ejer109 {
 			FWsalida2.close();			
 		}catch(IOException e) {
 			System.out.println(e.getMessage());		
-		}
-		
-		
+		}		
 		
 	}
-
+	public static File creaFichero(String nombre) {
+		File fichero = new File(nombre);
+		try {
+			if(fichero.createNewFile()) {
+				System.out.println("Fichero "+nombre+" creado.");
+			}else {
+				System.out.println("Fichero "+nombre+" no creado.");
+			}			
+		}catch(IOException e) {
+			System.out.println(e.getMessage());		
+		}		
+		return fichero;
+	}
 }
