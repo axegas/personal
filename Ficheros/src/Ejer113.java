@@ -4,11 +4,7 @@ import java.util.Scanner;
 
 public class Ejer113 {
 
-	public static void main(String[] args) {
-
-		
-
-		
+	public static void main(String[] args) {	
 
 		try {
 			File salida = creaFichero("index.html");
@@ -43,9 +39,7 @@ public class Ejer113 {
 			fichero += "</html>\n";
 			
 			FileWriter fw = new FileWriter(salida);
-			
 			fw.write(fichero);
-			
 			fw.close();
 			scan.close();
 		}catch (IOException e) {
