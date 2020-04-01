@@ -1,0 +1,7 @@
+Bienvenido al chat con Paco.
+----------------------------
+Paco: Hola que tal, cómo te llamas?
+axelit
+Paco: Hola axelit, ¿como estas hoy?
+vete
+Paco: nos vemos axelit!

@@ -5,7 +5,6 @@ public class Ejer112 {
 
 	public static void main(String[] args) throws IOException {
 
-		File salida = creaFichero("chat.txt");
 		Scanner scan = new Scanner(System.in);
 		String chat = "";
 		String paco = "";
@@ -38,40 +37,25 @@ public class Ejer112 {
 			}
 			if (cuentaVocales(frase) % 2 == 0) {
 				paco = "Paco: Qué interesante...cuentame más…";
-				System.out.println(paco);
-				chat += paco + "\n";
 			} else {
-				paco = "Paco: No me interesa nada, cuentame otra cosa";
-				System.out.println(paco);
-				chat += paco + "\n";
+				paco = "Paco: No me interesa nada, cuentame otra cosa";				
 			}
+			System.out.println(paco);
+			chat += paco + "\n";
 		} while (true);
 
-		try {
-			FileWriter file = new FileWriter(salida);
-			file.write(chat);
-			file.close();
-		} catch (IOException e) {
-			System.out.println(e.getMessage());
-		}
+		creaFichero("chat3.txt", chat);
+		
 
-	}
-
-	public static File creaFichero(String nombre) throws IOException {
-		File fichero = new File(nombre);
-		if (fichero.createNewFile()) {
-			System.out.println("Fichero " + nombre + " creado.");
-		} else {
-			System.out.println("Fichero " + nombre + " no creado.");
-		}
-		return fichero;
 	}
 
 	public static int cuentaVocales(String str) {
 		int vocales = 0;
 		for (int i = 0; i < str.length(); i++) {
-			if (str.toLowerCase().charAt(i) == 'a' || str.toLowerCase().charAt(i) == 'e'
-					|| str.toLowerCase().charAt(i) == 'i' || str.toLowerCase().charAt(i) == 'o'
+			if (str.toLowerCase().charAt(i) == 'a' 
+					|| str.toLowerCase().charAt(i) == 'e'
+					|| str.toLowerCase().charAt(i) == 'i' 
+					|| str.toLowerCase().charAt(i) == 'o'
 					|| str.toLowerCase().charAt(i) == 'u') {
 				vocales++;
 			}
@@ -87,6 +71,18 @@ public class Ejer112 {
 			}
 		}
 		return true;
+	}
+	
+	public static void creaFichero(String nombre, String datos) {		
+		try {
+			File salida = new File(nombre);
+			salida.createNewFile();			
+			FileWriter file = new FileWriter(salida);
+			file.write(datos);
+			file.close();
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 }
