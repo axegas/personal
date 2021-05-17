@@ -1,7 +1,0 @@
-Bienvenido al chat con Paco.
-----------------------------
-Paco: Hola que tal, cómo te llamas?
-axel
-Paco: Hola axel, ¿como estas hoy?
-vete
-Paco: nos vemos axel!
