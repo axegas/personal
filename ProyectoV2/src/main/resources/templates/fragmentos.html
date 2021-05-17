@@ -1,0 +1,86 @@
+	<!------------------------ CABECERA -------------------------->
+	<div class="card text-center header" th:fragment="cabecera">
+		<p th:text="${titulo}"></p>
+	</div>
+	<!------------------------ MENU LATERAL -------------------------->
+	<div class="menulateral" th:fragment="menulateral">
+		<div id="menu-container">
+			<!-- menu-wrapper -->
+			<ul class="menu-list accordion active" style="left: 0%;">
+				<li id="nav1" class="toggle accordion-toggle"><span
+					class="icon-plus"></span> <b><a class="menu-link" href="#"
+					th:text="${#authentication.name}" name="nick">Usuario</a></b></li>
+				<!-- accordion-toggle -->
+				<ul class="menu-submenu accordion-content">
+					<li><a class="head" th:href="@{/perfil}">Mi perfil</a></li>
+					<li><a class="head"
+						href="javascript:document.getElementById('logoutForm').submit()">Salir</a></li>
+				</ul>
+				<li id="nav1" class="toggle accordion-toggle"><span
+					class="icon-plus"></span> <a class="menu-link" href="#">Pacientes</a></li>
+				<!-- accordion-toggle -->
+				<ul class="menu-submenu accordion-content">
+					<li><a class="head" th:href="@{/pacientes/lista}" href="#">Ver
+							pacientes</a></li>
+					<li><a class="head" th:href="@{/pacientes/nuevo}" href="#">Nuevo
+							paciente</a></li>
+				</ul>
+				<!-- menu-submenu accordon-content-->
+				<li id="nav2" class="toggle accordion-toggle"><span
+					class="icon-plus"></span> <a class="menu-link" href="#">Productos</a></li>
+				<!-- accordion-toggle -->
+				<ul class="menu-submenu accordion-content">
+					<li><a class="head" th:href="@{/productos/lista}" href="#">Ver
+							productos</a></li>
+					<li><a class="head" th:href="@{/productos/nuevo}" href="#">Nuevo
+							producto</a></li>
+				</ul>
+				<li id="nav2" class="toggle accordion-toggle"><span
+					class="icon-plus"></span> <a class="menu-link" href="#">Proveedores</a></li>
+				<!-- accordion-toggle -->
+				<ul class="menu-submenu accordion-content">
+					<li><a class="head" th:href="@{/proveedores/lista}">Ver
+							proveedores</a></li>
+					<li><a class="head" th:href="@{/proveedores/nuevo}">Nuevo
+							proveedor</a></li>
+				</ul>
+				<li id="nav2" class="toggle accordion-toggle"><span
+					class="icon-plus"></span> <a class="menu-link" href="#">Compras</a></li>
+				<ul class="menu-submenu accordion-content">
+					<li><a class="head" th:href="@{/facturas/lista}">Ver
+							facturas</a></li>
+					<li><a class="head" th:href="@{/facturas/nueva}" href="#">Nueva
+							compra</a></li>
+				</ul>
+				<!-- menu-submenu accordon-content-->
+				<li id="nav3" class="toggle accordion-toggle"><span
+					class="icon-plus"></span> <a class="menu-link" href="#">Especialistas</a></li>
+				<!-- accordion-toggle -->
+				<ul class="menu-submenu accordion-content">
+					<li><a class="head" th:href="@{/especialistas/lista}">Ver
+							especialistas</a></li>
+					<li><a class="head" th:href="@{/especialistas/nuevo}">Nuevo
+							especialista</a></li>
+				</ul>
+				<!-- menu-submenu accordon-content-->
+				<li id="nav3" class="toggle accordion-toggle"><span
+					class="icon-plus"></span> <a class="menu-link" href="#">Citas</a></li>
+				<!-- accordion-toggle -->
+				<ul class="menu-submenu accordion-content">
+					<li><a class="head" th:href="@{/citas/lista}">Ver citas</a></li>
+					<li><a class="head" th:href="@{/citas/nueva}">Nueva cita</a></li>
+				</ul>
+				<!-- menu-submenu accordon-content-->
+			</ul>
+			<!-- menu-list accordion-->
+		</div>
+		<form th:action="@{/logout}" method="post" id="logoutForm"></form>
+		<!------------------- Javascript -------------------- -->
+		<script src="../static/jquery.min.js" th:src="@{/jquery.min.js}"></script>
+		<script src="../static/jslateral.js" th:src="@{/jslateral.js}"></script>
+		<script src="../static/bootstrap.min.js" th:src="@{/bootstrap.min.js}"></script>
+	</div>
+
+
+
+

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" th:with="title = ${'Detalle Paciente'}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title th:text="${titulo}"></title>
+<link href="https://fonts.googleapis.com/css?family=Dosis"	rel="stylesheet">
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../static/estilos.css" th:href="@{/estilos.css}" rel="stylesheet">
+</head>
+<body>
+<div th:replace="/fragmentos.html :: menulateral"></div>
+	<div th:replace="/fragmentos.html :: cabecera(titulo=${title})"></div>
+<div class="principal table">
+	<div class="card text-center">
+		<div class="card-header">
+			<b>Datos Personales</b>
+		</div>
+		<div class="card-body">
+			<h5 th:text="${paciente.nombre}" class="card-title">Nombre</h5>
+			<div style="text-align: left">
+				<table>
+					<tr>
+						<td><label style="font-weight: bold;">DNI: </label></td>
+						<td><span th:text="${paciente.dni}"></span></td>
+					</tr>
+					<tr>
+						<td><label style="font-weight: bold;">Fecha de nacimiento: </label></td>
+						<td><span th:text="${paciente.fecha_nacimiento}"></span></td>
+					</tr>
+					<tr>
+						<td><label style="font-weight: bold;">Teléfono: </label></td>
+						<td><span th:text="${paciente.telefono}"></span></td>
+					</tr>
+					<tr>
+						<td><label style="font-weight: bold;">Diagnóstico: </label></td>
+						<td><span th:text="${paciente.diagnostico}"></span></td>
+					</tr>
+					<tr>
+						<td><a sec:authorize="hasRole('ADMIN')" class="btn btn-outline-primary" th:href="@{/pacientes/actualizar/{id}(id=${paciente.idpaciente})}">Actualizar datos</a></td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="card-footer text-muted"></div>
+	</div>
+	<br>
+	<nav>
+		<div class="nav nav-tabs" id="nav-tab" role="tablist">
+			<button class="nav-link active" id="nav-home-tab"
+				data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
+				role="tab" aria-controls="nav-home" aria-selected="true">Citas</button>
+			<button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
+				data-bs-target="#nav-profile" type="button" role="tab"
+				aria-controls="nav-profile" aria-selected="false">Compras</button>
+
+		</div>
+	</nav>
+	<div class="tab-content" id="nav-tabContent">
+		<div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+			aria-labelledby="nav-home-tab">
+
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col" width="20%">Fecha</th>
+						<th scope="col">Especialidad</th>
+						<th scope="col">Estado</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="cita : ${citas}">
+						<th width="20%" scope="row" th:text="${cita.fecha}">Fecha</th>
+						<td th:text="${cita.especialidad}">Especialidad</td>
+						<td th:text="${cita.estado}">Estado</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="tab-pane fade" id="nav-profile" role="tabpanel"
+			aria-labelledby="nav-profile-tab">
+			
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col" width="20%">Fecha</th>
+						<th scope="col">Productos</th>
+						<th scope="col">Especialista</th>
+						<th scope="col">Importe</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="factura : ${paciente.facturas}">
+						<th width="20%" scope="row" th:text="${factura.fecha}">Fecha</th>
+						<td>
+						<span th:each="producto : ${factura.productos}">
+						<span th:text="${producto}"></span><br>
+						</span>
+						</td>
+						<td th:text="${factura.especialista.nombre}">Especialista</td>
+						<td th:text="${factura.importe}">Importe</td>
+					</tr>
+				</tbody>
+			</table>			
+			</div>
+	</div>
+</div>
+</body>
+</html>

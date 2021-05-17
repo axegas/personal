@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"	th:with="title = ${'Error'}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title th:text="${titulo}"></title>
+<link href="https://fonts.googleapis.com/css?family=Dosis"	rel="stylesheet">
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../static/estilos.css" th:href="@{/estilos.css}" rel="stylesheet">
+</head>
+<body>
+	<div th:replace="/fragmentos.html :: menulateral"></div>
+	<div th:replace="/fragmentos.html :: cabecera(titulo=${title})"></div>
+	<div class="principal table">
+		<h1 th:text="${mensaje}"></h1>
+	</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"	th:with="title = ${'Lista de citas'}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title th:text="${titulo}"></title>
+<link href="https://fonts.googleapis.com/css?family=Dosis"	rel="stylesheet">
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link  href="../static/estilos.css" th:href="@{/estilos.css}" rel="stylesheet">
+</head>
+<body>
+	<div th:replace="/fragmentos.html :: menulateral"></div>
+	<div th:replace="/fragmentos.html :: cabecera(titulo=${title})"></div>
+	<div class="principal table">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">Fecha</th>
+					<th scope="col">Cliente</th>
+					<th scope="col">Especialidad</th>
+					<th scope="col">Estado</th>
+					<th scope="col"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cita : ${citas}">
+					<td th:text="${cita.fecha}"></td>
+					<td th:text="${cita.paciente.nombre}"></td>
+					<td th:text="${cita.especialidad}"></td>
+					<th:block th:switch="${cita.estado}">
+					<td th:case="'Pendiente'"><a style="width: 150px" class="btn btn-outline-primary" th:href="@{/sesiones/nueva/{id}(id=${cita.idcita})}" th:text="${cita.estado}"></a></td>
+					<td th:case="'Revisada'"><a style="width: 150px" class="btn btn-outline-success" href="#" th:text="${cita.estado}"></a></td>
+					<td th:case="'Pendiente de revisar'"><a style="width: 150px" class="btn btn-outline-warning" th:href="@{/sesiones/nueva/{id}(id=${cita.idcita})}" th:text="${cita.estado}"></a></td>
+					<td th:case="'Cancelada'"><a style="width: 150px" class="btn btn-outline-danger" href="#" th:text="${cita.estado}"></a></td>
+					</th:block>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

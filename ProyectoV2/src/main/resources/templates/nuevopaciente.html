@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"	th:with="title = ${'Nuevo Paciente'}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title th:text="${titulo}"></title>
+<link href="https://fonts.googleapis.com/css?family=Dosis"	rel="stylesheet">
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../static/estilos.css" th:href="@{/estilos.css}" rel="stylesheet">
+</head>
+<body>
+	<div th:replace="/fragmentos.html :: menulateral"></div>
+	<div th:replace="/fragmentos.html :: cabecera(titulo=${title})"></div>
+	<div class="principal table">
+		<form class="form-horizontal" action="#" method="post"
+			th:action="@{/pacientes/submit}" th:object="${paciente}">
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="nombre">Nombre</label>
+				<div class="col-md-4">
+					<input id="nombre" name="nombre" type="text" placeholder="nombre"
+						class="form-control input-md" th:field="*{nombre}"
+						th:classappend="${#fields.hasErrors('nombre') ? 'inputerror' : ''}">
+					<small class="form-text text-danger"
+						th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"><br></small>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="dni">DNI</label>
+				<div class="col-md-4">
+					<input id="dni" name="dni" type="text" placeholder="dni"
+						th:attrappend="readonly=${accion != 'insertar' ? 'readonly' : null}"
+						class="form-control input-md" th:field="*{dni}"
+						th:classappend="${#fields.hasErrors('dni') ? 'inputerror' : ''}">
+					<small class="form-text text-danger"
+						th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"><br></small>
+				</div>
+
+			</div>
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="telefono">Teléfono</label>
+				<div class="col-md-4">
+					<input id="telefono" name="telefono" type="number"
+						placeholder="teléfono" class="form-control input-md"
+						th:field="*{telefono}"
+						th:classappend="${#fields.hasErrors('telefono') ? 'inputerror' : ''}">
+					<small class="form-text text-danger"
+						th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></small>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="fecha_nacimiento">Fecha
+					de nacimiento</label>
+				<div class="col-md-4">
+					<input id="fecha_nacimiento" name="fecha_nacimiento" type="date"
+						placeholder="Fecha de nacimiento" class="form-control input-md"
+						th:field="*{fecha_nacimiento}">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-4">
+					<input class="btn btn-outline-primary" type="submit" />
+				</div>
+			</div>
+
+		</form>
+	</div>
+</body>
+</html>

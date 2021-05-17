@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	th:with="title = ${'Detalle Especialista'}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title th:text="${titulo}"></title>
+<link href="https://fonts.googleapis.com/css?family=Dosis"
+	rel="stylesheet">
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../static/estilos.css" th:href="@{/estilos.css}"
+	rel="stylesheet">
+</head>
+<body>
+	<div th:replace="/fragmentos.html :: menulateral"></div>
+	<div th:replace="/fragmentos.html :: cabecera(titulo=${title})"></div>
+	<div class="principal table">
+		<div class="card text-center">
+			<div class="card-header">
+				<b>Datos Personales</b>
+			</div>
+			<div class="card-body">
+				<h5 th:text="${especialista.nombre}" class="card-title">Nombre</h5>
+				<div style="text-align: left">
+					<table>
+						<tr>
+							<td><label style="font-weight: bold;">DNI: </label></td>
+							<td><span th:text="${especialista.dni}"></span></td>
+						</tr>
+						<tr>
+							<td><label style="font-weight: bold;">Teléfono: </label></td>
+							<td><span th:text="${especialista.telefono}"></span></td>
+						</tr>
+						<tr>
+							<td><label style="font-weight: bold;">Especialidad:
+							</label></td>
+							<td><span th:text="${especialista.especialidad}"></span></td>
+						</tr>
+						<tr>
+							<td><a class="btn btn-outline-primary"
+								sec:authorize="hasRole('JOB')" th:href="@{/perfil/actualizar}">Actualizar
+									datos</a></td>
+							<td></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="card-footer text-muted"></div>
+		</div>
+		<br>
+
+		<nav>
+			<div class="nav nav-tabs" id="nav-tab" role="tablist">
+				<button class="nav-link active" id="nav-home-tab"
+					data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
+					role="tab" aria-controls="nav-home" aria-selected="true">Pacientes</button>
+				<button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
+					data-bs-target="#nav-profile" type="button" role="tab"
+					aria-controls="nav-profile" aria-selected="false">Ventas realizadas</button>
+				<button class="nav-link" id="nav-cita-tab" data-bs-toggle="tab"
+					data-bs-target="#nav-cita" type="button" role="tab"
+					aria-controls="nav-cita" aria-selected="false">Citas</button>
+
+			</div>
+		</nav>
+
+		<div class="tab-content" id="nav-tabContent">
+
+			<div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+				aria-labelledby="nav-home-tab">
+				<table class="table table-striped tablalista">
+					<thead>
+						<tr>
+							<th scope="col">Nombre</th>
+							<th scope="col">DNI</th>
+							<th scope="col">Teléfono</th>
+							<th scope="col">Fecha de nacimiento</th>
+							<th scope="col">Diagnóstico</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="sesion : ${especialista.sesiones}">
+							<td th:text="${sesion.cita.paciente.nombre}"></td>
+							<td th:text="${sesion.cita.paciente.dni}"></td>
+							<td th:text="${sesion.cita.paciente.telefono}"></td>
+							<td th:text="${sesion.cita.paciente.fecha_nacimiento}"></td>
+							<td th:text="${sesion.cita.paciente.diagnostico}"></td>
+							<td><a class="btn btn-outline-primary"
+								th:href="@{/pacientes/detalle/{id}(id=${sesion.cita.paciente.idpaciente})}">Detalles</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="tab-pane fade" id="nav-profile" role="tabpanel"
+				aria-labelledby="nav-profile-tab">
+
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col" width="20%">Fecha</th>
+							<th scope="col">Productos</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="factura : ${especialista.facturas}">
+							<th width="20%" scope="row" th:text="${factura.fecha}">Fecha</th>
+							<td><span th:each="producto : ${factura.productos}">
+									<span th:text="${producto}"></span><br>
+							</span></td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="tab-pane fade" id="nav-cita" role="tabpanel"
+				aria-labelledby="nav-cita-tab">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col" width="20%">Fecha</th>
+							<th scope="col">Paciente</th>
+							<th scope="col">Estado</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="sesion : ${especialista.sesiones}">
+							<th width="20%" scope="row" th:text="${sesion.cita.fecha}">Fecha</th>
+							<td th:text="${sesion.cita.paciente}"></td>
+							<td><a style="width: 150px" th:classappend="${sesion.cita.estado == 'Revisada' ? 'btn-outline-success' : 'btn-outline-primary'}" class="btn " th:href="@{/sesiones/revisar/{id}(id=${sesion.idsesion})}" th:text="${sesion.cita.estado}"></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+		</div>
+	</div>
+</body>
+</html>

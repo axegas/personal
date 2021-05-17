@@ -1,0 +1,4 @@
+2021-03-19 18:11:33 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PACIENTE" no encontrada
+Table "PACIENTE" not found; SQL statement:
+insert into paciente (idpaciente, diagnostico, dni, fecha_nacimiento, nombre, telefono) values (null, ?, ?, ?, ?, ?) [42102-200]
