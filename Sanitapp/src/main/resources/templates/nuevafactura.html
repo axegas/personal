@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"	th:with="title = ${'Comprar Productos'}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title th:text="${titulo}"></title>
+<link href="https://fonts.googleapis.com/css?family=Dosis"	rel="stylesheet">
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../static/estilos.css" th:href="@{/estilos.css}" rel="stylesheet">
+</head>
+<!-- 
+sec:authorize="hasRole('ADMIN')"
+ sec:authorize="hasRole('JOB')"
+  -->
+<body>
+	<div th:replace="/fragmentos.html :: menulateral"></div>
+	<div th:replace="/fragmentos.html :: cabecera(titulo=${title})"></div>
+	<div class="principal table">
+		<form class="form-horizontal" action="#" method="post"
+			th:action="@{/facturas/submit}" th:object="${factura}">
+
+			<label>Especialista</label> <select id="nombreEspecialista"
+				name="nombreEspecialista" class="form-control" aria-label="Default select example" 
+				th:field="*{especialista}">
+				<option th:each="especialista : ${especialistas}"
+					th:text="${especialista}" th:value="${especialista.idespecialista}"></option>
+			</select>
+			<br> <label>Cliente</label> <select id="nombrePaciente"
+				name="nombrePaciente" class="form-control"
+				aria-label="Default select example" th:field="*{paciente}">
+				<option th:each="paciente : ${pacientes}" th:text="${paciente}"
+					th:value="${paciente.idpaciente}"></option>
+			</select> <br>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">nombre
+						</th>
+						<th scope="col">descripcion
+						</th>
+						<th scope="col">precio
+						</th>
+						<td scope="col">seleccionar productos</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="producto : ${productos}">
+						<td th:text="${producto.nombre}">nombre</td>
+						<td th:text="${producto.descripcion}">descripcion</td>
+						<td th:text="${producto.precio}">precio</td>
+						<td><input type="checkbox" id="productos" name="productos"
+							th:value="${producto.idproducto}"></td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="form-group">
+				<div class="col-md-4">
+					<input class="btn btn-outline-primary" type="submit"
+						value="comprar">
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

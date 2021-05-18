@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"	th:with="title = ${'Lista de Facturas'}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title th:text="${titulo}"></title>
+<link href="https://fonts.googleapis.com/css?family=Dosis"	rel="stylesheet">
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../static/estilos.css" th:href="@{/estilos.css}"  rel="stylesheet">
+</head>
+<body>
+	<div th:replace="/fragmentos.html :: menulateral"></div>
+	<div th:replace="/fragmentos.html :: cabecera(titulo=${title})"></div>
+	<div class="principal">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">Fecha</th>
+					<th scope="col">Cliente</th>
+					<th scope="col">Importe</th>
+					<th scope="col">Especialista</th>
+					<th scope="col"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="factura : ${facturas}">
+					<td th:text="${factura.fecha}"></td>
+					<td th:text="${factura.paciente.nombre}"></td>
+					<td th:text="${factura.importe}"></td>
+					<td th:text="${factura.especialista.nombre}"></td>
+					<td><a class="btn btn-outline-primary"
+						th:href="@{/facturas/detalle/{id}(id=${factura.idfactura})}">Detalle</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

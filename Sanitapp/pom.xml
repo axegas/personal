@@ -10,7 +10,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.axegas</groupId>
-	<artifactId>ProyectoV2</artifactId>
+	<artifactId>Sanitapp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ProyectoV2</name>
 	<description>Primera versión proyecto</description>

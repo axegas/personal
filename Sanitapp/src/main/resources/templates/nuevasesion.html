@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	th:with="title = ${'Nueva Sesión'}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title th:text="${titulo}"></title>
+<link href="https://fonts.googleapis.com/css?family=Dosis"
+	rel="stylesheet">
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../static/estilos.css" th:href="@{/estilos.css}"
+	rel="stylesheet">
+</head>
+<body>
+	<div th:replace="/fragmentos.html :: menulateral"></div>
+	<div th:replace="/fragmentos.html :: cabecera(titulo=${title})"></div>
+	<div class="principal table">
+		<form class="form-horizontal" action="#" method="post"
+			th:action="@{/sesiones/submit}" th:object="${sesion}">
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="selectbasic">Especialista</label>
+				<div class="col-md-4">
+					<select id="selectespecialista" name="selectespecialista"
+						class="form-control" aria-label="Default select example"
+						th:field="*{especialista}">
+						<option th:each="especialista : ${citas.especialidad.especialistas}"
+							th:text="${especialista}" th:value="${especialista.idespecialista}"></option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="selectbasic">Cita</label>
+				<div class="col-md-4">
+					<select id="selectcita" name="selectcita"
+						class="form-control" aria-label="Default select example"
+						th:field="*{cita}">
+						<option th:each="cita : ${citas}"
+							th:text="${cita}" th:value="${cita.idcita}"></option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-4">
+					<input class="btn btn-outline-primary" type="submit" />
+					<a class="btn btn-outline-warning" th:href="@{/citas/lista}">Volver</a>
+					<a class="btn btn-outline-danger" th:href="@{/citas/cancelar/{id}(id=${citas.idcita})}">Cancelar cita</a>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

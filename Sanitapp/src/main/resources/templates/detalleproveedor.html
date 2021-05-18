@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" th:with="title = ${'Detalle Proveedor'}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title th:text="${titulo}"></title>
+<link href="https://fonts.googleapis.com/css?family=Dosis"	rel="stylesheet">
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../static/estilos.css" th:href="@{/estilos.css}" rel="stylesheet">
+</head>
+<body>
+<div th:replace="/fragmentos.html :: menulateral"></div>
+	<div th:replace="/fragmentos.html :: cabecera(titulo=${title})"></div>
+<div class="principal table">
+	<div class="card text-center">
+		<div class="card-header">
+			<b>Datos Personales</b>
+		</div>
+		<div class="card-body">
+		<h5 th:text="${proveedor.nombre}" class="card-title">Nombre</h5>
+			<div style="text-align: left">
+				<table>
+					<tr>
+						<td><label style="font-weight: bold;">DNI:</label></td>
+						<td><span th:text="${proveedor.dni}"></span></td>
+					</tr>
+					<tr>
+						<td><label style="font-weight: bold;">Teléfono: </label></td>
+						<td><span th:text="${proveedor.telefono}"></span></td>
+					</tr>
+					<tr>
+						<td><a class="btn btn-outline-primary" th:href="@{/proveedores/actualizar/{id}(id=${proveedor.idproveedor})}">Actualizar datos</a></td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="card-footer text-muted"></div>
+	</div>
+	<br>
+	<nav>
+		<div class="nav nav-tabs" id="nav-tab" role="tablist">
+			<button class="nav-link active" id="nav-home-tab"
+				data-bs-toggle="tab" data-bs-target="#nav-profile" type="button"
+				role="tab" aria-controls="nav-profile" aria-selected="true">Productos</button>
+		</div>
+	</nav>
+		<div class="tab-pane fade show active" id="nav-profile" role="tabpanel"
+			aria-labelledby="nav-profile-tab">
+			
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">Nombre</th>
+						<th scope="col">Descripcion</th>
+						<th scope="col">Precio</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="producto : ${proveedor.productos}">
+						<th scope="row" ><span th:text="${producto.nombre}"></span></th>
+						<td scope="row" ><span th:text="${producto.descripcion}"></span></td>
+						<td scope="row" ><span th:text="${producto.precio}"></span></td>
+					</tr>
+				</tbody>
+			</table>			
+			</div>
+	</div>
+</body>
+</html>

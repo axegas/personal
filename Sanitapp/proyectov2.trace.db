@@ -1,0 +1,12 @@
+2021-03-19 17:20:25 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PACIENTE" no encontrada
+Table "PACIENTE" not found; SQL statement:
+select paciente0_.idpaciente as idpacien1_2_0_, paciente0_.diagnostico as diagnost2_2_0_, paciente0_.dni as dni3_2_0_, paciente0_.fecha_nacimiento as fecha_na4_2_0_, paciente0_.nombre as nombre5_2_0_, paciente0_.telefono as telefono6_2_0_ from paciente paciente0_ where paciente0_.idpaciente=? [42102-200]
+2021-03-19 17:25:45 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PACIENTE" no encontrada
+Table "PACIENTE" not found; SQL statement:
+select paciente0_.idpaciente as idpacien1_2_0_, paciente0_.diagnostico as diagnost2_2_0_, paciente0_.dni as dni3_2_0_, paciente0_.fecha_nacimiento as fecha_na4_2_0_, paciente0_.nombre as nombre5_2_0_, paciente0_.telefono as telefono6_2_0_ from paciente paciente0_ where paciente0_.idpaciente=? [42102-200]
+2021-03-19 17:41:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PACIENTE" no encontrada
+Table "PACIENTE" not found; SQL statement:
+select paciente0_.idpaciente as idpacien1_2_0_, paciente0_.diagnostico as diagnost2_2_0_, paciente0_.dni as dni3_2_0_, paciente0_.fecha_nacimiento as fecha_na4_2_0_, paciente0_.nombre as nombre5_2_0_, paciente0_.telefono as telefono6_2_0_ from paciente paciente0_ where paciente0_.idpaciente=? [42102-200]
