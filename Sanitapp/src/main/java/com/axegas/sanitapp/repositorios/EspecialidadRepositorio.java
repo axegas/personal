@@ -6,6 +6,4 @@ import com.axegas.sanitapp.entidades.Especialidad;
 
 public interface EspecialidadRepositorio extends JpaRepository<Especialidad, Long>  {
 	
-	Especialidad findByNombre(String nombre);
-
 }

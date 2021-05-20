@@ -27,9 +27,9 @@ public class PacienteControlador extends ControllerUtil {
 	public String listaPacientes(Model model, Principal principal) {
 
 		Usuario usuario = (Usuario) usuarioServicio.loadUserByUsername(principal.getName());
-
+		
 		if (usuario.getRol().toString().equals("JOB")) {
-			Especialista especialista = especialistaServicio.findByUsuario(usuario);
+			Especialista especialista = especialistaServicio.findByUsuario(usuario);			
 			model.addAttribute("pacientes", pacienteServicio.findByEspecialidad(especialista.getEspecialidad()));
 		} else {
 			model.addAttribute("pacientes", pacienteServicio.findAll());
@@ -45,7 +45,7 @@ public class PacienteControlador extends ControllerUtil {
 		if (!principal.getName().equals("admin")) {
 			Usuario usuario = (Usuario) usuarioServicio.loadUserByUsername(principal.getName());
 			Especialista especialista = especialistaServicio.findByUsuario(usuario);
-			citas = citaServicio.findByEspecialidad(especialista.getEspecialidad());
+			citas = especialista.getEspecialidad().getCitas();
 		} else {
 			citas = paciente.getCitas();
 		}

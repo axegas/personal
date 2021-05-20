@@ -9,8 +9,4 @@ import com.axegas.sanitapp.util.BaseService;
 @Service
 public class EspecialidadServicio extends BaseService<Especialidad, Long, EspecialidadRepositorio>  {
 	
-	public Especialidad findByNombre(String nombre) {
-		return repositorio.findByNombre(nombre);
-	}
-	
 }
