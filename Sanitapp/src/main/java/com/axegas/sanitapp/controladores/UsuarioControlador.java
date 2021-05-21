@@ -29,11 +29,11 @@ public class UsuarioControlador extends ControllerUtil implements ErrorControlle
 		} 
 		
 		Especialista especialista = especialistaServicio.findByUsuario(usuario);
+		
 		model.addAttribute("especialista", especialista);
 		model.addAttribute("pacientes", pacienteServicio.findByEspecialista(especialista));
 		return "detalleespecialista";
 		
-		//return "redirect:/perfil";
 	}
 
 	@GetMapping("/login")
@@ -43,21 +43,6 @@ public class UsuarioControlador extends ControllerUtil implements ErrorControlle
 		} else {
 			return "redirect:/";
 		}
-	}
-	
-	@GetMapping("/perfil")
-	public String miPerfil(Model model, Principal principal) {
-		Usuario usuario = (Usuario) usuarioServicio.loadUserByUsername(principal.getName());
-		if(usuario.getRol().equals(Rol.ADMIN)) {
-			return "plantilla";
-		} else if (usuario.getUsername().equals("user")) {
-			return "listacitas";
-		} 
-		
-		Especialista especialista = especialistaServicio.findByUsuario(usuario);
-		model.addAttribute("especialista", especialista);
-		model.addAttribute("pacientes", pacienteServicio.findByEspecialista(especialista));
-		return "detalleespecialista";
 	}
 	
 	@GetMapping("/perfil/actualizar")
