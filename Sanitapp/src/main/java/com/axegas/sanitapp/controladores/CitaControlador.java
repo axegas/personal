@@ -15,7 +15,7 @@ import com.axegas.sanitapp.util.ControllerUtil;
 public class CitaControlador extends ControllerUtil {
 
 	@GetMapping("/lista")
-	public String listaCitas(Model model) {
+	public String listaCitas(Model model) {		
 		model.addAttribute("citas", citaServicio.findAll());
 		return "listacitas";
 	}

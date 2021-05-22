@@ -8,5 +8,4 @@ import com.axegas.sanitapp.util.BaseService;
 
 @Service
 public class CitaServicio extends BaseService<Cita, Long, CitaRepositorio> {
-	
 }
