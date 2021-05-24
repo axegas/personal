@@ -28,9 +28,9 @@
 					<td th:text="${especialista.dni}"></td>
 					<td th:text="${especialista.telefono}"></td>
 					<td th:text="${especialista.especialidad}"></td>
-					<td><a class="btn btn-outline-primary"
+					<td><a class="btn btn-primary"
 						th:href="@{/especialistas/detalle/{id}(id=${especialista.idespecialista})}">Detalle</a>
-						<a class="btn btn-outline-primary"
+						<a class="btn btn-primary"
 						th:href="@{/especialistas/actualizar/{id}(id=${especialista.idespecialista})}">Actualizar
 							datos</a></td>
 				</tr>

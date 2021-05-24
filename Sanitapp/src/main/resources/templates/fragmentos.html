@@ -1,5 +1,5 @@
 	<!------------------------ CABECERA -------------------------->
-	<div class="card text-center header" th:fragment="cabecera">
+	<div class="text-center header card o-hidden border-0 shadow-lg my-5" th:fragment="cabecera">
 		<p th:text="${titulo}"></p>
 	</div>
 	<!------------------------ MENU LATERAL -------------------------->
@@ -11,7 +11,7 @@
 					class="icon-plus"></span> <b><a class="menu-link" href="#"
 					th:text="${#authentication.name}" name="nick">Usuario</a></b></li>
 				<!-- accordion-toggle -->
-				<ul class="menu-submenu accordion-content">
+				<ul id="lista-dentro" class="menu-submenu accordion-content">
 					<li><a class="head" th:href="@{/}">Mi perfil</a></li>
 					<li><a class="head"
 						href="javascript:document.getElementById('logoutForm').submit()">Salir</a></li>

@@ -28,11 +28,12 @@
 					<td th:text="${cita.paciente.nombre}"></td>
 					<td th:text="${cita.especialidad}"></td>
 					<th:block th:switch="${cita.estado}">
-					<td th:case="'Pendiente'"><a style="width: 150px" class="btn btn-outline-primary" th:href="@{/sesiones/nueva/{id}(id=${cita.idcita})}" th:text="${cita.estado}"></a></td>
-					<td th:case="'Revisada'"><a style="width: 150px" class="btn btn-outline-success" href="#" th:text="${cita.estado}"></a></td>
-					<td th:case="'Pendiente de revisar'"><a style="width: 150px" class="btn btn-outline-warning" th:href="@{/sesiones/nueva/{id}(id=${cita.idcita})}" th:text="${cita.estado}"></a></td>
-					<td th:case="'Cancelada'"><a style="width: 150px" class="btn btn-outline-danger" href="#" th:text="${cita.estado}"></a></td>
+					<td th:case="'Pendiente'"><a style="width: 150px" class="btn btn-primary" th:href="@{/sesiones/nueva/{id}(id=${cita.idcita})}" th:text="${cita.estado}"></a></td>
+					<td th:case="'Revisada'"><a style="width: 150px" class="btn btn-success" href="#" th:text="${cita.estado}"></a></td>
+					<td th:case="'Pendiente de revisar'"><a style="width: 150px" class="btn btn-warning" th:href="@{/sesiones/nueva/{id}(id=${cita.idcita})}" th:text="${cita.estado}"></a></td>
+					<td th:case="'Cancelada'"><a style="width: 150px" class="btn btn-danger" href="#" th:text="${cita.estado}"></a></td>
 					</th:block>
+					<td></td>
 				</tr>
 			</tbody>
 		</table>

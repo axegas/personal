@@ -37,7 +37,7 @@
 							<td><span th:text="${especialista.especialidad}"></span></td>
 						</tr>
 						<tr>
-							<td><a class="btn btn-outline-primary"
+							<td><a class="btn btn-primary"
 								sec:authorize="hasRole('JOB')" th:href="@{/perfil/actualizar}">Actualizar
 									datos</a></td>
 							<td></td>
@@ -70,7 +70,7 @@
 				aria-labelledby="nav-home-tab">
 				<table class="table table-striped tablalista">
 					<thead>
-						<tr>
+						<tr class="header-row">
 							<th scope="col">Nombre</th>
 							<th scope="col">DNI</th>
 							<th scope="col">Teléfono</th>
@@ -86,7 +86,7 @@
 							<td th:text="${sesion.cita.paciente.telefono}"></td>
 							<td th:text="${sesion.cita.paciente.fecha_nacimiento}"></td>
 							<td th:text="${sesion.cita.paciente.diagnostico}"></td>
-							<td><a class="btn btn-outline-primary"
+							<td><a class="btn btn-primary"
 								th:href="@{/pacientes/detalle/{id}(id=${sesion.cita.paciente.idpaciente})}">Detalles</a></td>
 						</tr>
 					</tbody>
@@ -129,7 +129,7 @@
 						<tr th:each="sesion : ${especialista.sesiones}">
 							<th width="20%" scope="row" th:text="${sesion.cita.fecha}">Fecha</th>
 							<td th:text="${sesion.cita.paciente}"></td>
-							<td><a style="width: 150px" th:classappend="${sesion.cita.estado == 'Revisada' ? 'btn-outline-success' : 'btn-outline-primary'}" class="btn " th:href="@{/sesiones/revisar/{id}(id=${sesion.idsesion})}" th:text="${sesion.cita.estado}"></a></td>
+							<td><a style="width: 150px" th:classappend="${sesion.cita.estado == 'Revisada' ? 'btn-success' : 'btn-primary'}" class="btn " th:href="@{/sesiones/revisar/{id}(id=${sesion.idsesion})}" th:text="${sesion.cita.estado}"></a></td>
 						</tr>
 					</tbody>
 				</table>

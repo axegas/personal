@@ -31,9 +31,9 @@
 					<td th:text="${paciente.telefono}"></td>
 					<td th:text="${paciente.fecha_nacimiento}"></td>
 					<td th:text="${paciente.diagnostico}"></td>
-					<td><a class="btn btn-outline-primary"
+					<td><a class="btn btn-primary"
 						th:href="@{/pacientes/detalle/{id}(id=${paciente.idpaciente})}">Detalle</a>
-						<a class="btn btn-outline-primary"
+						<a class="btn btn-primary"
 						th:href="@{/pacientes/actualizar/{id}(id=${paciente.idpaciente})}">Actualizar
 							datos</a></td>
 				</tr>

@@ -19,6 +19,8 @@
 					<th scope="col">DNI</th>
 					<th scope="col">Teléfono</th>
 					<th scope="col"></th>
+					<th scope="col"></th>
+					<th scope="col"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -26,9 +28,11 @@
 					<td th:text="${proveedor.nombre}"></td>
 					<td th:text="${proveedor.dni}"></td>
 					<td th:text="${proveedor.telefono}"></td>
-					<td><a class="btn btn-outline-primary"
+					<td scope="col"></td>
+					<td scope="col"></td>
+					<td><a class="btn btn-primary"
 						th:href="@{/proveedores/detalle/{id}(id=${proveedor.idproveedor})}">Detalle</a>
-						<a class="btn btn-outline-primary"
+						<a class="btn btn-primary"
 						th:href="@{/proveedores/actualizar/{id}(id=${proveedor.idproveedor})}">Actualizar
 							datos</a></td>
 				</tr>
